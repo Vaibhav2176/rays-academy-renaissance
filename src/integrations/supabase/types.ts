@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      announcements: {
+        Row: {
+          content: string
+          created_at: string
+          end_date: string | null
+          id: string
+          is_active: boolean
+          priority: number
+          start_date: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          is_active?: boolean
+          priority?: number
+          start_date?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          is_active?: boolean
+          priority?: number
+          start_date?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       classes: {
         Row: {
           created_at: string
@@ -32,6 +68,39 @@ export type Database = {
           description?: string | null
           id?: string
           name?: string
+        }
+        Relationships: []
+      }
+      contact_inquiries: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          phone: string
+          responded_at: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+          phone: string
+          responded_at?: string | null
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          phone?: string
+          responded_at?: string | null
+          status?: string
         }
         Relationships: []
       }
@@ -75,6 +144,36 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      gallery_images: {
+        Row: {
+          category: string
+          created_at: string
+          display_order: number
+          id: string
+          image_url: string
+          is_active: boolean
+          title: string | null
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url: string
+          is_active?: boolean
+          title?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url?: string
+          is_active?: boolean
+          title?: string | null
+        }
+        Relationships: []
       }
       profiles: {
         Row: {
@@ -385,6 +484,42 @@ export type Database = {
           },
         ]
       }
+      toppers: {
+        Row: {
+          created_at: string
+          exam: string
+          id: string
+          image_url: string | null
+          is_featured: boolean
+          name: string
+          rank: string
+          score: string
+          year: number
+        }
+        Insert: {
+          created_at?: string
+          exam: string
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean
+          name: string
+          rank: string
+          score: string
+          year: number
+        }
+        Update: {
+          created_at?: string
+          exam?: string
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean
+          name?: string
+          rank?: string
+          score?: string
+          year?: number
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
@@ -400,6 +535,36 @@ export type Database = {
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
+        }
+        Relationships: []
+      }
+      yearly_results: {
+        Row: {
+          above_90_percent: number
+          above_95_percent: number
+          created_at: string
+          district_toppers: number
+          id: string
+          total_students: number
+          year: number
+        }
+        Insert: {
+          above_90_percent?: number
+          above_95_percent?: number
+          created_at?: string
+          district_toppers?: number
+          id?: string
+          total_students?: number
+          year: number
+        }
+        Update: {
+          above_90_percent?: number
+          above_95_percent?: number
+          created_at?: string
+          district_toppers?: number
+          id?: string
+          total_students?: number
+          year?: number
         }
         Relationships: []
       }

@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useGalleryImages } from '@/hooks/useGalleryImages';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -22,31 +23,25 @@ const Gallery = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [currentCategory, setCurrentCategory] = useState('academy');
-
-  const galleryImages = {
-    academy: [
-      'https://github.com/Vaibhav2176/Rays-Academy/blob/main/images/academy1.jpg?raw=true',
-      'https://github.com/Vaibhav2176/Rays-Academy/blob/main/images/academy2.jpg?raw=true',
-      'https://github.com/Vaibhav2176/Rays-Academy/blob/main/images/academy3.jpg?raw=true',
-      'https://github.com/Vaibhav2176/Rays-Academy/blob/main/images/main.png?raw=true',
-      'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800',
-      'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800',
-    ],
-    events: [
-      'https://github.com/Vaibhav2176/Rays-Academy/blob/main/images/event1.jpg?raw=true',
-      'https://github.com/Vaibhav2176/Rays-Academy/blob/main/images/event2.jpg?raw=true',
-      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800',
-      'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800',
-      'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800',
-      'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800',
-    ],
-    achievements: [
-      'https://github.com/Vaibhav2176/Rays-Academy/blob/main/images/achievement1.jpg?raw=true',
-      'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800',
-      'https://images.unsplash.com/photo-1567168544230-6b6e9c8e0f97?w=800',
-      'https://images.unsplash.com/photo-1526667310009-8b5e08c8bf75?w=800',
-    ],
-  };
+  
+  const { data: images, isLoading } = useGalleryImages();
+  
+  const galleryImages = useMemo(() => {
+    if (!images) return { academy: [], events: [], achievements: [] };
+    
+    return images.reduce((acc, image) => {
+      const category = image.category;
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(image.image_url);
+      return acc;
+    }, {} as Record<string, string[]>);
+  }, [images]);
+  
+  const categories = ['academy', 'events', 'achievements'].filter(
+    cat => galleryImages[cat]?.length > 0
+  );
 
   const openLightbox = (category: string, index: number) => {
     setCurrentCategory(category);
@@ -59,14 +54,22 @@ const Gallery = () => {
   };
 
   const nextImage = () => {
-    const images = galleryImages[currentCategory as keyof typeof galleryImages];
-    setCurrentImage((prev) => (prev + 1) % images.length);
+    const imgs = galleryImages[currentCategory] || [];
+    setCurrentImage((prev) => (prev + 1) % imgs.length);
   };
 
   const prevImage = () => {
-    const images = galleryImages[currentCategory as keyof typeof galleryImages];
-    setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+    const imgs = galleryImages[currentCategory] || [];
+    setCurrentImage((prev) => (prev - 1 + imgs.length) % imgs.length);
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="overflow-hidden">
@@ -104,7 +107,7 @@ const Gallery = () => {
               <TabsTrigger value="achievements">Achievements</TabsTrigger>
             </TabsList>
 
-            {Object.entries(galleryImages).map(([category, images]) => (
+            {['academy', 'events', 'achievements'].map((category) => (
               <TabsContent key={category} value={category}>
                 <motion.div
                   initial="initial"
@@ -112,7 +115,7 @@ const Gallery = () => {
                   variants={stagger}
                   className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
-                  {images.map((image, index) => (
+                  {(galleryImages[category] || []).map((image, index) => (
                     <motion.div
                       key={index}
                       variants={fadeInUp}
@@ -174,7 +177,7 @@ const Gallery = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              src={galleryImages[currentCategory as keyof typeof galleryImages][currentImage]}
+              src={(galleryImages[currentCategory] || [])[currentImage]}
               alt="Gallery"
               className="max-w-full max-h-[85vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
@@ -193,7 +196,7 @@ const Gallery = () => {
             </Button>
 
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm">
-              {currentImage + 1} / {galleryImages[currentCategory as keyof typeof galleryImages].length}
+              {currentImage + 1} / {(galleryImages[currentCategory] || []).length}
             </div>
           </motion.div>
         )}

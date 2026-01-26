@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import { useContactInquiry } from '@/hooks/useContactInquiry';
 import { z } from 'zod';
 
 const fadeInUp = {
@@ -32,13 +33,13 @@ const contactSchema = z.object({
 
 const Contact = () => {
   const { toast } = useToast();
+  const contactMutation = useContactInquiry();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -67,18 +68,23 @@ const Contact = () => {
       return;
     }
 
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for contacting us. We'll get back to you soon.",
+    contactMutation.mutate(formData, {
+      onSuccess: () => {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for contacting us. We'll get back to you soon.",
+        });
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      },
+      onError: (error) => {
+        toast({
+          title: "Error",
+          description: "Failed to send message. Please try again.",
+          variant: "destructive",
+        });
+        console.error('Contact form error:', error);
+      },
     });
-    
-    setFormData({ name: '', email: '', phone: '', message: '' });
-    setIsSubmitting(false);
   };
 
   const contactInfo = [
@@ -291,9 +297,9 @@ const Contact = () => {
                       type="submit"
                       size="lg"
                       className="w-full btn-primary"
-                      disabled={isSubmitting}
+                      disabled={contactMutation.isPending}
                     >
-                      {isSubmitting ? (
+                      {contactMutation.isPending ? (
                         <>
                           <div className="w-5 h-5 border-2 border-accent-foreground/30 border-t-accent-foreground rounded-full animate-spin mr-2" />
                           Sending...
