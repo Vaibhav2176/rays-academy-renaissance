@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Trophy, Medal, Star, TrendingUp, ArrowRight, Award } from 'lucide-react';
+import { Trophy, Medal, Star, TrendingUp, ArrowRight, Award, Loader2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useToppers, useYearlyResults } from '@/hooks/useToppers';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -20,19 +21,8 @@ const stagger = {
 };
 
 const Results = () => {
-  const toppers = [
-    { name: 'Aditya Sharma', exam: 'JEE Advanced 2024', rank: 'AIR 156', score: '98.5%', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face' },
-    { name: 'Priya Patel', exam: 'NEET 2024', rank: 'AIR 234', score: '99.2%', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face' },
-    { name: 'Rahul Verma', exam: 'NDA 2024', rank: 'AIR 89', score: '97.8%', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face' },
-    { name: 'Sneha Gupta', exam: 'CBSE 12th 2024', rank: 'City Topper', score: '99.4%', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face' },
-  ];
-
-  const yearlyResults = [
-    { year: '2024', total: 250, above90: 180, above95: 95, toppers: 12 },
-    { year: '2023', total: 230, above90: 165, above95: 82, toppers: 10 },
-    { year: '2022', total: 210, above90: 150, above95: 70, toppers: 8 },
-    { year: '2021', total: 195, above90: 140, above95: 65, toppers: 7 },
-  ];
+  const { data: toppers, isLoading: toppersLoading } = useToppers(true);
+  const { data: yearlyResults, isLoading: resultsLoading } = useYearlyResults();
 
   const achievements = [
     { icon: Trophy, title: '100% Pass Rate', description: 'Consistent success rate since 2006', color: 'from-yellow-500 to-orange-500' },
@@ -40,6 +30,14 @@ const Results = () => {
     { icon: Star, title: '50+ City Toppers', description: 'In board examinations', color: 'from-purple-500 to-pink-500' },
     { icon: TrendingUp, title: '95% Above 80%', description: 'Students scoring distinction', color: 'from-green-500 to-emerald-500' },
   ];
+
+  if (toppersLoading || resultsLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="overflow-hidden">
@@ -123,14 +121,14 @@ const Results = () => {
             variants={stagger}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
           >
-            {toppers.map((topper, index) => (
-              <motion.div key={index} variants={fadeInUp}>
+            {(toppers || []).map((topper, index) => (
+              <motion.div key={topper.id || index} variants={fadeInUp}>
                 <Card className="h-full text-center overflow-hidden group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg">
                   <div className="h-2 w-full bg-gradient-to-r from-accent to-rays-blue-600" />
                   <CardContent className="p-6">
                     <div className="relative w-24 h-24 mx-auto mb-4">
                       <img
-                        src={topper.image}
+                        src={topper.image_url || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face'}
                         alt={topper.name}
                         className="w-full h-full rounded-full object-cover border-4 border-accent/20 group-hover:border-accent transition-colors duration-300"
                       />
@@ -199,28 +197,28 @@ const Results = () => {
                 </tr>
               </thead>
               <tbody>
-                {yearlyResults.map((result, index) => (
+                {(yearlyResults || []).map((result, index) => (
                   <motion.tr
-                    key={index}
+                    key={result.id || index}
                     variants={fadeInUp}
                     className="border-b border-primary-foreground/10 hover:bg-primary-foreground/5 transition-colors"
                   >
                     <td className="py-4 px-6 text-primary-foreground font-bold text-lg">{result.year}</td>
-                    <td className="py-4 px-6 text-center text-primary-foreground/80">{result.total}</td>
+                    <td className="py-4 px-6 text-center text-primary-foreground/80">{result.total_students}</td>
                     <td className="py-4 px-6 text-center">
                       <Badge className="bg-green-500/20 text-green-300 border-green-500/30">
-                        {result.above90}
+                        {result.above_90_percent}
                       </Badge>
                     </td>
                     <td className="py-4 px-6 text-center">
                       <Badge className="bg-accent/20 text-accent border-accent/30">
-                        {result.above95}
+                        {result.above_95_percent}
                       </Badge>
                     </td>
                     <td className="py-4 px-6 text-center">
                       <div className="flex items-center justify-center gap-1">
                         <Award className="w-5 h-5 text-yellow-400" />
-                        <span className="text-primary-foreground font-bold">{result.toppers}</span>
+                        <span className="text-primary-foreground font-bold">{result.district_toppers}</span>
                       </div>
                     </td>
                   </motion.tr>
