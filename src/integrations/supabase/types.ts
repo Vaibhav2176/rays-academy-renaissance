@@ -35,6 +35,47 @@ export type Database = {
         }
         Relationships: []
       }
+      enrollment_codes: {
+        Row: {
+          class_id: string
+          code: string
+          created_at: string
+          id: string
+          is_used: boolean
+          student_name: string | null
+          used_at: string | null
+          used_by: string | null
+        }
+        Insert: {
+          class_id: string
+          code: string
+          created_at?: string
+          id?: string
+          is_used?: boolean
+          student_name?: string | null
+          used_at?: string | null
+          used_by?: string | null
+        }
+        Update: {
+          class_id?: string
+          code?: string
+          created_at?: string
+          id?: string
+          is_used?: boolean
+          student_name?: string | null
+          used_at?: string | null
+          used_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "enrollment_codes_class_id_fkey"
+            columns: ["class_id"]
+            isOneToOne: false
+            referencedRelation: "classes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           class_id: string | null
@@ -378,6 +419,10 @@ export type Database = {
       is_enrolled_in_class: {
         Args: { _class_id: string; _user_id: string }
         Returns: boolean
+      }
+      use_enrollment_code: {
+        Args: { _code: string; _user_id: string }
+        Returns: string
       }
     }
     Enums: {
