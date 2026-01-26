@@ -15,7 +15,7 @@ interface AuthContextType {
   session: Session | null;
   profile: Profile | null;
   loading: boolean;
-  signUp: (email: string, password: string, fullName: string, phone: string, classId: string) => Promise<{ error: Error | null }>;
+  signUp: (email: string, password: string, fullName: string, phone: string, enrollmentCode: string) => Promise<{ error: Error | null }>;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
   updateProfile: (updates: Partial<Profile>) => Promise<{ error: Error | null }>;
@@ -80,7 +80,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (email: string, password: string, fullName: string, phone: string, classId: string) => {
+  const signUp = async (email: string, password: string, fullName: string, phone: string, enrollmentCode: string) => {
+    // First validate the enrollment code exists and is unused
+    const { data: codeData, error: codeError } = await supabase
+      .from('enrollment_codes')
+      .select('id, class_id')
+      .eq('code', enrollmentCode)
+      .eq('is_used', false)
+      .maybeSingle();
+    
+    if (codeError || !codeData) {
+      return { error: new Error('Invalid or already used enrollment code. Please contact Rays Academy.') };
+    }
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -92,20 +104,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       },
     });
 
-    if (!error) {
-      // Update profile with additional info after signup
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
-        await supabase
-          .from('profiles')
-          .update({ phone, class_id: classId, full_name: fullName })
-          .eq('id', user.id);
-        
-        await fetchProfile(user.id);
-      }
+    if (error) {
+      return { error: error as Error };
     }
 
-    return { error: error as Error | null };
+    // After signup, use the enrollment code
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      // Use the enrollment code function to mark it used and set class
+      const { error: useCodeError } = await supabase.rpc('use_enrollment_code', {
+        _code: enrollmentCode,
+        _user_id: user.id
+      });
+      
+      if (useCodeError) {
+        console.error('Error using enrollment code:', useCodeError);
+      }
+      
+      // Update profile with phone and name
+      await supabase
+        .from('profiles')
+        .update({ phone, full_name: fullName })
+        .eq('id', user.id);
+      
+      await fetchProfile(user.id);
+    }
+
+    return { error: null };
   };
 
   const signIn = async (email: string, password: string) => {

@@ -5,16 +5,13 @@ import { GraduationCap, ArrowRight, Eye, EyeOff, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/contexts/AuthContext';
-import { useClasses } from '@/hooks/useClasses';
 import { useToast } from '@/hooks/use-toast';
 
 const Login = () => {
   const navigate = useNavigate();
   const { signIn, signUp } = useAuth();
-  const { data: classes, isLoading: classesLoading } = useClasses();
   const { toast } = useToast();
   
   const [showPassword, setShowPassword] = useState(false);
@@ -28,7 +25,7 @@ const Login = () => {
   const [registerName, setRegisterName] = useState('');
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPhone, setRegisterPhone] = useState('');
-  const [registerClass, setRegisterClass] = useState('');
+  const [registerCode, setRegisterCode] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
 
@@ -76,10 +73,10 @@ const Login = () => {
       return;
     }
     
-    if (!registerClass) {
+    if (!registerCode.trim()) {
       toast({
-        title: "Class Required",
-        description: "Please select your class.",
+        title: "Enrollment Code Required",
+        description: "Please enter the enrollment code provided by Rays Academy.",
         variant: "destructive",
       });
       return;
@@ -87,7 +84,7 @@ const Login = () => {
     
     setLoading(true);
     
-    const { error } = await signUp(registerEmail, registerPassword, registerName, registerPhone, registerClass);
+    const { error } = await signUp(registerEmail, registerPassword, registerName, registerPhone, registerCode.trim().toUpperCase());
     
     if (error) {
       toast({
@@ -228,23 +225,19 @@ const Login = () => {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="register-class">Select Class</Label>
-                  <Select value={registerClass} onValueChange={setRegisterClass}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Choose your class" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {classesLoading ? (
-                        <SelectItem value="loading" disabled>Loading...</SelectItem>
-                      ) : (
-                        classes?.map((cls) => (
-                          <SelectItem key={cls.id} value={cls.id}>
-                            {cls.name}
-                          </SelectItem>
-                        ))
-                      )}
-                    </SelectContent>
-                  </Select>
+                  <Label htmlFor="register-code">Enrollment Code</Label>
+                  <Input
+                    id="register-code"
+                    type="text"
+                    placeholder="Enter your enrollment code (e.g., RAYS-6TH-001)"
+                    value={registerCode}
+                    onChange={(e) => setRegisterCode(e.target.value.toUpperCase())}
+                    required
+                    className="uppercase"
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Enter the unique code provided by Rays Academy during your offline registration.
+                  </p>
                 </div>
                 
                 <div className="space-y-2">
