@@ -1,0 +1,12 @@
+-- Add additional profile fields for student registration
+ALTER TABLE public.profiles 
+ADD COLUMN IF NOT EXISTS date_of_birth DATE,
+ADD COLUMN IF NOT EXISTS gender TEXT,
+ADD COLUMN IF NOT EXISTS parent_name TEXT,
+ADD COLUMN IF NOT EXISTS parent_phone TEXT,
+ADD COLUMN IF NOT EXISTS address TEXT,
+ADD COLUMN IF NOT EXISTS city TEXT,
+ADD COLUMN IF NOT EXISTS state TEXT DEFAULT 'Madhya Pradesh',
+ADD COLUMN IF NOT EXISTS pincode TEXT,
+ADD COLUMN IF NOT EXISTS school_name TEXT,
+ADD COLUMN IF NOT EXISTS board TEXT DEFAULT 'CBSE';

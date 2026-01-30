@@ -221,30 +221,60 @@ export type Database = {
       }
       profiles: {
         Row: {
+          address: string | null
+          board: string | null
+          city: string | null
           class_id: string | null
           created_at: string
+          date_of_birth: string | null
           email: string
           full_name: string
+          gender: string | null
           id: string
+          parent_name: string | null
+          parent_phone: string | null
           phone: string | null
+          pincode: string | null
+          school_name: string | null
+          state: string | null
           updated_at: string
         }
         Insert: {
+          address?: string | null
+          board?: string | null
+          city?: string | null
           class_id?: string | null
           created_at?: string
+          date_of_birth?: string | null
           email: string
           full_name: string
+          gender?: string | null
           id: string
+          parent_name?: string | null
+          parent_phone?: string | null
           phone?: string | null
+          pincode?: string | null
+          school_name?: string | null
+          state?: string | null
           updated_at?: string
         }
         Update: {
+          address?: string | null
+          board?: string | null
+          city?: string | null
           class_id?: string | null
           created_at?: string
+          date_of_birth?: string | null
           email?: string
           full_name?: string
+          gender?: string | null
           id?: string
+          parent_name?: string | null
+          parent_phone?: string | null
           phone?: string | null
+          pincode?: string | null
+          school_name?: string | null
+          state?: string | null
           updated_at?: string
         }
         Relationships: [
