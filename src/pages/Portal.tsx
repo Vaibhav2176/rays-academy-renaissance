@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { 
-  GraduationCap, BookOpen, Calendar, FileText, Bell, 
-  ArrowRight, User, LogOut, Video, FileIcon, Clock,
+  GraduationCap, BookOpen, Calendar, Bell, 
+  User, LogOut, Clock,
   CheckCircle, Award, Loader2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,8 +14,10 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useStudyMaterials, StudyMaterial } from '@/hooks/useStudyMaterials';
 import { useScholarshipTests, useTestRegistrations, useRegisterForTest } from '@/hooks/useScholarshipTests';
 import { useClasses } from '@/hooks/useClasses';
+import { useMaterialPurchases } from '@/hooks/useMaterialPurchases';
 import { useToast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
+import MaterialCard from '@/components/portal/MaterialCard';
 
 const Portal = () => {
   const navigate = useNavigate();
@@ -24,6 +26,7 @@ const Portal = () => {
   const { data: tests, isLoading: testsLoading } = useScholarshipTests();
   const { data: registrations, isLoading: registrationsLoading } = useTestRegistrations();
   const { data: classes } = useClasses();
+  const { data: purchases, isLoading: purchasesLoading } = useMaterialPurchases();
   const registerMutation = useRegisterForTest();
   const { toast } = useToast();
 
@@ -71,6 +74,10 @@ const Portal = () => {
       grouped[subject].push(material);
     });
     return grouped;
+  };
+
+  const hasMaterialAccess = (materialId: string) => {
+    return purchases?.some(p => p.material_id === materialId) ?? false;
   };
 
   if (authLoading) {
@@ -157,49 +164,27 @@ const Portal = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {materialsLoading ? (
+                  {materialsLoading || purchasesLoading ? (
                     <div className="flex items-center justify-center py-12">
                       <Loader2 className="w-8 h-8 animate-spin text-primary" />
                     </div>
                   ) : materials && materials.length > 0 ? (
                     <div className="space-y-6">
+                      <div className="p-4 rounded-lg bg-accent/10 border border-accent/20">
+                        <p className="text-sm text-accent-foreground">
+                          <strong>💡 Tip:</strong> Use coupon codes like <code className="bg-background px-1 rounded">RAYS2024</code> to unlock study materials for free!
+                        </p>
+                      </div>
                       {Object.entries(groupedMaterials).map(([subject, items]) => (
                         <div key={subject}>
                           <h3 className="font-semibold text-lg mb-3 text-foreground">{subject}</h3>
                           <div className="grid gap-3">
                             {items.map((material) => (
-                              <div
+                              <MaterialCard
                                 key={material.id}
-                                className="flex items-center gap-4 p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors"
-                              >
-                                <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                                  material.material_type === 'video' 
-                                    ? 'bg-accent/20 text-accent' 
-                                    : 'bg-primary/20 text-primary'
-                                }`}>
-                                  {material.material_type === 'video' ? (
-                                    <Video className="w-6 h-6" />
-                                  ) : (
-                                    <FileIcon className="w-6 h-6" />
-                                  )}
-                                </div>
-                                <div className="flex-1">
-                                  <h4 className="font-medium text-foreground">{material.title}</h4>
-                                  {material.description && (
-                                    <p className="text-sm text-muted-foreground">{material.description}</p>
-                                  )}
-                                </div>
-                                <Badge variant={material.material_type === 'video' ? 'default' : 'secondary'}>
-                                  {material.material_type === 'video' ? 'Video' : 'PDF'}
-                                </Badge>
-                                {material.file_url && (
-                                  <Button size="sm" variant="outline" asChild>
-                                    <a href={material.file_url} target="_blank" rel="noopener noreferrer">
-                                      Open
-                                    </a>
-                                  </Button>
-                                )}
-                              </div>
+                                material={material}
+                                hasAccess={hasMaterialAccess(material.id)}
+                              />
                             ))}
                           </div>
                         </div>

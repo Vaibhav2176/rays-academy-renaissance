@@ -9,6 +9,8 @@ export interface StudyMaterial {
   file_url: string | null;
   material_type: 'pdf' | 'video';
   subject: string | null;
+  price: number;
+  is_free: boolean;
   created_at: string;
 }
 

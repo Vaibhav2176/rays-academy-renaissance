@@ -25,7 +25,6 @@ const Login = () => {
   const [registerName, setRegisterName] = useState('');
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPhone, setRegisterPhone] = useState('');
-  const [registerCode, setRegisterCode] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
 
@@ -73,18 +72,9 @@ const Login = () => {
       return;
     }
     
-    if (!registerCode.trim()) {
-      toast({
-        title: "Enrollment Code Required",
-        description: "Please enter the enrollment code provided by Rays Academy.",
-        variant: "destructive",
-      });
-      return;
-    }
-    
     setLoading(true);
     
-    const { error } = await signUp(registerEmail, registerPassword, registerName, registerPhone, registerCode.trim().toUpperCase());
+    const { error } = await signUp(registerEmail, registerPassword, registerName, registerPhone);
     
     if (error) {
       toast({
@@ -95,7 +85,7 @@ const Login = () => {
     } else {
       toast({
         title: "Welcome to Rays Academy!",
-        description: "Your account has been created successfully.",
+        description: "Your account has been created. Check your email for verification.",
       });
       navigate('/portal');
     }
@@ -224,21 +214,6 @@ const Login = () => {
                   />
                 </div>
                 
-                <div className="space-y-2">
-                  <Label htmlFor="register-code">Enrollment Code</Label>
-                  <Input
-                    id="register-code"
-                    type="text"
-                    placeholder="Enter your enrollment code (e.g., RAYS-6TH-001)"
-                    value={registerCode}
-                    onChange={(e) => setRegisterCode(e.target.value.toUpperCase())}
-                    required
-                    className="uppercase"
-                  />
-                  <p className="text-xs text-muted-foreground">
-                    Enter the unique code provided by Rays Academy during your offline registration.
-                  </p>
-                </div>
                 
                 <div className="space-y-2">
                   <Label htmlFor="register-password">Password</Label>

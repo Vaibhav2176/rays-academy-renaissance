@@ -175,6 +175,50 @@ export type Database = {
         }
         Relationships: []
       }
+      material_coupons: {
+        Row: {
+          code: string
+          created_at: string | null
+          discount_percent: number | null
+          expires_at: string | null
+          id: string
+          is_active: boolean | null
+          material_id: string | null
+          max_uses: number | null
+          used_count: number | null
+        }
+        Insert: {
+          code: string
+          created_at?: string | null
+          discount_percent?: number | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          material_id?: string | null
+          max_uses?: number | null
+          used_count?: number | null
+        }
+        Update: {
+          code?: string
+          created_at?: string | null
+          discount_percent?: number | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          material_id?: string | null
+          max_uses?: number | null
+          used_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "material_coupons_material_id_fkey"
+            columns: ["material_id"]
+            isOneToOne: false
+            referencedRelation: "study_materials"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           class_id: string | null
@@ -264,7 +308,9 @@ export type Database = {
           description: string | null
           file_url: string | null
           id: string
+          is_free: boolean | null
           material_type: string
+          price: number | null
           subject: string | null
           title: string
           updated_at: string
@@ -275,7 +321,9 @@ export type Database = {
           description?: string | null
           file_url?: string | null
           id?: string
+          is_free?: boolean | null
           material_type: string
+          price?: number | null
           subject?: string | null
           title: string
           updated_at?: string
@@ -286,7 +334,9 @@ export type Database = {
           description?: string | null
           file_url?: string | null
           id?: string
+          is_free?: boolean | null
           material_type?: string
+          price?: number | null
           subject?: string | null
           title?: string
           updated_at?: string
@@ -520,6 +570,48 @@ export type Database = {
         }
         Relationships: []
       }
+      user_material_purchases: {
+        Row: {
+          amount_paid: number | null
+          coupon_id: string | null
+          id: string
+          material_id: string
+          purchased_at: string | null
+          user_id: string
+        }
+        Insert: {
+          amount_paid?: number | null
+          coupon_id?: string | null
+          id?: string
+          material_id: string
+          purchased_at?: string | null
+          user_id: string
+        }
+        Update: {
+          amount_paid?: number | null
+          coupon_id?: string | null
+          id?: string
+          material_id?: string
+          purchased_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_material_purchases_coupon_id_fkey"
+            columns: ["coupon_id"]
+            isOneToOne: false
+            referencedRelation: "material_coupons"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_material_purchases_material_id_fkey"
+            columns: ["material_id"]
+            isOneToOne: false
+            referencedRelation: "study_materials"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           id: string
@@ -584,6 +676,10 @@ export type Database = {
       is_enrolled_in_class: {
         Args: { _class_id: string; _user_id: string }
         Returns: boolean
+      }
+      redeem_coupon: {
+        Args: { _code: string; _material_id: string; _user_id: string }
+        Returns: Json
       }
       use_enrollment_code: {
         Args: { _code: string; _user_id: string }
