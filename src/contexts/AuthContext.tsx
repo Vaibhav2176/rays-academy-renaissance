@@ -15,7 +15,7 @@ interface AuthContextType {
   session: Session | null;
   profile: Profile | null;
   loading: boolean;
-  signUp: (email: string, password: string, fullName: string, phone: string, enrollmentCode: string) => Promise<{ error: Error | null }>;
+  signUp: (email: string, password: string, fullName: string, phone: string) => Promise<{ error: Error | null }>;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
   updateProfile: (updates: Partial<Profile>) => Promise<{ error: Error | null }>;
@@ -80,19 +80,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (email: string, password: string, fullName: string, phone: string, enrollmentCode: string) => {
-    // First validate the enrollment code exists and is unused
-    const { data: codeData, error: codeError } = await supabase
-      .from('enrollment_codes')
-      .select('id, class_id')
-      .eq('code', enrollmentCode)
-      .eq('is_used', false)
-      .maybeSingle();
-    
-    if (codeError || !codeData) {
-      return { error: new Error('Invalid or already used enrollment code. Please contact Rays Academy.') };
-    }
-
+  const signUp = async (email: string, password: string, fullName: string, phone: string) => {
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -108,20 +96,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return { error: error as Error };
     }
 
-    // After signup, use the enrollment code
+    // Update profile with phone after signup
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
-      // Use the enrollment code function to mark it used and set class
-      const { error: useCodeError } = await supabase.rpc('use_enrollment_code', {
-        _code: enrollmentCode,
-        _user_id: user.id
-      });
-      
-      if (useCodeError) {
-        console.error('Error using enrollment code:', useCodeError);
-      }
-      
-      // Update profile with phone and name
       await supabase
         .from('profiles')
         .update({ phone, full_name: fullName })
