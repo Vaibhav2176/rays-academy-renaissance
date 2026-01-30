@@ -8,6 +8,32 @@ interface Profile {
   email: string;
   phone: string | null;
   class_id: string | null;
+  date_of_birth: string | null;
+  gender: string | null;
+  parent_name: string | null;
+  parent_phone: string | null;
+  address: string | null;
+  city: string | null;
+  state: string | null;
+  pincode: string | null;
+  school_name: string | null;
+  board: string | null;
+}
+
+export interface SignUpData {
+  fullName: string;
+  phone: string;
+  classId?: string;
+  dateOfBirth?: string;
+  gender?: string;
+  parentName?: string;
+  parentPhone?: string;
+  schoolName?: string;
+  board?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  pincode?: string;
 }
 
 interface AuthContextType {
@@ -15,7 +41,7 @@ interface AuthContextType {
   session: Session | null;
   profile: Profile | null;
   loading: boolean;
-  signUp: (email: string, password: string, fullName: string, phone: string) => Promise<{ error: Error | null }>;
+  signUp: (email: string, password: string, data: SignUpData) => Promise<{ error: Error | null }>;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
   updateProfile: (updates: Partial<Profile>) => Promise<{ error: Error | null }>;
@@ -80,14 +106,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (email: string, password: string, fullName: string, phone: string) => {
+  const signUp = async (email: string, password: string, data: SignUpData) => {
     const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: window.location.origin,
         data: {
-          full_name: fullName,
+          full_name: data.fullName,
         },
       },
     });
@@ -96,12 +122,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return { error: error as Error };
     }
 
-    // Update profile with phone after signup
+    // Update profile with all details after signup
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
       await supabase
         .from('profiles')
-        .update({ phone, full_name: fullName })
+        .update({
+          full_name: data.fullName,
+          phone: data.phone,
+          class_id: data.classId || null,
+          date_of_birth: data.dateOfBirth || null,
+          gender: data.gender || null,
+          parent_name: data.parentName || null,
+          parent_phone: data.parentPhone || null,
+          school_name: data.schoolName || null,
+          board: data.board || null,
+          address: data.address || null,
+          city: data.city || null,
+          state: data.state || null,
+          pincode: data.pincode || null,
+        })
         .eq('id', user.id);
       
       await fetchProfile(user.id);
