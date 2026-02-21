@@ -4,7 +4,7 @@ import { Award, BookOpen, ArrowRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import highlightsImage from "@/assets/shankaramulani2.jpeg";
+import directorImage from "@/assets/shankaramulani2.jpeg";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -27,7 +27,7 @@ const Faculty = () => {
       role: 'Founder & Director',
       subject: 'Mathematics Faculty',
       experience: '30+ Years',
-      image: {highlightsImage},
+      image: directorImage,
       description: 'The visionary behind Rays Academy, Mr. Amulani is a renowned expert in Mathematics. His guidance and passion for teaching have inspired thousands of students to achieve their academic goals.',
       isFounder: true,
     },
