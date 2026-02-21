@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { GraduationCap, Phone, Mail, MapPin, Clock, Youtube, Instagram, Facebook, Twitter } from 'lucide-react';
+import logo from '@/assets/Rays Academy LOGO.jpg'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,9 +13,11 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="space-y-6">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center">
-                <GraduationCap className="w-7 h-7 text-accent-foreground" />
-              </div>
+              <img
+              src={logo}
+              alt="Rays Academy Logo"
+              className="w-12 h-12 object-contain rounded-md"
+            />
               <div>
                 <h3 className="text-xl font-bold">Rays Academy</h3>
                 <p className="text-xs text-primary-foreground/70">Excellence Since 2006</p>

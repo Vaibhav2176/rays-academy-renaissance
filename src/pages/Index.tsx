@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, Users, Trophy, Library, Bus, FileText, Star, Sparkles, GraduationCap, Monitor, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import highlightsImage from "@/assets/students.jpeg";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -276,7 +277,7 @@ const Index = () => {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://github.com/Vaibhav2176/Rays-Academy/blob/main/images/main.png?raw=true"
+                  src={highlightsImage}
                   alt="Rays Academy Students"
                   className="w-full h-[500px] object-cover"
                 />

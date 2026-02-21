@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { BookOpen, Users, Award, Library, Microscope, Lightbulb, FileText, Clock, Bus, ArrowRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import highlightsImage from "@/assets/shankaramulani.jpeg";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -88,7 +89,7 @@ const About = () => {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://github.com/Vaibhav2176/Rays-Academy/blob/main/images/director.jpg?raw=true"
+                  src={highlightsImage}
                   alt="Mr. Shankar Lal Amulani - Director"
                   className="w-full h-[500px] object-cover"
                 />
@@ -121,7 +122,7 @@ const About = () => {
               { number: '18+', label: 'Years of Excellence' },
               { number: '1000+', label: 'Students Taught' },
               { number: '100%', label: 'Success Rate' },
-              { number: '50+', label: 'Expert Faculty' },
+              { number: '10+', label: 'Expert Faculty' },
             ].map((stat, index) => (
               <motion.div
                 key={index}

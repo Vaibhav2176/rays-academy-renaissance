@@ -26,9 +26,9 @@ const Results = () => {
 
   const achievements = [
     { icon: Trophy, title: '100% Pass Rate', description: 'Consistent success rate since 2006', color: 'from-yellow-500 to-orange-500' },
-    { icon: Medal, title: '500+ Selections', description: 'In IIT-JEE, NEET, and NDA combined', color: 'from-blue-500 to-cyan-500' },
-    { icon: Star, title: '50+ City Toppers', description: 'In board examinations', color: 'from-purple-500 to-pink-500' },
-    { icon: TrendingUp, title: '95% Above 80%', description: 'Students scoring distinction', color: 'from-green-500 to-emerald-500' },
+    { icon: Medal, title: '100+ Selections', description: 'In IIT-JEE, NEET, and NDA combined', color: 'from-blue-500 to-cyan-500' },
+    { icon: Star, title: '50+ School Toppers', description: 'In board examinations', color: 'from-purple-500 to-pink-500' },
+    { icon: TrendingUp, title: '90% Above 80%', description: 'Students scoring distinction', color: 'from-green-500 to-emerald-500' },
   ];
 
   if (toppersLoading || resultsLoading) {

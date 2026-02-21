@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, GraduationCap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import logo from '@/assets/Rays Academy LOGO.jpg'
+import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -46,9 +47,11 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <div className="relative">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg group-hover:shadow-accent/30 transition-shadow">
-                <GraduationCap className="w-7 h-7 text-primary-foreground" />
-              </div>
+              <img
+              src={logo}
+              alt="Rays Academy Logo"
+              className="w-12 h-12 object-contain rounded-md"
+            />
             </div>
             <div className="hidden sm:block">
               <h1 className={cn(
