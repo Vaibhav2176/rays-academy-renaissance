@@ -115,7 +115,7 @@ const Faculty = () => {
                   <img
                     src={facultyMembers[0].image}
                     alt={facultyMembers[0].name}
-                    className="w-full h-full object-cover"
+                    className="w-full max-w-[340px] h-[480px] object-cover object-top rounded-3xl shadow-xl"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/50 lg:block hidden" />
                 </div>
