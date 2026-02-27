@@ -143,7 +143,7 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
               className="lg:hidden overflow-hidden"
             >
-              <div className="py-4 space-y-1">
+              <div className="py-4 space-y-1 bg-background/95 backdrop-blur-md rounded-lg mt-2 px-2 shadow-lg">
                 {navLinks.map((link, index) => (
                   <motion.div
                     key={link.path}
@@ -157,9 +157,7 @@ const Navbar = () => {
                         'block px-4 py-3 rounded-lg font-medium transition-all',
                         location.pathname === link.path
                           ? 'bg-accent text-accent-foreground'
-                          : scrolled
-                            ? 'text-foreground hover:bg-muted'
-                            : 'text-primary-foreground hover:bg-primary-foreground/10'
+                          : 'text-foreground hover:bg-muted'
                       )}
                     >
                       {link.name}
