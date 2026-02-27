@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import directorImage from "@/assets/shankaramulani2.jpeg";
+import faculty1 from "@/assets/rajesh sir.jpeg";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -36,7 +37,7 @@ const Faculty = () => {
       role: 'Head of Science Department',
       subject: 'Physics & Chemistry',
       experience: '15+ Years',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
+      image: faculty1,
       description: 'Known for making complex scientific concepts simple, Rajesh Sir\'s dynamic teaching style inspires students to excel in Science.',
     },
     {
