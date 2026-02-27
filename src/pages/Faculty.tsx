@@ -4,8 +4,11 @@ import { Award, BookOpen, ArrowRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import directorImage from "@/assets/shankaramulani2.jpeg";
-import faculty1 from "@/assets/rajesh sir.jpeg";
+import directorImage from "@/assets/shankaramulani1.jpeg";
+import faculty1 from "@/assets/rajeshsahu.jpeg";
+import faculty2 from "@/assets/ankityadav.jpeg";
+import faculty3 from "@/assets/mgali.jpeg";
+import faculty4 from "@/assets/sachinpawar.jpeg";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -45,7 +48,7 @@ const Faculty = () => {
       role: 'Senior Faculty',
       subject: 'Physics',
       experience: '10+ Years',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
+      image: faculty2,
       description: 'Ankit Sir is passionate about physics, using real-world examples to help students understand intricate topics and solve challenging problems.',
     },
     {
@@ -53,7 +56,7 @@ const Faculty = () => {
       role: 'Senior Faculty',
       subject: 'Chemistry',
       experience: '20+ Years',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face',
+      image: faculty3,
       description: 'With a doctorate in Chemistry, Dr. Ali brings deep academic knowledge and proven teaching methods to guide students to top scores.',
     },
     {
@@ -61,17 +64,9 @@ const Faculty = () => {
       role: 'Faculty',
       subject: 'Biology',
       experience: '8+ Years',
-      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&crop=face',
+      image: faculty4,
       description: 'Sachin Sir\'s engaging classes make biology come alive, ensuring students not only learn but also develop a love for the subject.',
-    },
-    {
-      name: 'Priya Sharma',
-      role: 'Faculty',
-      subject: 'English',
-      experience: '12+ Years',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face',
-      description: 'With expertise in English language and literature, Priya Ma\'am helps students master communication skills and excel in language examinations.',
-    },
+    }
   ];
 
   return (
@@ -116,7 +111,7 @@ const Faculty = () => {
                   <img
                     src={facultyMembers[0].image}
                     alt={facultyMembers[0].name}
-                    className="w-full max-w-[340px] h-[480px] object-cover object-top rounded-3xl shadow-xl"
+                    className="w-full max-w-[full] h-[full] object-cover object-top rounded-3xl shadow-xl"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/50 lg:block hidden" />
                 </div>
@@ -169,10 +164,10 @@ const Faculty = () => {
               <motion.div key={index} variants={fadeInUp}>
                 <Card className="h-full hover:shadow-2xl transition-all duration-500 group overflow-hidden border-0 shadow-lg">
                   <div className="relative h-64 overflow-hidden">
-                    <img
-                      src={faculty.image}
-                      alt={faculty.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    <img 
+                      src={faculty.image} 
+                      alt={faculty.name} 
+                      className="w-[full] h-[full] object-centre object-cover group-hover:scale-110 transition-transform duration-500" 
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4">
