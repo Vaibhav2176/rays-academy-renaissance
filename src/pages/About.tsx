@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { BookOpen, Users, Award, Library, Microscope, Lightbulb, FileText, Clock, Bus, ArrowRight } from 'lucide-react';
+import { useCountUp } from '@/hooks/useCountUp';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import highlightsImage from "@/assets/shankaramulani.jpeg";
@@ -18,6 +19,35 @@ const stagger = {
     }
   }
 };
+
+const StatItem = ({ end, suffix, label }: { end: number; suffix: string; label: string }) => {
+  const { count, ref } = useCountUp(end, 2000);
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="text-center"
+    >
+      <div className="text-4xl md:text-5xl font-bold text-accent mb-2">{count}{suffix}</div>
+      <div className="text-primary-foreground/80">{label}</div>
+    </motion.div>
+  );
+};
+
+const AboutStats = () => (
+  <section className="py-16 bg-primary">
+    <div className="container mx-auto px-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <StatItem end={18} suffix="+" label="Years of Excellence" />
+        <StatItem end={1000} suffix="+" label="Students Taught" />
+        <StatItem end={100} suffix="%" label="Success Rate" />
+        <StatItem end={10} suffix="+" label="Expert Faculty" />
+      </div>
+    </div>
+  </section>
+);
 
 const About = () => {
   const services = [
@@ -115,30 +145,7 @@ const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-primary">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { number: '18+', label: 'Years of Excellence' },
-              { number: '1000+', label: 'Students Taught' },
-              { number: '100%', label: 'Success Rate' },
-              { number: '10+', label: 'Expert Faculty' },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-4xl md:text-5xl font-bold text-accent mb-2">{stat.number}</div>
-                <div className="text-primary-foreground/80">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <AboutStats />
 
       {/* Services Section */}
       <section className="py-24 bg-gradient-to-b from-secondary/30 to-background">
