@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Trophy, Medal, Star, TrendingUp, ArrowRight, Award, Loader2 } from 'lucide-react';
+import { useCountUp } from '@/hooks/useCountUp';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -20,15 +21,37 @@ const stagger = {
   }
 };
 
+const AchievementCard = ({ item }: { item: { icon: any; end: number; suffix: string; label: string; description: string; color: string } }) => {
+  const { count, ref } = useCountUp(item.end, 2000);
+  const Icon = item.icon;
+  return (
+    <motion.div variants={fadeInUp} ref={ref}>
+      <Card className="h-full text-center p-6 hover:shadow-xl transition-all duration-300 group overflow-hidden relative border-0 shadow-lg">
+        <CardContent className="p-0">
+          <div className={`w-16 h-16 rounded-2xl mx-auto mb-4 bg-gradient-to-br ${item.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+            <Icon className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="font-bold text-xl mb-2 group-hover:text-primary transition-colors">
+            {count}{item.suffix} {item.label}
+          </h3>
+          <p className="text-muted-foreground text-sm">
+            {item.description}
+          </p>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+};
+
 const Results = () => {
   const { data: toppers, isLoading: toppersLoading } = useToppers(true);
   const { data: yearlyResults, isLoading: resultsLoading } = useYearlyResults();
 
   const achievements = [
-    { icon: Trophy, title: '100% Pass Rate', description: 'Consistent success rate since 2006', color: 'from-yellow-500 to-orange-500' },
-    { icon: Medal, title: '100+ Selections', description: 'In IIT-JEE, NEET, and NDA combined', color: 'from-blue-500 to-cyan-500' },
-    { icon: Star, title: '50+ School Toppers', description: 'In board examinations', color: 'from-purple-500 to-pink-500' },
-    { icon: TrendingUp, title: '90% Above 80%', description: 'Students scoring distinction', color: 'from-green-500 to-emerald-500' },
+    { icon: Trophy, end: 100, suffix: '%', label: 'Pass Rate', description: 'Consistent success rate since 2006', color: 'from-yellow-500 to-orange-500' },
+    { icon: Medal, end: 100, suffix: '+', label: 'Selections', description: 'In IIT-JEE, NEET, and NDA combined', color: 'from-blue-500 to-cyan-500' },
+    { icon: Star, end: 50, suffix: '+', label: 'School Toppers', description: 'In board examinations', color: 'from-purple-500 to-pink-500' },
+    { icon: TrendingUp, end: 90, suffix: '%', label: 'Above 80%', description: 'Students scoring distinction', color: 'from-green-500 to-emerald-500' },
   ];
 
   if (toppersLoading || resultsLoading) {
@@ -76,21 +99,7 @@ const Results = () => {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {achievements.map((item, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <Card className="h-full text-center p-6 hover:shadow-xl transition-all duration-300 group overflow-hidden relative border-0 shadow-lg">
-                  <CardContent className="p-0">
-                    <div className={`w-16 h-16 rounded-2xl mx-auto mb-4 bg-gradient-to-br ${item.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <item.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="font-bold text-xl mb-2 group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      {item.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              <AchievementCard key={index} item={item} />
             ))}
           </motion.div>
         </div>
