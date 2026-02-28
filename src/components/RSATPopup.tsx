@@ -25,45 +25,66 @@ const RSATPopup = () => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleClose}
         >
           <motion.div
-            className="relative max-w-lg w-full rounded-2xl overflow-hidden shadow-2xl"
-            initial={{ scale: 0.8, opacity: 0, y: 40 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.8, opacity: 0, y: 40 }}
-            transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+            className="relative w-[320px] sm:w-[380px] rounded-2xl overflow-hidden shadow-2xl bg-white"
+            initial={{ scale: 0.5, opacity: 0, rotate: -5 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            exit={{ scale: 0.5, opacity: 0, rotate: 5 }}
+            transition={{ type: 'spring', damping: 18, stiffness: 250 }}
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Glowing border effect */}
+            <motion.div
+              className="absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-accent via-primary to-accent z-[-1]"
+              animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              style={{ backgroundSize: '200% 200%' }}
+            />
+
             <button
               onClick={handleClose}
-              className="absolute top-3 right-3 z-10 bg-white/90 hover:bg-white rounded-full p-1.5 shadow-lg transition-colors"
+              className="absolute top-2 right-2 z-10 bg-white/90 hover:bg-white rounded-full p-1.5 shadow-md transition-colors"
             >
-              <X className="w-5 h-5 text-gray-800" />
+              <X className="w-4 h-4 text-foreground" />
             </button>
 
-            <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer">
-              <img
-                src={rsatBanner}
-                alt="RSAT - Rays Scholarship Admission Test"
-                className="w-full h-auto cursor-pointer"
-              />
-            </a>
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={rsatBanner}
+                  alt="RSAT - Rays Scholarship Admission Test"
+                  className="w-full h-auto cursor-pointer"
+                />
+              </a>
+            </motion.div>
 
-            <div className="bg-white p-4 text-center">
-              <a
+            <motion.div
+              className="p-3 text-center bg-white"
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <motion.a
                 href={REGISTRATION_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-8 py-3 rounded-full transition-colors text-sm"
+                className="inline-block bg-accent hover:bg-accent/90 text-accent-foreground font-bold px-6 py-2.5 rounded-full transition-colors text-sm"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Register Now →
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
           </motion.div>
         </motion.div>
       )}
