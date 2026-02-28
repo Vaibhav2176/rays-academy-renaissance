@@ -84,8 +84,10 @@ const Index = () => {
             
            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-primary-foreground mb-6 leading-tight">
             <span className="text-accent">Rays</span>{' '}
-            <span className="text-rays-blue-400">Academy</span>{' '}
-            – A Leading Coaching Institute in Bhopal Since 2006
+            <span className="text-rays-blue-400">Academy</span>
+            <span className="block text-2xl md:text-4xl lg:text-5xl font-semibold mt-4">
+              – A Leading Coaching Institute in Bhopal Since 2006
+            </span>
           </h1>
             
             <p className="text-xl md:text-2xl text-primary-foreground/90 mb-10 max-w-2xl mx-auto font-light">
