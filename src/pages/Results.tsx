@@ -96,7 +96,7 @@ const Results = () => {
         </div>
       </section>
 
-      {/* Top Performers Section */}
+      {/* Top Performers Section
       <section className="py-24 bg-gradient-to-b from-secondary/30 to-background">
         <div className="container mx-auto px-4">
           <motion.div
@@ -159,7 +159,7 @@ const Results = () => {
             ))}
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Year-wise Results */}
       <section className="py-24 bg-primary">
