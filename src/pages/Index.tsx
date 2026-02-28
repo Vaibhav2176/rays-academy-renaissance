@@ -82,11 +82,11 @@ const Index = () => {
               </span>
             </motion.div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-primary-foreground mb-6 leading-tight">
-              Welcome to{' '}
-              <span className="text-accent">Rays</span>{' '}
-              <span className="text-rays-blue-400">Academy</span>
-            </h1>
+           <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-primary-foreground mb-6 leading-tight">
+            <span className="text-accent">Rays</span>{' '}
+            <span className="text-rays-blue-400">Academy</span>{' '}
+            – A Leading Coaching Institute in Bhopal Since 2006
+          </h1>
             
             <p className="text-xl md:text-2xl text-primary-foreground/90 mb-10 max-w-2xl mx-auto font-light">
               A Place Where We Create Future for Tomorrow
