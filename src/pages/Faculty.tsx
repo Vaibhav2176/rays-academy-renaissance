@@ -4,6 +4,7 @@ import { Award, BookOpen, ArrowRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useCountUp } from '@/hooks/useCountUp';
 import directorImage from "@/assets/shankaramulani1.jpeg";
 import faculty1 from "@/assets/rajeshsahu.jpeg";
 import faculty2 from "@/assets/ankityadav.jpeg";
@@ -22,6 +23,20 @@ const stagger = {
       staggerChildren: 0.1
     }
   }
+};
+
+const FacultyStatItem = ({ end, suffix, label }: { end: number; suffix: string; label: string }) => {
+  const { count, ref } = useCountUp(end, 2000);
+  return (
+    <motion.div
+      ref={ref}
+      variants={fadeInUp}
+      className="text-center p-6 rounded-2xl bg-primary-foreground/10 backdrop-blur-sm"
+    >
+      <div className="text-4xl font-bold text-accent mb-2">{count}{suffix}</div>
+      <div className="text-primary-foreground/80">{label}</div>
+    </motion.div>
+  );
 };
 
 const Faculty = () => {
@@ -220,19 +235,12 @@ const Faculty = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {[
-              { number: '50+', label: 'Combined Years Experience' },
-              { number: '1000+', label: 'Students Mentored' },
-              { number: '100%', label: 'Dedication' },
-              { number: '24/7', label: 'Support Available' },
+              { end: 50, suffix: '+', label: 'Combined Years Experience' },
+              { end: 1000, suffix: '+', label: 'Students Mentored' },
+              { end: 100, suffix: '%', label: 'Dedication' },
+              { end: 24, suffix: '/7', label: 'Support Available' },
             ].map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="text-center p-6 rounded-2xl bg-primary-foreground/10 backdrop-blur-sm"
-              >
-                <div className="text-4xl font-bold text-accent mb-2">{stat.number}</div>
-                <div className="text-primary-foreground/80">{stat.label}</div>
-              </motion.div>
+              <FacultyStatItem key={index} end={stat.end} suffix={stat.suffix} label={stat.label} />
             ))}
           </motion.div>
         </div>
