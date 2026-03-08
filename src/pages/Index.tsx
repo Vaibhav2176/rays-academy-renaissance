@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, Users, Trophy, Library, Bus, FileText, Star, Sparkles, GraduationCap, Monitor, Heart } from 'lucide-react';
+import Testimonials from '@/components/home/Testimonials';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import highlightsImage from "@/assets/students.jpeg";
@@ -330,6 +331,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <Testimonials />
 
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden">
