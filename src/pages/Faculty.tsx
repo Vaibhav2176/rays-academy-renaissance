@@ -25,6 +25,20 @@ const stagger = {
   }
 };
 
+const FacultyStatItem = ({ end, suffix, label }: { end: number; suffix: string; label: string }) => {
+  const { count, ref } = useCountUp(end, 2000);
+  return (
+    <motion.div
+      ref={ref}
+      variants={fadeInUp}
+      className="text-center p-6 rounded-2xl bg-primary-foreground/10 backdrop-blur-sm"
+    >
+      <div className="text-4xl font-bold text-accent mb-2">{count}{suffix}</div>
+      <div className="text-primary-foreground/80">{label}</div>
+    </motion.div>
+  );
+};
+
 const Faculty = () => {
   const facultyMembers = [
     {
