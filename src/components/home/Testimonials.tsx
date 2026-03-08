@@ -29,7 +29,31 @@ const testimonials = [
   },
   {
     name: 'Mrityunjay Menaria',
-    text: 'Competitive exams ki preparation ke liye Rays Academy ek perfect place hai. IIT-JEE ke liye yahan ki coaching aur practice sessions ne mujhe bahut help kiya. Highly recommended! 💯',
+    text: 'Rays Academy mein padhne ka experience bahut alag hai. Yahan teachers har student ka individually dhyan rakhte hain aur weak areas pe focus karte hain. Mera confidence bahut badha yahan aake! 🔥',
+  },
+  {
+    name: 'Ankit Singh',
+    text: 'Maths mein 100/100 aaye boards mein! Shankar sir ke guidance aur practice sheets ki wajah se yeh possible hua. Rays Academy ka maths teaching level ekdum top-notch hai. 💯',
+  },
+  {
+    name: 'Samyak Jain',
+    text: 'Board mein Maths mein full 100 marks! Yahan ki teaching method itni strong hai ki concepts bilkul clear ho jate hain. Rays Academy join karna meri best decision thi! 🏆',
+  },
+  {
+    name: 'Tushar Golani',
+    text: 'Rays Academy ka padhai ka tarika bahut systematic hai. Notes, tests, doubt sessions – sab perfectly planned hota hai. Yahan aake padhai mein bahut improvement aayi.',
+  },
+  {
+    name: 'Tejasi Gour',
+    text: 'Bahut accha experience raha Rays Academy mein. Teachers bahut supportive hain aur hamesha motivate karte rehte hain. Mera result har saal improve hota gaya! 🌟',
+  },
+  {
+    name: 'Natik Verma',
+    text: 'Rays Academy mein jo discipline aur focus milta hai woh kahin aur nahi milta. Regular tests se exam ka darr khatam ho gaya aur self-confidence build hua. Best coaching! 👍',
+  },
+  {
+    name: 'Mohal Vardhan Jain',
+    text: 'Yahan ke faculty members bahut dedicated hain. Har doubt clear hota hai chahe kitni baar bhi poocho. Rays Academy ne meri academic journey ko bilkul transform kar diya! ✨',
   },
 ];
 
