@@ -221,20 +221,24 @@ const Faculty = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {[
-              { number: '50+', label: 'Combined Years Experience' },
-              { number: '1000+', label: 'Students Mentored' },
-              { number: '100%', label: 'Dedication' },
-              { number: '24/7', label: 'Support Available' },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="text-center p-6 rounded-2xl bg-primary-foreground/10 backdrop-blur-sm"
-              >
-                <div className="text-4xl font-bold text-accent mb-2">{stat.number}</div>
-                <div className="text-primary-foreground/80">{stat.label}</div>
-              </motion.div>
-            ))}
+              { end: 50, suffix: '+', label: 'Combined Years Experience' },
+              { end: 1000, suffix: '+', label: 'Students Mentored' },
+              { end: 100, suffix: '%', label: 'Dedication' },
+              { end: 24, suffix: '/7', label: 'Support Available' },
+            ].map((stat, index) => {
+              const { count, ref } = useCountUp(stat.end, 2000);
+              return (
+                <motion.div
+                  key={index}
+                  ref={ref}
+                  variants={fadeInUp}
+                  className="text-center p-6 rounded-2xl bg-primary-foreground/10 backdrop-blur-sm"
+                >
+                  <div className="text-4xl font-bold text-accent mb-2">{count}{stat.suffix}</div>
+                  <div className="text-primary-foreground/80">{stat.label}</div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
