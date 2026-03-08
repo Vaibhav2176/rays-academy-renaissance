@@ -55,6 +55,14 @@ const testimonials = [
     name: 'Mohal Vardhan Jain',
     text: 'Yahan ke faculty members bahut dedicated hain. Har doubt clear hota hai chahe kitni baar bhi poocho. Rays Academy ne meri academic journey ko bilkul transform kar diya! ✨',
   },
+  {
+    name: 'Priyanshi Dave',
+    text: 'Rays Academy mein padh ke mujhe realize hua ki sahi guidance kitni important hoti hai. Yahan ke teachers ne meri weaknesses identify karke unpe kaam kiya. Result mein fark saaf dikha! 🙌',
+  },
+  {
+    name: 'Lakshya Kewlani',
+    text: 'Mera naam Lakshya hai aur Rays Academy ne sach mein mujhe apne lakshya tak pahunchne mein help kiya. Yahan ki teaching quality aur environment dono hi outstanding hain. Proud to be a Rays student! 🎯',
+  },
 ];
 
 const fadeInUp = {
