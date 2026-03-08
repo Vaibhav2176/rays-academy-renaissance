@@ -239,20 +239,9 @@ const Faculty = () => {
               { end: 1000, suffix: '+', label: 'Students Mentored' },
               { end: 100, suffix: '%', label: 'Dedication' },
               { end: 24, suffix: '/7', label: 'Support Available' },
-            ].map((stat, index) => {
-              const { count, ref } = useCountUp(stat.end, 2000);
-              return (
-                <motion.div
-                  key={index}
-                  ref={ref}
-                  variants={fadeInUp}
-                  className="text-center p-6 rounded-2xl bg-primary-foreground/10 backdrop-blur-sm"
-                >
-                  <div className="text-4xl font-bold text-accent mb-2">{count}{stat.suffix}</div>
-                  <div className="text-primary-foreground/80">{stat.label}</div>
-                </motion.div>
-              );
-            })}
+            ].map((stat, index) => (
+              <FacultyStatItem key={index} end={stat.end} suffix={stat.suffix} label={stat.label} />
+            ))}
           </motion.div>
         </div>
       </section>
