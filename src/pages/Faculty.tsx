@@ -4,6 +4,7 @@ import { Award, BookOpen, ArrowRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useCountUp } from '@/hooks/useCountUp';
 import directorImage from "@/assets/shankaramulani1.jpeg";
 import faculty1 from "@/assets/rajeshsahu.jpeg";
 import faculty2 from "@/assets/ankityadav.jpeg";
