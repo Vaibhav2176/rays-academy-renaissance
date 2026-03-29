@@ -86,7 +86,7 @@ const Index = () => {
             <span className="text-accent">Rays</span>{' '}
             <span className="text-rays-blue-400">Academy</span>
             <span className="block text-2xl md:text-4xl lg:text-5xl font-semibold mt-4">
-              – A Leading Coaching Institute in Bhopal Since 2006
+              – Best Coaching Institute in Lalghati Bhopal
             </span>
           </h1>
             
