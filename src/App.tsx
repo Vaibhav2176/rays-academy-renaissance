@@ -39,7 +39,7 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
               <Route path="/portal" element={<Portal />} />
-              <Route path="/rsat" element={<RSAT />} />
+              
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>
