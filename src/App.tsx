@@ -15,7 +15,7 @@ import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Portal from "./pages/Portal";
-import RSAT from "./pages/RSAT";
+
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
