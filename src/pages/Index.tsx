@@ -219,17 +219,22 @@ const Index = () => {
                 variants={fadeInUp}
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
-                <Card className="h-full group overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 bg-card shadow-lg">
-                  <div className="h-1 w-0 group-hover:w-full bg-gradient-to-r from-rays-blue-600 to-accent transition-all duration-500" />
-                  <CardContent className="p-6">
-                    <h3 className="font-bold text-lg text-primary group-hover:text-accent transition-colors mb-3">
-                      {course.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      {course.description}
-                    </p>
-                  </CardContent>
-                </Card>
+                <Link to={course.path} className="block h-full">
+                  <Card className="h-full group overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 bg-card shadow-lg">
+                    <div className="h-1 w-0 group-hover:w-full bg-gradient-to-r from-rays-blue-600 to-accent transition-all duration-500" />
+                    <CardContent className="p-6">
+                      <h3 className="font-bold text-lg text-primary group-hover:text-accent transition-colors mb-3">
+                        {course.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm">
+                        {course.description}
+                      </p>
+                      <span className="text-xs font-semibold text-accent flex items-center gap-1 mt-3 group-hover:gap-2 transition-all">
+                        View Details <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </CardContent>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
