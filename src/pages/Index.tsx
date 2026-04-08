@@ -29,14 +29,14 @@ const Index = () => {
   ];
 
   const courses = [
-    { title: '6th – 8th (Foundation)', description: 'All subjects – Maths, Science, English, Social Science.' },
-    { title: '9th – 10th (Concept Clarity)', description: 'CBSE | ICSE | ISC | MP Board – Special focus on Science & Maths.' },
-    { title: '11th – 12th (Scholar\'s Batch)', description: 'Maths | Physics | Chemistry | Biology | Applied Maths.' },
-    { title: 'IIT–JEE', description: 'Complete preparation for Mains & Advanced with test series.' },
-    { title: 'NEET', description: 'Full syllabus coverage with NCERT emphasis & mock tests.' },
-    { title: 'NDA', description: 'Specialized coaching for NDA written & SSB interview guidance.' },
-    { title: 'CUET', description: 'Crash courses & full-time coaching for Common University Entrance Test.' },
-    { title: 'Olympiads', description: 'Maths, Science, and GK Olympiads for national & international levels.' },
+    { title: '6th – 8th (Foundation)', description: 'All subjects – Maths, Science, English, Social Science.', path: '/courses/class-6-8' },
+    { title: 'Class 9', description: 'CBSE, ICSE & MP Board – Strong foundation for board exams.', path: '/courses/class-9' },
+    { title: 'Class 10 Boards', description: '50+ school toppers – CBSE, ICSE & MP Board preparation.', path: '/courses/class-10' },
+    { title: 'Class 11 PCM/PCB', description: 'Integrated board + competitive exam preparation.', path: '/courses/class-11' },
+    { title: 'Class 12 Boards', description: 'Board + entrance exam dual focus coaching.', path: '/courses/class-12' },
+    { title: 'IIT-JEE', description: 'Complete JEE Main & Advanced preparation.', path: '/courses/iit-jee' },
+    { title: 'NEET', description: 'NCERT-focused medical entrance coaching.', path: '/courses/neet' },
+    { title: 'NDA', description: 'Written exam + SSB interview preparation.', path: '/courses/nda' },
   ];
 
   const highlights = [
