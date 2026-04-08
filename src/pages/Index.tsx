@@ -29,14 +29,14 @@ const Index = () => {
   ];
 
   const courses = [
-    { title: '6th – 8th (Foundation)', description: 'All subjects – Maths, Science, English, Social Science.' },
-    { title: '9th – 10th (Concept Clarity)', description: 'CBSE | ICSE | ISC | MP Board – Special focus on Science & Maths.' },
-    { title: '11th – 12th (Scholar\'s Batch)', description: 'Maths | Physics | Chemistry | Biology | Applied Maths.' },
-    { title: 'IIT–JEE', description: 'Complete preparation for Mains & Advanced with test series.' },
-    { title: 'NEET', description: 'Full syllabus coverage with NCERT emphasis & mock tests.' },
-    { title: 'NDA', description: 'Specialized coaching for NDA written & SSB interview guidance.' },
-    { title: 'CUET', description: 'Crash courses & full-time coaching for Common University Entrance Test.' },
-    { title: 'Olympiads', description: 'Maths, Science, and GK Olympiads for national & international levels.' },
+    { title: '6th – 8th (Foundation)', description: 'All subjects – Maths, Science, English, Social Science.', path: '/courses/class-6-8' },
+    { title: 'Class 9', description: 'CBSE, ICSE & MP Board – Strong foundation for board exams.', path: '/courses/class-9' },
+    { title: 'Class 10 Boards', description: '50+ school toppers – CBSE, ICSE & MP Board preparation.', path: '/courses/class-10' },
+    { title: 'Class 11 PCM/PCB', description: 'Integrated board + competitive exam preparation.', path: '/courses/class-11' },
+    { title: 'Class 12 Boards', description: 'Board + entrance exam dual focus coaching.', path: '/courses/class-12' },
+    { title: 'IIT-JEE', description: 'Complete JEE Main & Advanced preparation.', path: '/courses/iit-jee' },
+    { title: 'NEET', description: 'NCERT-focused medical entrance coaching.', path: '/courses/neet' },
+    { title: 'NDA', description: 'Written exam + SSB interview preparation.', path: '/courses/nda' },
   ];
 
   const highlights = [
@@ -219,17 +219,22 @@ const Index = () => {
                 variants={fadeInUp}
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
-                <Card className="h-full group overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 bg-card shadow-lg">
-                  <div className="h-1 w-0 group-hover:w-full bg-gradient-to-r from-rays-blue-600 to-accent transition-all duration-500" />
-                  <CardContent className="p-6">
-                    <h3 className="font-bold text-lg text-primary group-hover:text-accent transition-colors mb-3">
-                      {course.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      {course.description}
-                    </p>
-                  </CardContent>
-                </Card>
+                <Link to={course.path} className="block h-full">
+                  <Card className="h-full group overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 bg-card shadow-lg">
+                    <div className="h-1 w-0 group-hover:w-full bg-gradient-to-r from-rays-blue-600 to-accent transition-all duration-500" />
+                    <CardContent className="p-6">
+                      <h3 className="font-bold text-lg text-primary group-hover:text-accent transition-colors mb-3">
+                        {course.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm">
+                        {course.description}
+                      </p>
+                      <span className="text-xs font-semibold text-accent flex items-center gap-1 mt-3 group-hover:gap-2 transition-all">
+                        View Details <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </CardContent>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
