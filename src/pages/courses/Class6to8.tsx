@@ -23,15 +23,23 @@ const Class6to8 = () => (
     batchTimings="Morning & Evening batches available"
     mode="Offline (Classroom) in Bhopal"
     syllabus={[
-      { heading: 'Mathematics', topics: ['Number System', 'Algebra Basics', 'Geometry', 'Mensuration', 'Data Handling', 'Ratio & Proportion'] },
-      { heading: 'Science', topics: ['Physics Basics', 'Chemistry Fundamentals', 'Biology & Life Sciences', 'Practical Experiments', 'Environmental Science'] },
-      { heading: 'English', topics: ['Grammar & Composition', 'Reading Comprehension', 'Creative Writing', 'Literature & Poetry'] },
+      {
+        heading: 'Mathematics',
+        description: 'Build mathematical confidence with number systems, basic algebra, geometry, and data handling — all explained through activity-based and visual methods.',
+        topics: ['Number System', 'Algebra Basics', 'Geometry', 'Mensuration', 'Data Handling', 'Ratio & Proportion'],
+      },
+      {
+        heading: 'Science',
+        description: 'Explore the wonders of Physics, Chemistry, and Biology through interactive experiments and real-world examples that ignite genuine curiosity.',
+        topics: ['Physics Basics', 'Chemistry Fundamentals', 'Biology & Life Sciences', 'Practical Experiments', 'Environmental Science'],
+      },
+      {
+        heading: 'English',
+        description: 'Strengthen English language skills through grammar, reading comprehension, and creative writing to develop clear communication from an early age.',
+        topics: ['Grammar & Composition', 'Reading Comprehension', 'Creative Writing', 'Literature & Poetry'],
+      },
     ]}
-    faculty={[
-      { name: 'Expert Maths Faculty', subject: 'Mathematics', experience: '10+ years teaching experience' },
-      { name: 'Expert Science Faculty', subject: 'Science', experience: '8+ years teaching experience' },
-      { name: 'Expert English Faculty', subject: 'English', experience: '7+ years teaching experience' },
-    ]}
+    facultySubjects={['director', 'science', 'social_science']}
     achievements={[
       '100% pass rate every year since 2006',
       'Multiple school toppers from our batches',

@@ -24,15 +24,23 @@ const NEET = () => (
     batchTimings="Dedicated NEET batches"
     mode="Offline (Classroom) in Bhopal"
     syllabus={[
-      { heading: 'Physics', topics: ['Mechanics', 'Thermodynamics', 'Optics', 'Electrostatics', 'Magnetism', 'Modern Physics', 'Semiconductors'] },
-      { heading: 'Chemistry', topics: ['Physical Chemistry', 'Organic Chemistry', 'Inorganic Chemistry', 'Biomolecules', 'Polymers', 'Chemistry in Everyday Life'] },
-      { heading: 'Biology', topics: ['Cell Biology', 'Genetics & Evolution', 'Human Physiology', 'Plant Physiology', 'Ecology & Environment', 'Biotechnology', 'Reproduction'] },
+      {
+        heading: 'Physics',
+        description: 'Clear every Physics concept tested in NEET — from laws of motion to semiconductors — with a strong NCERT base and concise problem-solving techniques.',
+        topics: ['Mechanics', 'Thermodynamics', 'Optics', 'Electrostatics', 'Magnetism', 'Modern Physics', 'Semiconductors'],
+      },
+      {
+        heading: 'Chemistry',
+        description: 'Develop command over NCERT Chemistry including reactions, biomolecules, and everyday chemistry applications critical for NEET success.',
+        topics: ['Physical Chemistry', 'Organic Chemistry', 'Inorganic Chemistry', 'Biomolecules', 'Polymers', 'Chemistry in Everyday Life'],
+      },
+      {
+        heading: 'Biology',
+        description: 'The highest-weightage NEET subject — master cell biology, genetics, human & plant physiology, ecology, and biotechnology with diagram-based learning.',
+        topics: ['Cell Biology', 'Genetics & Evolution', 'Human Physiology', 'Plant Physiology', 'Ecology & Environment', 'Biotechnology', 'Reproduction'],
+      },
     ]}
-    faculty={[
-      { name: 'Expert Biology Faculty', subject: 'Biology (NEET)', experience: '12+ years NEET coaching' },
-      { name: 'Expert Physics Faculty', subject: 'Physics (NEET)', experience: '10+ years experience' },
-      { name: 'Expert Chemistry Faculty', subject: 'Chemistry (NEET)', experience: '10+ years experience' },
-    ]}
+    facultySubjects={['physics', 'chemistry', 'biology']}
     achievements={[
       'NEET selections every year',
       'Students in top medical colleges',

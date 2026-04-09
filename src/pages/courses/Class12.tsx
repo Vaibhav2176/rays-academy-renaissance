@@ -23,15 +23,23 @@ const Class12 = () => (
     batchTimings="Morning & Evening batches"
     mode="Offline (Classroom) in Bhopal"
     syllabus={[
-      { heading: 'Physics', topics: ['Electrostatics', 'Current Electricity', 'Magnetism', 'Electromagnetic Induction', 'Optics', 'Modern Physics', 'Semiconductors', 'Communication Systems'] },
-      { heading: 'Chemistry', topics: ['Solid State', 'Solutions', 'Electrochemistry', 'Chemical Kinetics', 'Surface Chemistry', 'p-Block Elements', 'Coordination Compounds', 'Organic Reactions'] },
-      { heading: 'Mathematics', topics: ['Relations & Functions', 'Inverse Trigonometry', 'Matrices & Determinants', 'Continuity & Differentiability', 'Integrals', 'Differential Equations', 'Vectors & 3D Geometry', 'Probability'] },
+      {
+        heading: 'Physics',
+        description: 'Complete Class 12 Physics from electrostatics to communication systems — taught with board exam precision and JEE-level depth.',
+        topics: ['Electrostatics', 'Current Electricity', 'Magnetism', 'Electromagnetic Induction', 'Optics', 'Modern Physics', 'Semiconductors', 'Communication Systems'],
+      },
+      {
+        heading: 'Chemistry',
+        description: 'In-depth coverage of Class 12 Chemistry chapters crucial for both board marks and competitive exam performance, including solid state, kinetics, and organics.',
+        topics: ['Solid State', 'Solutions', 'Electrochemistry', 'Chemical Kinetics', 'Surface Chemistry', 'p-Block Elements', 'Coordination Compounds', 'Organic Reactions'],
+      },
+      {
+        heading: 'Mathematics',
+        description: 'Thorough Class 12 Maths syllabus coverage — from calculus to probability — with board answer-writing skills and entrance-level problem practice.',
+        topics: ['Relations & Functions', 'Inverse Trigonometry', 'Matrices & Determinants', 'Continuity & Differentiability', 'Integrals', 'Differential Equations', 'Vectors & 3D Geometry', 'Probability'],
+      },
     ]}
-    faculty={[
-      { name: 'Expert Physics Faculty', subject: 'Physics', experience: '15+ years experience' },
-      { name: 'Expert Chemistry Faculty', subject: 'Chemistry', experience: '12+ years experience' },
-      { name: 'Expert Maths Faculty', subject: 'Mathematics', experience: '15+ years experience' },
-    ]}
+    facultySubjects={['director', 'physics', 'chemistry', 'mathematics']}
     achievements={[
       '100% pass rate every year',
       'Multiple students scoring 95%+ in boards',

@@ -23,15 +23,23 @@ const Class10 = () => (
     batchTimings="Morning & Evening batches"
     mode="Offline (Classroom) in Bhopal"
     syllabus={[
-      { heading: 'Mathematics', topics: ['Real Numbers', 'Polynomials', 'Quadratic Equations', 'Arithmetic Progressions', 'Trigonometry', 'Coordinate Geometry', 'Circles', 'Surface Area & Volume', 'Statistics & Probability'] },
-      { heading: 'Science', topics: ['Chemical Reactions', 'Acids, Bases & Salts', 'Life Processes', 'Electricity & Magnetism', 'Light – Reflection & Refraction', 'Heredity & Evolution'] },
-      { heading: 'Social Science', topics: ['History – Nationalism', 'Geography – Resources', 'Civics – Power Sharing', 'Economics – Development'] },
+      {
+        heading: 'Mathematics',
+        description: 'Complete Class 10 Maths preparation — from number systems and polynomials to trigonometry, geometry, and statistics — with a strong focus on full marks.',
+        topics: ['Real Numbers', 'Polynomials', 'Quadratic Equations', 'Arithmetic Progressions', 'Trigonometry', 'Coordinate Geometry', 'Circles', 'Surface Area & Volume', 'Statistics & Probability'],
+      },
+      {
+        heading: 'Science',
+        description: 'Concept-based teaching of Physics, Chemistry, and Biology as per the board syllabus, with diagram practice, reactions, and experiment-based learning.',
+        topics: ['Chemical Reactions', 'Acids, Bases & Salts', 'Life Processes', 'Electricity & Magnetism', 'Light – Reflection & Refraction', 'Heredity & Evolution'],
+      },
+      {
+        heading: 'Social Science',
+        description: 'Score full marks in SST with structured notes on History, Geography, Civics, and Economics — covering all chapters with map work and answer-writing practice.',
+        topics: ['History – Nationalism', 'Geography – Resources', 'Civics – Power Sharing', 'Economics – Development'],
+      },
     ]}
-    faculty={[
-      { name: 'Expert Maths Faculty', subject: 'Mathematics', experience: '15+ years board exam expertise' },
-      { name: 'Expert Science Faculty', subject: 'Science', experience: '12+ years experience' },
-      { name: 'Expert English Faculty', subject: 'English & SST', experience: '10+ years experience' },
-    ]}
+    facultySubjects={['director', 'science', 'social_science']}
     achievements={[
       '50+ school toppers in board exams',
       'Students scoring 100 in Maths (Ankit Singh, Samyak Jain)',

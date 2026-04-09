@@ -24,15 +24,23 @@ const IITJEE = () => (
     batchTimings="Dedicated JEE batches – Morning & Evening"
     mode="Offline (Classroom) in Bhopal"
     syllabus={[
-      { heading: 'Physics', topics: ['Mechanics', 'Electrodynamics', 'Optics & Waves', 'Thermodynamics', 'Modern Physics', 'Experimental Physics'] },
-      { heading: 'Chemistry', topics: ['Physical Chemistry', 'Organic Chemistry', 'Inorganic Chemistry', 'Coordination Chemistry', 'Electrochemistry', 'Chemical Kinetics'] },
-      { heading: 'Mathematics', topics: ['Algebra', 'Calculus', 'Coordinate Geometry', 'Trigonometry', 'Vectors & 3D', 'Probability & Statistics'] },
+      {
+        heading: 'Physics',
+        description: 'Build deep conceptual clarity and problem-solving speed in all major JEE Physics domains — from Newtonian mechanics to modern atomic physics.',
+        topics: ['Mechanics', 'Electrodynamics', 'Optics & Waves', 'Thermodynamics', 'Modern Physics', 'Experimental Physics'],
+      },
+      {
+        heading: 'Chemistry',
+        description: 'Master reactions, mechanisms, and numerical chemistry across Physical, Organic, and Inorganic branches as per the latest JEE syllabus.',
+        topics: ['Physical Chemistry', 'Organic Chemistry', 'Inorganic Chemistry', 'Coordination Chemistry', 'Electrochemistry', 'Chemical Kinetics'],
+      },
+      {
+        heading: 'Mathematics',
+        description: 'Develop analytical thinking and calculation accuracy across algebra, calculus, geometry and all high-weightage JEE Maths topics.',
+        topics: ['Algebra', 'Calculus', 'Coordinate Geometry', 'Trigonometry', 'Vectors & 3D', 'Probability & Statistics'],
+      },
     ]}
-    faculty={[
-      { name: 'Expert Physics Faculty', subject: 'Physics (JEE)', experience: '15+ years JEE coaching' },
-      { name: 'Expert Chemistry Faculty', subject: 'Chemistry (JEE)', experience: '12+ years JEE coaching' },
-      { name: 'Expert Maths Faculty', subject: 'Mathematics (JEE)', experience: '15+ years JEE coaching' },
-    ]}
+    facultySubjects={['director', 'mathematics', 'physics', 'chemistry']}
     achievements={[
       '100+ IIT-JEE selections',
       'Students in top NITs and IITs',

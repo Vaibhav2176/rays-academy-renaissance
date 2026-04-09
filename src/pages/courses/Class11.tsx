@@ -23,15 +23,23 @@ const Class11 = () => (
     batchTimings="Morning & Evening batches"
     mode="Offline (Classroom) in Bhopal"
     syllabus={[
-      { heading: 'Physics', topics: ['Units & Measurements', 'Motion in a Straight Line', 'Laws of Motion', 'Work, Energy & Power', 'Rotational Motion', 'Gravitation', 'Thermodynamics', 'Oscillations & Waves'] },
-      { heading: 'Chemistry', topics: ['Some Basic Concepts', 'Atomic Structure', 'Chemical Bonding', 'States of Matter', 'Thermodynamics', 'Equilibrium', 'Redox Reactions', 'Organic Chemistry Basics'] },
-      { heading: 'Mathematics', topics: ['Sets & Functions', 'Trigonometry', 'Complex Numbers', 'Permutations & Combinations', 'Binomial Theorem', 'Sequences & Series', 'Straight Lines', 'Conic Sections', 'Limits & Derivatives'] },
+      {
+        heading: 'Physics',
+        description: 'Lay a strong physics foundation covering mechanics, gravitation, thermodynamics, and waves — essential for both Class 11 boards and future JEE/NEET prep.',
+        topics: ['Units & Measurements', 'Motion in a Straight Line', 'Laws of Motion', 'Work, Energy & Power', 'Rotational Motion', 'Gravitation', 'Thermodynamics', 'Oscillations & Waves'],
+      },
+      {
+        heading: 'Chemistry',
+        description: 'Build a robust chemistry base with atomic structure, bonding, equilibrium, and organic fundamentals that form the backbone of higher-level chemistry.',
+        topics: ['Some Basic Concepts', 'Atomic Structure', 'Chemical Bonding', 'States of Matter', 'Thermodynamics', 'Equilibrium', 'Redox Reactions', 'Organic Chemistry Basics'],
+      },
+      {
+        heading: 'Mathematics',
+        description: 'Develop problem-solving instincts in sets, trigonometry, algebra, and calculus introductions — the critical mathematical toolkit for Class 11 and beyond.',
+        topics: ['Sets & Functions', 'Trigonometry', 'Complex Numbers', 'Permutations & Combinations', 'Binomial Theorem', 'Sequences & Series', 'Straight Lines', 'Conic Sections', 'Limits & Derivatives'],
+      },
     ]}
-    faculty={[
-      { name: 'Expert Physics Faculty', subject: 'Physics', experience: '12+ years experience' },
-      { name: 'Expert Chemistry Faculty', subject: 'Chemistry', experience: '10+ years experience' },
-      { name: 'Expert Maths Faculty', subject: 'Mathematics', experience: '15+ years experience' },
-    ]}
+    facultySubjects={['director', 'physics', 'chemistry', 'mathematics']}
     achievements={[
       'Consistent board exam toppers',
       'Strong foundation for JEE & NEET',

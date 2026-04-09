@@ -24,15 +24,23 @@ const NDA = () => (
     batchTimings="Flexible batch timings"
     mode="Offline (Classroom) in Bhopal"
     syllabus={[
-      { heading: 'Mathematics', topics: ['Algebra', 'Trigonometry', 'Matrices & Determinants', 'Analytical Geometry', 'Differential Calculus', 'Integral Calculus', 'Statistics & Probability'] },
-      { heading: 'General Ability', topics: ['Physics', 'Chemistry', 'General Science', 'History', 'Geography', 'Current Affairs', 'Freedom Movement'] },
-      { heading: 'English & GK', topics: ['Grammar & Vocabulary', 'Comprehension', 'Essay Writing', 'Current Events', 'Defence Knowledge', 'Indian Polity'] },
+      {
+        heading: 'Mathematics',
+        description: 'NDA Maths is highly scoring — master algebra, trigonometry, calculus, matrices, and statistics with focused problem-solving and speed-building sessions.',
+        topics: ['Algebra', 'Trigonometry', 'Matrices & Determinants', 'Analytical Geometry', 'Differential Calculus', 'Integral Calculus', 'Statistics & Probability'],
+      },
+      {
+        heading: 'General Ability',
+        description: 'The GAT tests your knowledge across Science, History, Geography, and Current Affairs — we cover every section systematically to maximize your score.',
+        topics: ['Physics', 'Chemistry', 'General Science', 'History', 'Geography', 'Current Affairs', 'Freedom Movement'],
+      },
+      {
+        heading: 'English & GK',
+        description: 'Excellent English and up-to-date general knowledge are non-negotiable for NDA — our sessions on grammar, comprehension, and defence awareness give you the edge.',
+        topics: ['Grammar & Vocabulary', 'Comprehension', 'Essay Writing', 'Current Events', 'Defence Knowledge', 'Indian Polity'],
+      },
     ]}
-    faculty={[
-      { name: 'Expert Maths Faculty', subject: 'Mathematics', experience: '10+ years NDA coaching' },
-      { name: 'Expert GK Faculty', subject: 'General Knowledge', experience: '8+ years experience' },
-      { name: 'Expert English Faculty', subject: 'English & SSB', experience: '10+ years experience' },
-    ]}
+    facultySubjects={['director', 'mathematics', 'general_ability', 'english']}
     achievements={[
       'NDA selections consistently',
       'Students in Army, Navy, and Air Force',

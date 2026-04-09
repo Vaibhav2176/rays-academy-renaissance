@@ -24,15 +24,23 @@ const CUET = () => (
     batchTimings="Flexible timings"
     mode="Offline (Classroom) in Bhopal"
     syllabus={[
-      { heading: 'General Test', topics: ['Quantitative Reasoning', 'Logical Reasoning', 'General Knowledge', 'Current Affairs', 'General Mental Ability'] },
-      { heading: 'Language Section', topics: ['Reading Comprehension', 'Vocabulary', 'Grammar', 'Synonyms & Antonyms', 'Sentence Correction'] },
-      { heading: 'Domain Subjects', topics: ['Physics / Chemistry / Biology', 'Mathematics', 'Accountancy / Economics', 'History / Geography / Political Science', 'English Literature'] },
+      {
+        heading: 'General Test',
+        description: 'Sharpen your aptitude, logical reasoning, and general knowledge — the three pillars of the CUET General Test that determine university admissions.',
+        topics: ['Quantitative Reasoning', 'Logical Reasoning', 'General Knowledge', 'Current Affairs', 'General Mental Ability'],
+      },
+      {
+        heading: 'Language Section',
+        description: 'Boost your English and Hindi proficiency with targeted grammar, comprehension, and vocabulary practice tailored for the CUET Language test.',
+        topics: ['Reading Comprehension', 'Vocabulary', 'Grammar', 'Synonyms & Antonyms', 'Sentence Correction'],
+      },
+      {
+        heading: 'Domain Subjects',
+        description: 'All stream domain subjects covered — Science, Commerce, and Arts — aligned precisely with the CUET syllabus for maximum scoring potential.',
+        topics: ['Physics / Chemistry / Biology', 'Mathematics', 'Accountancy / Economics', 'History / Geography / Political Science', 'English Literature'],
+      },
     ]}
-    faculty={[
-      { name: 'Expert GK Faculty', subject: 'General Test', experience: '8+ years experience' },
-      { name: 'Expert Language Faculty', subject: 'English & Hindi', experience: '10+ years experience' },
-      { name: 'Expert Domain Faculty', subject: 'Domain Subjects', experience: '12+ years experience' },
-    ]}
+    facultySubjects={['general_ability', 'english', 'director']}
     achievements={[
       'Students in top central universities',
       'High scores in CUET General Test',

@@ -23,15 +23,23 @@ const Class9 = () => (
     batchTimings="Morning & Evening batches"
     mode="Offline (Classroom) in Bhopal"
     syllabus={[
-      { heading: 'Mathematics', topics: ['Number Systems', 'Polynomials', 'Coordinate Geometry', 'Linear Equations', 'Triangles', 'Statistics & Probability'] },
-      { heading: 'Science', topics: ['Matter & Its Properties', 'Motion & Force', 'Atoms & Molecules', 'Cell Biology', 'Diversity in Living Organisms'] },
-      { heading: 'Social Science', topics: ['History – French Revolution', 'Geography – India', 'Civics – Democracy', 'Economics'] },
+      {
+        heading: 'Mathematics',
+        description: 'Build a rock-solid maths foundation with number systems, algebra, and geometry — setting the stage for confident Class 10 board performance.',
+        topics: ['Number Systems', 'Polynomials', 'Coordinate Geometry', 'Linear Equations', 'Triangles', 'Statistics & Probability'],
+      },
+      {
+        heading: 'Science',
+        description: 'Develop scientific reasoning across Physics, Chemistry, and Biology with experiment-based understanding and clear concept notes.',
+        topics: ['Matter & Its Properties', 'Motion & Force', 'Atoms & Molecules', 'Cell Biology', 'Diversity in Living Organisms'],
+      },
+      {
+        heading: 'Social Science',
+        description: 'Engage with History, Geography, Civics, and Economics through structured notes and exam-pattern questions for full marks.',
+        topics: ['History – French Revolution', 'Geography – India', 'Civics – Democracy', 'Economics'],
+      },
     ]}
-    faculty={[
-      { name: 'Expert Maths Faculty', subject: 'Mathematics', experience: '12+ years experience' },
-      { name: 'Expert Science Faculty', subject: 'Science', experience: '10+ years experience' },
-      { name: 'Expert SST Faculty', subject: 'Social Science', experience: '8+ years experience' },
-    ]}
+    facultySubjects={['director', 'science', 'social_science']}
     achievements={[
       '100% pass rate consistently',
       'Students scoring 90%+ in board exams',

@@ -5,11 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useCountUp } from '@/hooks/useCountUp';
-import directorImage from "@/assets/shankaramulani1.jpeg";
-import faculty1 from "@/assets/rajeshsahu.jpeg";
-import faculty2 from "@/assets/ankityadav.jpeg";
-import faculty3 from "@/assets/mgali.jpeg";
-import faculty4 from "@/assets/sachinpawar.jpeg";
+import { ALL_FACULTY } from '@/data/facultyData';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -40,49 +36,7 @@ const FacultyStatItem = ({ end, suffix, label }: { end: number; suffix: string; 
 };
 
 const Faculty = () => {
-  const facultyMembers = [
-    {
-      name: 'Mr. Shankar Lal Amulani',
-      role: 'Founder & Director',
-      subject: 'Mathematics Faculty',
-      experience: '30+ Years',
-      image: directorImage,
-      description: 'The visionary behind Rays Academy, Mr. Amulani is a renowned expert in Mathematics. His guidance and passion for teaching have inspired thousands of students to achieve their academic goals.',
-      isFounder: true,
-    },
-    {
-      name: 'Rajesh Sahu',
-      role: 'Head of Science Department',
-      subject: 'Physics & Chemistry',
-      experience: '15+ Years',
-      image: faculty1,
-      description: 'Known for making complex scientific concepts simple, Rajesh Sir\'s dynamic teaching style inspires students to excel in Science.',
-    },
-    {
-      name: 'Ankit Yadav',
-      role: 'Senior Faculty',
-      subject: 'Physics',
-      experience: '10+ Years',
-      image: faculty2,
-      description: 'Ankit Sir is passionate about physics, using real-world examples to help students understand intricate topics and solve challenging problems.',
-    },
-    {
-      name: 'Dr. MG Ali',
-      role: 'Senior Faculty',
-      subject: 'Chemistry',
-      experience: '20+ Years',
-      image: faculty3,
-      description: 'With a doctorate in Chemistry, Dr. Ali brings deep academic knowledge and proven teaching methods to guide students to top scores.',
-    },
-    {
-      name: 'Sachin Pawar',
-      role: 'Faculty',
-      subject: 'Biology',
-      experience: '8+ Years',
-      image: faculty4,
-      description: 'Sachin Sir\'s engaging classes make biology come alive, ensuring students not only learn but also develop a love for the subject.',
-    }
-  ];
+  const facultyMembers = ALL_FACULTY;
 
   return (
     <div className="overflow-hidden">
