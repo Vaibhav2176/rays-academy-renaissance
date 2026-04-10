@@ -43,14 +43,23 @@ const App = () => (
               <Route path="/about" element={<About />} />
               <Route path="/courses" element={<Courses />} />
               <Route path="/courses/class-6-8" element={<Class6to8 />} />
+              <Route path="/class-6-8" element={<Class6to8 />} />
               <Route path="/courses/class-9" element={<Class9 />} />
+              <Route path="/class-9" element={<Class9 />} />
               <Route path="/courses/class-10" element={<Class10 />} />
+              <Route path="/class-10" element={<Class10 />} />
               <Route path="/courses/class-11" element={<Class11 />} />
+              <Route path="/class-11" element={<Class11 />} />
               <Route path="/courses/class-12" element={<Class12 />} />
+              <Route path="/class-12" element={<Class12 />} />
               <Route path="/courses/iit-jee" element={<IITJEE />} />
+              <Route path="/iit-jee-coaching-bhopal" element={<IITJEE />} />
               <Route path="/courses/neet" element={<NEET />} />
+              <Route path="/neet-coaching-bhopal" element={<NEET />} />
               <Route path="/courses/nda" element={<NDA />} />
+              <Route path="/nda-coaching-bhopal" element={<NDA />} />
               <Route path="/courses/cuet" element={<CUET />} />
+              <Route path="/cuet-coaching-bhopal" element={<CUET />} />
               <Route path="/faculty" element={<Faculty />} />
               <Route path="/results" element={<Results />} />
               <Route path="/gallery" element={<Gallery />} />
