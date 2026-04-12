@@ -1,0 +1,15 @@
+{
+  "short_name": "Rays Academy",
+  "name": "Rays Academy \u2013 Best Coaching Institute in Bhopal",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}
