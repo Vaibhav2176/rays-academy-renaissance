@@ -121,11 +121,8 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-primary-foreground/60 text-sm">© {currentYear} Rays Academy. All rights reserved.</p>
-            <div className="flex items-center gap-6">
-              <Link to="/privacy" className="text-primary-foreground/60 hover:text-accent transition-colors text-sm">Privacy Policy</Link>
-              <Link to="/terms" className="text-primary-foreground/60 hover:text-accent transition-colors text-sm">Terms of Use</Link>
-            </div>
           </div>
+
         </div>
       </div>
     </footer>

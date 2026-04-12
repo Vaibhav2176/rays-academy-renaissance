@@ -26,6 +26,7 @@ import IITJEE from "./pages/courses/IITJEE";
 import NEET from "./pages/courses/NEET";
 import NDA from "./pages/courses/NDA";
 import CUET from "./pages/courses/CUET";
+import RSAT from "./pages/RSAT";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,7 @@ const App = () => (
               <Route path="/nda-coaching-bhopal" element={<NDA />} />
               <Route path="/courses/cuet" element={<CUET />} />
               <Route path="/cuet-coaching-bhopal" element={<CUET />} />
+              <Route path="/rsat" element={<RSAT />} />
               <Route path="/faculty" element={<Faculty />} />
               <Route path="/results" element={<Results />} />
               <Route path="/gallery" element={<Gallery />} />
