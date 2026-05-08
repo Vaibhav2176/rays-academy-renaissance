@@ -9,7 +9,7 @@ const SMClass12 = () => (
     heroDescription="Excel in Class 12 board exams and entrance tests with comprehensive study material, solved examples, and previous year question analysis."
     syllabusOverview="Detailed Class 12 study material covering Physics, Chemistry, Mathematics, and Biology with dual focus on board exams and competitive entrance exams."
     subjects={class12Subjects}
-    importantTopics={['Electrostatics - Coulomb's law & Electric field', 'Electrochemistry - Nernst equation', 'Continuity & Differentiability', 'Genetics - Mendel's laws', 'Current Electricity - Kirchhoff's laws', 'Organic Chemistry - Name reactions', 'Integration - By parts & substitution', 'Reproduction in Flowering Plants', 'Electromagnetic Induction - Faraday's law']}
+    importantTopics={["Electrostatics - Coulomb's law & Electric field", 'Electrochemistry - Nernst equation', 'Continuity & Differentiability', "Genetics - Mendel's laws", "Current Electricity - Kirchhoff's laws", 'Organic Chemistry - Name reactions', 'Integration - By parts & substitution', 'Reproduction in Flowering Plants', "Electromagnetic Induction - Faraday's law"]}
     examTips={['Start board exam prep from Day 1 of Class 12', 'Solve CBSE sample papers and marking schemes', 'Focus on high-weightage chapters first', 'Practice derivations daily for Physics', 'Revise organic reactions using flashcards', 'Attempt full-length mock tests every weekend']}
     faqs={defaultFaqs}
     localSeoKeywords={['Class 12 study material Bhopal', 'Class 12 board exam preparation', 'Best Class 12 notes Bhopal', 'CBSE Class 12 Physics notes', ...defaultLocalSeo]}
