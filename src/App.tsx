@@ -28,6 +28,23 @@ import NDA from "./pages/courses/NDA";
 import CUET from "./pages/courses/CUET";
 import RSAT from "./pages/RSAT";
 
+import StudyMaterial from "./pages/StudyMaterial";
+import SMClass6to8 from "./pages/study-material/SMClass6to8";
+import SMClass9 from "./pages/study-material/SMClass9";
+import SMClass10 from "./pages/study-material/SMClass10";
+import SMClass11 from "./pages/study-material/SMClass11";
+import SMClass12 from "./pages/study-material/SMClass12";
+import SMJEE from "./pages/study-material/SMJEE";
+import SMNEET from "./pages/study-material/SMNEET";
+import SMNDA from "./pages/study-material/SMNDA";
+import SMCUET from "./pages/study-material/SMCUET";
+import PreviousYearQuestions from "./pages/study-material/PreviousYearQuestions";
+import SamplePapers from "./pages/study-material/SamplePapers";
+import FormulaSheets from "./pages/study-material/FormulaSheets";
+import ImportantQuestions from "./pages/study-material/ImportantQuestions";
+import RevisionNotes from "./pages/study-material/RevisionNotes";
+import { NCERTClass6, NCERTClass7, NCERTClass8, NCERTClass9, NCERTClass10, NCERTClass11, NCERTClass12 } from "./pages/study-material/NCERTPages";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -62,6 +79,36 @@ const App = () => (
               <Route path="/courses/cuet" element={<CUET />} />
               <Route path="/cuet-coaching-bhopal" element={<CUET />} />
               <Route path="/rsat" element={<RSAT />} />
+
+              {/* Study Material */}
+              <Route path="/study-material" element={<StudyMaterial />} />
+              <Route path="/study-material/class-6-8" element={<SMClass6to8 />} />
+              <Route path="/study-material/class-9" element={<SMClass9 />} />
+              <Route path="/study-material/class-10" element={<SMClass10 />} />
+              <Route path="/class-10-study-material" element={<SMClass10 />} />
+              <Route path="/study-material/class-11" element={<SMClass11 />} />
+              <Route path="/study-material/class-12" element={<SMClass12 />} />
+              <Route path="/study-material/iit-jee" element={<SMJEE />} />
+              <Route path="/jee-study-material" element={<SMJEE />} />
+              <Route path="/study-material/neet" element={<SMNEET />} />
+              <Route path="/neet-study-material" element={<SMNEET />} />
+              <Route path="/study-material/nda" element={<SMNDA />} />
+              <Route path="/study-material/cuet" element={<SMCUET />} />
+              <Route path="/study-material/previous-year-questions" element={<PreviousYearQuestions />} />
+              <Route path="/study-material/sample-papers" element={<SamplePapers />} />
+              <Route path="/sample-papers" element={<SamplePapers />} />
+              <Route path="/study-material/formula-sheets" element={<FormulaSheets />} />
+              <Route path="/formula-sheets" element={<FormulaSheets />} />
+              <Route path="/study-material/important-questions" element={<ImportantQuestions />} />
+              <Route path="/study-material/revision-notes" element={<RevisionNotes />} />
+              <Route path="/study-material/ncert/class-6" element={<NCERTClass6 />} />
+              <Route path="/study-material/ncert/class-7" element={<NCERTClass7 />} />
+              <Route path="/study-material/ncert/class-8" element={<NCERTClass8 />} />
+              <Route path="/study-material/ncert/class-9" element={<NCERTClass9 />} />
+              <Route path="/study-material/ncert/class-10" element={<NCERTClass10 />} />
+              <Route path="/study-material/ncert/class-11" element={<NCERTClass11 />} />
+              <Route path="/study-material/ncert/class-12" element={<NCERTClass12 />} />
+
               <Route path="/faculty" element={<Faculty />} />
               <Route path="/results" element={<Results />} />
               <Route path="/gallery" element={<Gallery />} />

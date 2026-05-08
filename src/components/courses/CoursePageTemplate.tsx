@@ -39,22 +39,22 @@ interface CoursePageProps {
 /* ─── Animation Variants ─── */
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: 'easeOut' } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: 'easeOut' as const } },
 };
 
 const fadeInLeft = {
   hidden: { opacity: 0, x: -40 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.55, ease: 'easeOut' } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.55, ease: 'easeOut' as const } },
 };
 
 const fadeInRight = {
   hidden: { opacity: 0, x: 40 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.55, ease: 'easeOut' } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.55, ease: 'easeOut' as const } },
 };
 
 const scaleIn = {
   hidden: { opacity: 0, scale: 0.88 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: 'easeOut' as const } },
 };
 
 const stagger = (delay = 0.1) => ({
