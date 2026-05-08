@@ -22,6 +22,7 @@ const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'About Us', path: '/about' },
   { name: 'Courses', path: '/courses', hasDropdown: true },
+  { name: 'Study Material', path: '/study-material' },
   { name: 'Faculty', path: '/faculty' },
   { name: 'Results', path: '/results' },
   { name: 'Gallery', path: '/gallery' },
