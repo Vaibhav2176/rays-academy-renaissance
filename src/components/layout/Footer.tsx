@@ -28,10 +28,22 @@ const Footer = () => {
     { name: 'CUET Coaching', path: '/courses/cuet' },
   ];
 
+  const resourceLinks = [
+    { name: 'All Study Material', path: '/study-material' },
+    { name: 'Class 10 Notes', path: '/study-material/class-10' },
+    { name: 'Class 12 Notes', path: '/study-material/class-12' },
+    { name: 'JEE Material', path: '/study-material/iit-jee' },
+    { name: 'NEET Material', path: '/study-material/neet' },
+    { name: 'Sample Papers', path: '/study-material/sample-papers' },
+    { name: 'Previous Year Questions', path: '/study-material/previous-year-questions' },
+    { name: 'Formula Sheets', path: '/study-material/formula-sheets' },
+    { name: 'NCERT Books', path: '/study-material/ncert/class-10' },
+  ];
+
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="space-y-6">
             <Link to="/" className="flex items-center gap-3">
@@ -79,6 +91,20 @@ const Footer = () => {
                 <li key={course.path}>
                   <Link to={course.path} className="text-primary-foreground/70 hover:text-accent transition-colors text-sm">
                     {course.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="text-lg font-semibold mb-6">Resources</h4>
+            <ul className="space-y-3">
+              {resourceLinks.map((r) => (
+                <li key={r.path}>
+                  <Link to={r.path} className="text-primary-foreground/70 hover:text-accent transition-colors text-sm">
+                    {r.name}
                   </Link>
                 </li>
               ))}

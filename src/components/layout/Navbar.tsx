@@ -18,11 +18,27 @@ const courseDropdown = [
   { name: 'CUET', path: '/courses/cuet' },
 ];
 
+const studyMaterialDropdown = [
+  { name: 'Class 6–8', path: '/study-material/class-6-8' },
+  { name: 'Class 9', path: '/study-material/class-9' },
+  { name: 'Class 10', path: '/study-material/class-10' },
+  { name: 'Class 11', path: '/study-material/class-11' },
+  { name: 'Class 12', path: '/study-material/class-12' },
+  { name: 'IIT-JEE', path: '/study-material/iit-jee' },
+  { name: 'NEET', path: '/study-material/neet' },
+  { name: 'NDA', path: '/study-material/nda' },
+  { name: 'CUET', path: '/study-material/cuet' },
+  { name: 'Sample Papers', path: '/study-material/sample-papers' },
+  { name: 'PYQs', path: '/study-material/previous-year-questions' },
+  { name: 'Formula Sheets', path: '/study-material/formula-sheets' },
+  { name: 'NCERT Books', path: '/study-material/ncert/class-10' },
+];
+
 const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'About Us', path: '/about' },
-  { name: 'Courses', path: '/courses', hasDropdown: true },
-  { name: 'Study Material', path: '/study-material' },
+  { name: 'Courses', path: '/courses', dropdown: 'courses' as const },
+  { name: 'Study Material', path: '/study-material', dropdown: 'study' as const },
   { name: 'Faculty', path: '/faculty' },
   { name: 'Results', path: '/results' },
   { name: 'Gallery', path: '/gallery' },
@@ -32,8 +48,8 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [coursesOpen, setCoursesOpen] = useState(false);
-  const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -45,21 +61,27 @@ const Navbar = () => {
 
   useEffect(() => {
     setIsOpen(false);
-    setCoursesOpen(false);
-    setMobileCoursesOpen(false);
+    setOpenDropdown(null);
+    setMobileOpenDropdown(null);
   }, [location.pathname]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setCoursesOpen(false);
+        setOpenDropdown(null);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const isCoursesActive = location.pathname.startsWith('/courses');
+  const isActiveDropdown = (key: 'courses' | 'study') =>
+    key === 'courses' ? location.pathname.startsWith('/courses') : location.pathname.startsWith('/study-material');
+
+  const dropdownItems = (key: 'courses' | 'study') =>
+    key === 'courses' ? courseDropdown : studyMaterialDropdown;
+  const dropdownAllLink = (key: 'courses' | 'study') =>
+    key === 'courses' ? { label: 'All Courses', path: '/courses' } : { label: 'All Study Material', path: '/study-material' };
 
   return (
     <header
@@ -87,62 +109,70 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              link.hasDropdown ? (
-                <div key={link.path} className="relative" ref={dropdownRef}>
-                  <button
-                    onClick={() => setCoursesOpen(!coursesOpen)}
-                    onMouseEnter={() => setCoursesOpen(true)}
-                    className={cn(
-                      'relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-1',
-                      isCoursesActive
-                        ? 'text-accent'
-                        : scrolled
-                          ? 'text-foreground hover:text-accent hover:bg-accent/10'
-                          : 'text-primary-foreground/90 hover:text-primary-foreground hover:bg-primary-foreground/10'
-                    )}
-                  >
-                    {link.name}
-                    <ChevronDown className={cn("w-3.5 h-3.5 transition-transform", coursesOpen && "rotate-180")} />
-                    {isCoursesActive && (
-                      <motion.div layoutId="navbar-indicator" className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent rounded-full" />
-                    )}
-                  </button>
-                  <AnimatePresence>
-                    {coursesOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 8 }}
-                        transition={{ duration: 0.2 }}
-                        onMouseLeave={() => setCoursesOpen(false)}
-                        className="absolute top-full left-0 mt-1 w-56 bg-background/95 backdrop-blur-md shadow-xl rounded-xl border border-border overflow-hidden z-50"
-                      >
-                        <Link
-                          to="/courses"
-                          className="block px-4 py-2.5 text-sm font-semibold text-primary hover:bg-primary/5 border-b border-border transition-colors"
+            {navLinks.map((link) => {
+              const dropdownKey = link.dropdown;
+              if (dropdownKey) {
+                const isOpen = openDropdown === dropdownKey;
+                const isActive = isActiveDropdown(dropdownKey);
+                const items = dropdownItems(dropdownKey);
+                const all = dropdownAllLink(dropdownKey);
+                return (
+                  <div key={link.path} className="relative" ref={isOpen ? dropdownRef : undefined}>
+                    <button
+                      onClick={() => setOpenDropdown(isOpen ? null : dropdownKey)}
+                      onMouseEnter={() => setOpenDropdown(dropdownKey)}
+                      className={cn(
+                        'relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-1',
+                        isActive
+                          ? 'text-accent'
+                          : scrolled
+                            ? 'text-foreground hover:text-accent hover:bg-accent/10'
+                            : 'text-primary-foreground/90 hover:text-primary-foreground hover:bg-primary-foreground/10'
+                      )}
+                    >
+                      {link.name}
+                      <ChevronDown className={cn('w-3.5 h-3.5 transition-transform', isOpen && 'rotate-180')} />
+                      {isActive && (
+                        <motion.div layoutId="navbar-indicator" className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent rounded-full" />
+                      )}
+                    </button>
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 8 }}
+                          transition={{ duration: 0.2 }}
+                          onMouseLeave={() => setOpenDropdown(null)}
+                          className="absolute top-full left-0 mt-1 w-60 bg-background/95 backdrop-blur-md shadow-xl rounded-xl border border-border overflow-hidden z-50 max-h-[70vh] overflow-y-auto"
                         >
-                          All Courses
-                        </Link>
-                        {courseDropdown.map((item) => (
                           <Link
-                            key={item.path}
-                            to={item.path}
-                            className={cn(
-                              "block px-4 py-2.5 text-sm transition-colors",
-                              location.pathname === item.path
-                                ? "bg-accent/10 text-accent font-medium"
-                                : "text-foreground hover:bg-muted hover:text-primary"
-                            )}
+                            to={all.path}
+                            className="block px-4 py-2.5 text-sm font-semibold text-primary hover:bg-primary/5 border-b border-border transition-colors"
                           >
-                            {item.name}
+                            {all.label}
                           </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ) : (
+                          {items.map((item) => (
+                            <Link
+                              key={item.path}
+                              to={item.path}
+                              className={cn(
+                                'block px-4 py-2.5 text-sm transition-colors',
+                                location.pathname === item.path
+                                  ? 'bg-accent/10 text-accent font-medium'
+                                  : 'text-foreground hover:bg-muted hover:text-primary'
+                              )}
+                            >
+                              {item.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+              return (
                 <Link
                   key={link.path}
                   to={link.path}
@@ -160,8 +190,8 @@ const Navbar = () => {
                     <motion.div layoutId="navbar-indicator" className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent rounded-full" />
                   )}
                 </Link>
-              )
-            ))}
+              );
+            })}
           </div>
 
           {/* CTA Buttons */}
@@ -198,38 +228,47 @@ const Navbar = () => {
               className="lg:hidden overflow-hidden"
             >
               <div className="py-4 space-y-1 bg-background/95 backdrop-blur-md rounded-lg mt-2 px-2 shadow-lg">
-                {navLinks.map((link, index) => (
+                {navLinks.map((link, index) => {
+                  const dropdownKey = link.dropdown;
+                  const isMobileOpen = mobileOpenDropdown === dropdownKey;
+                  const isActive = dropdownKey ? isActiveDropdown(dropdownKey) : false;
+                  return (
                   <motion.div key={link.path} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.05 }}>
-                    {link.hasDropdown ? (
+                    {dropdownKey ? (
                       <div>
                         <button
-                          onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
+                          onClick={() => setMobileOpenDropdown(isMobileOpen ? null : dropdownKey)}
                           className={cn(
                             'w-full flex items-center justify-between px-4 py-3 rounded-lg font-medium transition-all',
-                            isCoursesActive ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-muted'
+                            isActive ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-muted'
                           )}
                         >
                           {link.name}
-                          <ChevronDown className={cn("w-4 h-4 transition-transform", mobileCoursesOpen && "rotate-180")} />
+                          <ChevronDown className={cn('w-4 h-4 transition-transform', isMobileOpen && 'rotate-180')} />
                         </button>
                         <AnimatePresence>
-                          {mobileCoursesOpen && (
+                          {isMobileOpen && (
                             <motion.div
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: 'auto' }}
                               exit={{ opacity: 0, height: 0 }}
                               className="pl-4 space-y-0.5 overflow-hidden"
                             >
-                              <Link to="/courses" className="block px-4 py-2 text-sm font-semibold text-primary hover:bg-muted rounded-lg">
-                                All Courses
-                              </Link>
-                              {courseDropdown.map((item) => (
+                              {(() => {
+                                const all = dropdownAllLink(dropdownKey);
+                                return (
+                                  <Link to={all.path} className="block px-4 py-2 text-sm font-semibold text-primary hover:bg-muted rounded-lg">
+                                    {all.label}
+                                  </Link>
+                                );
+                              })()}
+                              {dropdownItems(dropdownKey).map((item) => (
                                 <Link
                                   key={item.path}
                                   to={item.path}
                                   className={cn(
-                                    "block px-4 py-2 text-sm rounded-lg transition-colors",
-                                    location.pathname === item.path ? "bg-accent/10 text-accent font-medium" : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                                    'block px-4 py-2 text-sm rounded-lg transition-colors',
+                                    location.pathname === item.path ? 'bg-accent/10 text-accent font-medium' : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                                   )}
                                 >
                                   {item.name}
@@ -251,7 +290,8 @@ const Navbar = () => {
                       </Link>
                     )}
                   </motion.div>
-                ))}
+                  );
+                })}
                 <div className="pt-4 flex flex-col gap-2 px-4">
                   <Link to="/login">
                     <Button variant="outline" className="w-full font-semibold">Login</Button>

@@ -40,6 +40,10 @@ interface StudyMaterialPageTemplateProps {
   pricePerChapter?: number;
   fullSubjectPrice?: number;
   breadcrumbLabel: string;
+  /** Optional related internal resources (course page, PYQ, sample papers, etc.) */
+  relatedResources?: { title: string; description: string; href: string }[];
+  /** Optional official external links (NCERT, NTA, CBSE, UPSC) */
+  officialResources?: { name: string; url: string }[];
 }
 
 const StudyMaterialPageTemplate = ({
@@ -56,6 +60,8 @@ const StudyMaterialPageTemplate = ({
   pricePerChapter = 50,
   fullSubjectPrice = 500,
   breadcrumbLabel,
+  relatedResources,
+  officialResources,
 }: StudyMaterialPageTemplateProps) => {
   useEffect(() => {
     document.title = metaTitle;
@@ -70,11 +76,11 @@ const StudyMaterialPageTemplate = ({
   }, [metaTitle, metaDescription]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-20 md:pt-24">
       {/* Breadcrumb */}
       <div className="bg-primary/5 border-b border-border">
         <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
             <Link to="/" className="hover:text-primary transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
             <Link to="/study-material" className="hover:text-primary transition-colors">Study Material</Link>
@@ -94,13 +100,13 @@ const StudyMaterialPageTemplate = ({
             <p className="text-lg text-primary-foreground/80 mb-8">{heroDescription}</p>
             <div className="flex flex-wrap gap-4">
               <a href="#subjects">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full shadow-lg">
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full shadow-lg shadow-accent/30">
                   <BookOpen className="w-5 h-5 mr-2" /> Explore Material
                 </Button>
               </a>
-              <a href="https://wa.me/919303333490" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-full">
-                  <MessageCircle className="w-5 h-5 mr-2" /> WhatsApp Us
+              <a href="https://wa.me/917024057876" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold rounded-full shadow-lg shadow-green-600/30">
+                  <img src="/whatsapp.svg" alt="WhatsApp" className="w-5 h-5 mr-2" /> WhatsApp Us
                 </Button>
               </a>
             </div>
@@ -290,6 +296,63 @@ const StudyMaterialPageTemplate = ({
         </div>
       </section>
 
+      {/* Related Internal Resources (with sensible default) */}
+      {(() => {
+        const fallback = [
+          { title: 'Previous Year Questions', description: 'Solved PYQs across boards & competitive exams.', href: '/study-material/previous-year-questions' },
+          { title: 'Sample Papers', description: 'Latest pattern sample papers for practice.', href: '/study-material/sample-papers' },
+          { title: 'Formula Sheets', description: 'Quick revision formula sheets for Maths, Physics & Chemistry.', href: '/study-material/formula-sheets' },
+        ];
+        const items = relatedResources && relatedResources.length > 0 ? relatedResources : fallback;
+        return (
+          <section className="py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <motion.div {...fadeInUp} className="text-center mb-10">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Related Resources</h2>
+                <p className="text-muted-foreground text-sm">Explore more from Rays Academy to strengthen your preparation</p>
+              </motion.div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+                {items.map((r, i) => (
+                  <motion.div key={i} {...fadeInUp} transition={{ delay: i * 0.08 }}>
+                    <Link to={r.href}>
+                      <Card className="h-full border border-border/60 hover:border-primary/40 hover:shadow-xl transition-all duration-300 group">
+                        <CardContent className="p-6">
+                          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                            <BookOpen className="w-5 h-5 text-primary" />
+                          </div>
+                          <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">{r.title}</h3>
+                          <p className="text-sm text-muted-foreground">{r.description}</p>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
+
+      {/* Official External Resources */}
+      {officialResources && officialResources.length > 0 && (
+        <section className="py-12 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <motion.div {...fadeInUp} className="max-w-4xl mx-auto text-center">
+              <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">Official Resources</h2>
+              <p className="text-sm text-muted-foreground mb-6">Trusted external links for syllabus, notifications and official material</p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {officialResources.map((r, i) => (
+                  <a key={i} href={r.url} target="_blank" rel="noopener noreferrer"
+                     className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background border border-border hover:border-primary hover:text-primary text-sm font-medium transition-colors">
+                    {r.name} <ChevronRight className="w-3 h-3" />
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
+
       {/* FAQ */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
@@ -319,17 +382,17 @@ const StudyMaterialPageTemplate = ({
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/contact">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full shadow-lg">
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full shadow-lg shadow-accent/30">
                   Join Rays Academy
                 </Button>
               </Link>
-              <a href="https://wa.me/919303333490" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white font-semibold rounded-full shadow-lg">
+              <a href="https://wa.me/917024057876" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold rounded-full shadow-lg shadow-green-600/30">
                   <img src="/whatsapp.svg" alt="WhatsApp" className="w-5 h-5 mr-2" /> WhatsApp Us
                 </Button>
               </a>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-full">
+                <Button size="lg" className="bg-white text-primary hover:bg-gray-100 font-semibold rounded-full shadow-lg">
                   <Phone className="w-5 h-5 mr-2" /> Contact Us
                 </Button>
               </Link>

@@ -72,10 +72,29 @@ export const cuetSubjects: SubjectData[] = [
 export const defaultFaqs = [
   { question: 'Where can I get the best study material in Bhopal?', answer: 'Rays Academy provides expert-prepared, chapter-wise study material for Classes 6-12 and competitive exams like IIT-JEE, NEET, NDA & CUET. Our material is designed by experienced faculty with 3-33+ years of teaching experience.' },
   { question: 'Are the study notes downloadable?', answer: 'PDF downloads will be available soon. Currently, you can access all study material online through our platform. Premium subscribers will get priority access to downloadable content.' },
-  { question: 'Which chapters are free?', answer: 'The first 2 chapters of every subject are completely free. You can explore them without any registration. Premium chapters can be unlocked individually at ₹50 each or get full subject access at ₹500.' },
-  { question: 'Is the study material exam-oriented?', answer: 'Yes, all our study material is prepared keeping board exams and competitive entrance exams in mind. It includes important questions, previous year patterns, and high-weightage topics.' },
-  { question: 'How is Rays Academy study material different?', answer: 'Our material is prepared by experienced faculty who understand exam patterns deeply. It focuses on concept clarity, includes solved examples, and provides practice questions for thorough preparation.' },
+  { question: 'Which chapters are free to download?', answer: 'The first 2 chapters of every subject are completely free. You can explore them without any registration. Premium chapters can be unlocked individually at ₹50 each, or get full subject access at ₹500.' },
+  { question: 'Are NCERT books enough for board exams?', answer: 'NCERT books form the foundation, but for top scores you should pair them with chapter-wise notes, important questions and previous year papers — all of which we provide.' },
+  { question: 'Which chapters carry the highest weightage?', answer: 'Each subject page lists the high-weightage chapters separately under "Important Topics". Focus on those first, then revise the rest using our chapter-wise notes and PYQs.' },
+  { question: 'How should I prepare for competitive exams like JEE/NEET?', answer: 'Start with NCERT, master concepts using our chapter notes, solve our subject-wise practice sets, then move to previous year questions and full mock tests. Our roadmap inside each subject page guides you step by step.' },
+  { question: 'Is the study material exam-oriented?', answer: 'Yes — every note is built around the latest CBSE / NTA / UPSC exam patterns and high-weightage topics from previous year analysis.' },
+  { question: 'How is Rays Academy study material different?', answer: 'Prepared by faculty with 3–33+ years of experience, our material focuses on concept clarity, solved examples, exam-style practice, and continuous updates after every board / entrance exam cycle.' },
 ];
+
+export const subjectFaqs: Record<string, { question: string; answer: string }[]> = {
+  physics: [
+    { question: 'Which Physics chapters are most important for boards?', answer: 'For Class 12: Electrostatics, Current Electricity, Magnetism, EMI, Optics and Modern Physics together carry over 60% weightage. Our notes mark each chapter\'s expected weightage.' },
+    { question: 'How can I improve numerical solving in Physics?', answer: 'Practice 5–10 numericals daily from our chapter-wise problem sets, then move to previous year questions. Speed and formula recall both improve with consistent practice.' },
+  ],
+  chemistry: [
+    { question: 'Is Organic Chemistry tough? How to crack it?', answer: 'No — with our reaction-based approach and named reactions sheet, organic becomes scoring. Focus on mechanisms first, then memorize named reactions and practice conversions.' },
+  ],
+  biology: [
+    { question: 'How should I prepare Biology for NEET?', answer: 'NCERT line-by-line is non-negotiable for NEET Biology. Combine it with our chapter-wise diagrams, important MCQs and previous year analysis to score 350+ in Biology.' },
+  ],
+  maths: [
+    { question: 'Are NCERT books enough for Class 10 Maths?', answer: 'NCERT covers 80% of the board paper. For the remaining 20% (HOTS questions), use our practice sets, sample papers and previous year questions.' },
+  ],
+};
 
 export const defaultLocalSeo = [
   'Best study material in Bhopal',

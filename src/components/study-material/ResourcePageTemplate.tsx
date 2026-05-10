@@ -30,10 +30,10 @@ const ResourcePageTemplate = ({ title, metaTitle, metaDescription, heroDescripti
   }, [metaTitle, metaDescription]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-20 md:pt-24">
       <div className="bg-primary/5 border-b border-border">
         <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
             <Link to="/" className="hover:text-primary transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
             <Link to="/study-material" className="hover:text-primary transition-colors">Study Material</Link>
@@ -81,10 +81,12 @@ const ResourcePageTemplate = ({ title, metaTitle, metaDescription, heroDescripti
             <p className="text-primary-foreground/80 mb-8">Contact Rays Academy for complete study material and expert guidance.</p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/contact">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full">Join Rays Academy</Button>
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full shadow-lg shadow-accent/30">
+                  <Phone className="w-5 h-5 mr-2" /> Join Rays Academy
+                </Button>
               </Link>
-              <a href="https://wa.me/919303333490" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white font-semibold rounded-full">
+              <a href="https://wa.me/917024057876" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold rounded-full shadow-lg shadow-green-600/30">
                   <img src="/whatsapp.svg" alt="WhatsApp" className="w-5 h-5 mr-2" /> WhatsApp Us
                 </Button>
               </a>
