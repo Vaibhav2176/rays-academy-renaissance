@@ -290,7 +290,8 @@ const Navbar = () => {
                       </Link>
                     )}
                   </motion.div>
-                ))}
+                  );
+                })}
                 <div className="pt-4 flex flex-col gap-2 px-4">
                   <Link to="/login">
                     <Button variant="outline" className="w-full font-semibold">Login</Button>
