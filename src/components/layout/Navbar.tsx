@@ -18,11 +18,27 @@ const courseDropdown = [
   { name: 'CUET', path: '/courses/cuet' },
 ];
 
+const studyMaterialDropdown = [
+  { name: 'Class 6–8', path: '/study-material/class-6-8' },
+  { name: 'Class 9', path: '/study-material/class-9' },
+  { name: 'Class 10', path: '/study-material/class-10' },
+  { name: 'Class 11', path: '/study-material/class-11' },
+  { name: 'Class 12', path: '/study-material/class-12' },
+  { name: 'IIT-JEE', path: '/study-material/iit-jee' },
+  { name: 'NEET', path: '/study-material/neet' },
+  { name: 'NDA', path: '/study-material/nda' },
+  { name: 'CUET', path: '/study-material/cuet' },
+  { name: 'Sample Papers', path: '/study-material/sample-papers' },
+  { name: 'PYQs', path: '/study-material/previous-year-questions' },
+  { name: 'Formula Sheets', path: '/study-material/formula-sheets' },
+  { name: 'NCERT Books', path: '/study-material/ncert/class-10' },
+];
+
 const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'About Us', path: '/about' },
-  { name: 'Courses', path: '/courses', hasDropdown: true },
-  { name: 'Study Material', path: '/study-material' },
+  { name: 'Courses', path: '/courses', dropdown: 'courses' as const },
+  { name: 'Study Material', path: '/study-material', dropdown: 'study' as const },
   { name: 'Faculty', path: '/faculty' },
   { name: 'Results', path: '/results' },
   { name: 'Gallery', path: '/gallery' },
