@@ -109,62 +109,70 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              link.hasDropdown ? (
-                <div key={link.path} className="relative" ref={dropdownRef}>
-                  <button
-                    onClick={() => setCoursesOpen(!coursesOpen)}
-                    onMouseEnter={() => setCoursesOpen(true)}
-                    className={cn(
-                      'relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-1',
-                      isCoursesActive
-                        ? 'text-accent'
-                        : scrolled
-                          ? 'text-foreground hover:text-accent hover:bg-accent/10'
-                          : 'text-primary-foreground/90 hover:text-primary-foreground hover:bg-primary-foreground/10'
-                    )}
-                  >
-                    {link.name}
-                    <ChevronDown className={cn("w-3.5 h-3.5 transition-transform", coursesOpen && "rotate-180")} />
-                    {isCoursesActive && (
-                      <motion.div layoutId="navbar-indicator" className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent rounded-full" />
-                    )}
-                  </button>
-                  <AnimatePresence>
-                    {coursesOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 8 }}
-                        transition={{ duration: 0.2 }}
-                        onMouseLeave={() => setCoursesOpen(false)}
-                        className="absolute top-full left-0 mt-1 w-56 bg-background/95 backdrop-blur-md shadow-xl rounded-xl border border-border overflow-hidden z-50"
-                      >
-                        <Link
-                          to="/courses"
-                          className="block px-4 py-2.5 text-sm font-semibold text-primary hover:bg-primary/5 border-b border-border transition-colors"
+            {navLinks.map((link) => {
+              const dropdownKey = link.dropdown;
+              if (dropdownKey) {
+                const isOpen = openDropdown === dropdownKey;
+                const isActive = isActiveDropdown(dropdownKey);
+                const items = dropdownItems(dropdownKey);
+                const all = dropdownAllLink(dropdownKey);
+                return (
+                  <div key={link.path} className="relative" ref={isOpen ? dropdownRef : undefined}>
+                    <button
+                      onClick={() => setOpenDropdown(isOpen ? null : dropdownKey)}
+                      onMouseEnter={() => setOpenDropdown(dropdownKey)}
+                      className={cn(
+                        'relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-1',
+                        isActive
+                          ? 'text-accent'
+                          : scrolled
+                            ? 'text-foreground hover:text-accent hover:bg-accent/10'
+                            : 'text-primary-foreground/90 hover:text-primary-foreground hover:bg-primary-foreground/10'
+                      )}
+                    >
+                      {link.name}
+                      <ChevronDown className={cn('w-3.5 h-3.5 transition-transform', isOpen && 'rotate-180')} />
+                      {isActive && (
+                        <motion.div layoutId="navbar-indicator" className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent rounded-full" />
+                      )}
+                    </button>
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 8 }}
+                          transition={{ duration: 0.2 }}
+                          onMouseLeave={() => setOpenDropdown(null)}
+                          className="absolute top-full left-0 mt-1 w-60 bg-background/95 backdrop-blur-md shadow-xl rounded-xl border border-border overflow-hidden z-50 max-h-[70vh] overflow-y-auto"
                         >
-                          All Courses
-                        </Link>
-                        {courseDropdown.map((item) => (
                           <Link
-                            key={item.path}
-                            to={item.path}
-                            className={cn(
-                              "block px-4 py-2.5 text-sm transition-colors",
-                              location.pathname === item.path
-                                ? "bg-accent/10 text-accent font-medium"
-                                : "text-foreground hover:bg-muted hover:text-primary"
-                            )}
+                            to={all.path}
+                            className="block px-4 py-2.5 text-sm font-semibold text-primary hover:bg-primary/5 border-b border-border transition-colors"
                           >
-                            {item.name}
+                            {all.label}
                           </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ) : (
+                          {items.map((item) => (
+                            <Link
+                              key={item.path}
+                              to={item.path}
+                              className={cn(
+                                'block px-4 py-2.5 text-sm transition-colors',
+                                location.pathname === item.path
+                                  ? 'bg-accent/10 text-accent font-medium'
+                                  : 'text-foreground hover:bg-muted hover:text-primary'
+                              )}
+                            >
+                              {item.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+              return (
                 <Link
                   key={link.path}
                   to={link.path}
@@ -182,8 +190,8 @@ const Navbar = () => {
                     <motion.div layoutId="navbar-indicator" className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent rounded-full" />
                   )}
                 </Link>
-              )
-            ))}
+              );
+            })}
           </div>
 
           {/* CTA Buttons */}
