@@ -387,7 +387,7 @@ const CoursePageTemplate = ({
 
       {/* ─── Related Resources ─── */}
       <RelatedResources
-        heading="Related Resources for " + ""
+        heading={`Related Resources for ${defaultCourse}`}
         resources={[
           { title: `${defaultCourse} Study Material`, description: 'Chapter-wise notes, free + premium content.', href: getStudyMaterialPath(defaultCourse) },
           { title: 'Previous Year Questions', description: 'Solved PYQs across boards & entrance exams.', href: '/study-material/previous-year-questions' },
