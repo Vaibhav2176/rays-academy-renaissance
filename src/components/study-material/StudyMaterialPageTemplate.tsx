@@ -296,7 +296,16 @@ const StudyMaterialPageTemplate = ({
         </div>
       </section>
 
-      {/* Related Internal Resources */}
+      {(() => {
+        const fallback = [
+          { title: 'Previous Year Questions', description: 'Solved PYQs across boards & competitive exams.', href: '/study-material/previous-year-questions' },
+          { title: 'Sample Papers', description: 'Latest pattern sample papers for practice.', href: '/study-material/sample-papers' },
+          { title: 'Formula Sheets', description: 'Quick revision formula sheets for Maths, Physics & Chemistry.', href: '/study-material/formula-sheets' },
+        ];
+        const items = relatedResources && relatedResources.length > 0 ? relatedResources : fallback;
+        return null;
+      })()}
+
       {relatedResources && relatedResources.length > 0 && (
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
