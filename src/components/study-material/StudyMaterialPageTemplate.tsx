@@ -296,6 +296,7 @@ const StudyMaterialPageTemplate = ({
         </div>
       </section>
 
+      {/* Related Internal Resources (with sensible default) */}
       {(() => {
         const fallback = [
           { title: 'Previous Year Questions', description: 'Solved PYQs across boards & competitive exams.', href: '/study-material/previous-year-questions' },
@@ -303,36 +304,34 @@ const StudyMaterialPageTemplate = ({
           { title: 'Formula Sheets', description: 'Quick revision formula sheets for Maths, Physics & Chemistry.', href: '/study-material/formula-sheets' },
         ];
         const items = relatedResources && relatedResources.length > 0 ? relatedResources : fallback;
-        return null;
-      })()}
-
-      {relatedResources && relatedResources.length > 0 && (
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <motion.div {...fadeInUp} className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Related Resources</h2>
-              <p className="text-muted-foreground text-sm">Explore more from Rays Academy to strengthen your preparation</p>
-            </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
-              {relatedResources.map((r, i) => (
-                <motion.div key={i} {...fadeInUp} transition={{ delay: i * 0.08 }}>
-                  <Link to={r.href}>
-                    <Card className="h-full border border-border/60 hover:border-primary/40 hover:shadow-xl transition-all duration-300 group">
-                      <CardContent className="p-6">
-                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                          <BookOpen className="w-5 h-5 text-primary" />
-                        </div>
-                        <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">{r.title}</h3>
-                        <p className="text-sm text-muted-foreground">{r.description}</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </motion.div>
-              ))}
+        return (
+          <section className="py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <motion.div {...fadeInUp} className="text-center mb-10">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Related Resources</h2>
+                <p className="text-muted-foreground text-sm">Explore more from Rays Academy to strengthen your preparation</p>
+              </motion.div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+                {items.map((r, i) => (
+                  <motion.div key={i} {...fadeInUp} transition={{ delay: i * 0.08 }}>
+                    <Link to={r.href}>
+                      <Card className="h-full border border-border/60 hover:border-primary/40 hover:shadow-xl transition-all duration-300 group">
+                        <CardContent className="p-6">
+                          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                            <BookOpen className="w-5 h-5 text-primary" />
+                          </div>
+                          <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">{r.title}</h3>
+                          <p className="text-sm text-muted-foreground">{r.description}</p>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        );
+      })()}
 
       {/* Official External Resources */}
       {officialResources && officialResources.length > 0 && (
