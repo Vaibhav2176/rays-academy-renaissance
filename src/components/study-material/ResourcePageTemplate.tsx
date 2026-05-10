@@ -30,10 +30,10 @@ const ResourcePageTemplate = ({ title, metaTitle, metaDescription, heroDescripti
   }, [metaTitle, metaDescription]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-20 md:pt-24">
       <div className="bg-primary/5 border-b border-border">
         <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
             <Link to="/" className="hover:text-primary transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
             <Link to="/study-material" className="hover:text-primary transition-colors">Study Material</Link>
