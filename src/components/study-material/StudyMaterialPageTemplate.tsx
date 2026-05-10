@@ -60,6 +60,8 @@ const StudyMaterialPageTemplate = ({
   pricePerChapter = 50,
   fullSubjectPrice = 500,
   breadcrumbLabel,
+  relatedResources,
+  officialResources,
 }: StudyMaterialPageTemplateProps) => {
   useEffect(() => {
     document.title = metaTitle;
