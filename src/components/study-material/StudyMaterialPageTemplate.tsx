@@ -40,6 +40,10 @@ interface StudyMaterialPageTemplateProps {
   pricePerChapter?: number;
   fullSubjectPrice?: number;
   breadcrumbLabel: string;
+  /** Optional related internal resources (course page, PYQ, sample papers, etc.) */
+  relatedResources?: { title: string; description: string; href: string }[];
+  /** Optional official external links (NCERT, NTA, CBSE, UPSC) */
+  officialResources?: { name: string; url: string }[];
 }
 
 const StudyMaterialPageTemplate = ({
