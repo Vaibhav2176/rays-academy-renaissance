@@ -296,6 +296,55 @@ const StudyMaterialPageTemplate = ({
         </div>
       </section>
 
+      {/* Related Internal Resources */}
+      {relatedResources && relatedResources.length > 0 && (
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <motion.div {...fadeInUp} className="text-center mb-10">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Related Resources</h2>
+              <p className="text-muted-foreground text-sm">Explore more from Rays Academy to strengthen your preparation</p>
+            </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+              {relatedResources.map((r, i) => (
+                <motion.div key={i} {...fadeInUp} transition={{ delay: i * 0.08 }}>
+                  <Link to={r.href}>
+                    <Card className="h-full border border-border/60 hover:border-primary/40 hover:shadow-xl transition-all duration-300 group">
+                      <CardContent className="p-6">
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                          <BookOpen className="w-5 h-5 text-primary" />
+                        </div>
+                        <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">{r.title}</h3>
+                        <p className="text-sm text-muted-foreground">{r.description}</p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Official External Resources */}
+      {officialResources && officialResources.length > 0 && (
+        <section className="py-12 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <motion.div {...fadeInUp} className="max-w-4xl mx-auto text-center">
+              <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">Official Resources</h2>
+              <p className="text-sm text-muted-foreground mb-6">Trusted external links for syllabus, notifications and official material</p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {officialResources.map((r, i) => (
+                  <a key={i} href={r.url} target="_blank" rel="noopener noreferrer"
+                     className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background border border-border hover:border-primary hover:text-primary text-sm font-medium transition-colors">
+                    {r.name} <ChevronRight className="w-3 h-3" />
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
+
       {/* FAQ */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
