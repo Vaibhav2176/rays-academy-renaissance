@@ -10,6 +10,8 @@ import {
 } from 'lucide-react';
 import CourseEnquiryForm from './CourseEnquiryForm';
 import { getFacultyForSubjects, SubjectKey } from '@/data/facultyData';
+import { getStudyMaterialPath } from '@/lib/courseLinks';
+import RelatedResources from '@/components/shared/RelatedResources';
 
 interface SyllabusItem {
   heading: string;
