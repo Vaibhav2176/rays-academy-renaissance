@@ -228,38 +228,47 @@ const Navbar = () => {
               className="lg:hidden overflow-hidden"
             >
               <div className="py-4 space-y-1 bg-background/95 backdrop-blur-md rounded-lg mt-2 px-2 shadow-lg">
-                {navLinks.map((link, index) => (
+                {navLinks.map((link, index) => {
+                  const dropdownKey = link.dropdown;
+                  const isMobileOpen = mobileOpenDropdown === dropdownKey;
+                  const isActive = dropdownKey ? isActiveDropdown(dropdownKey) : false;
+                  return (
                   <motion.div key={link.path} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.05 }}>
-                    {link.hasDropdown ? (
+                    {dropdownKey ? (
                       <div>
                         <button
-                          onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
+                          onClick={() => setMobileOpenDropdown(isMobileOpen ? null : dropdownKey)}
                           className={cn(
                             'w-full flex items-center justify-between px-4 py-3 rounded-lg font-medium transition-all',
-                            isCoursesActive ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-muted'
+                            isActive ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-muted'
                           )}
                         >
                           {link.name}
-                          <ChevronDown className={cn("w-4 h-4 transition-transform", mobileCoursesOpen && "rotate-180")} />
+                          <ChevronDown className={cn('w-4 h-4 transition-transform', isMobileOpen && 'rotate-180')} />
                         </button>
                         <AnimatePresence>
-                          {mobileCoursesOpen && (
+                          {isMobileOpen && (
                             <motion.div
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: 'auto' }}
                               exit={{ opacity: 0, height: 0 }}
                               className="pl-4 space-y-0.5 overflow-hidden"
                             >
-                              <Link to="/courses" className="block px-4 py-2 text-sm font-semibold text-primary hover:bg-muted rounded-lg">
-                                All Courses
-                              </Link>
-                              {courseDropdown.map((item) => (
+                              {(() => {
+                                const all = dropdownAllLink(dropdownKey);
+                                return (
+                                  <Link to={all.path} className="block px-4 py-2 text-sm font-semibold text-primary hover:bg-muted rounded-lg">
+                                    {all.label}
+                                  </Link>
+                                );
+                              })()}
+                              {dropdownItems(dropdownKey).map((item) => (
                                 <Link
                                   key={item.path}
                                   to={item.path}
                                   className={cn(
-                                    "block px-4 py-2 text-sm rounded-lg transition-colors",
-                                    location.pathname === item.path ? "bg-accent/10 text-accent font-medium" : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                                    'block px-4 py-2 text-sm rounded-lg transition-colors',
+                                    location.pathname === item.path ? 'bg-accent/10 text-accent font-medium' : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                                   )}
                                 >
                                   {item.name}
