@@ -319,17 +319,17 @@ const StudyMaterialPageTemplate = ({
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/contact">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full shadow-lg">
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full shadow-lg shadow-accent/30">
                   Join Rays Academy
                 </Button>
               </Link>
-              <a href="https://wa.me/919303333490" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white font-semibold rounded-full shadow-lg">
+              <a href="https://wa.me/917024057876" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold rounded-full shadow-lg shadow-green-600/30">
                   <img src="/whatsapp.svg" alt="WhatsApp" className="w-5 h-5 mr-2" /> WhatsApp Us
                 </Button>
               </a>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-full">
+                <Button size="lg" className="bg-white text-primary hover:bg-gray-100 font-semibold rounded-full shadow-lg">
                   <Phone className="w-5 h-5 mr-2" /> Contact Us
                 </Button>
               </Link>
