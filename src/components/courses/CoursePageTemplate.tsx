@@ -368,14 +368,14 @@ const CoursePageTemplate = ({
                     <FileText className="w-8 h-8 text-primary" />
                   </div>
                   <div className="flex-1 text-center md:text-left">
-                    <h3 className="text-xl font-bold text-foreground mb-2">📖 Study Material & Resources</h3>
+                    <h3 className="text-xl font-bold text-foreground mb-2">📖 {defaultCourse} Study Material</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      Access comprehensive study notes, practice papers, and curated resources for {defaultCourse} on our student portal. Stay ahead with regularly updated materials.
+                      Access chapter-wise notes, important questions, sample papers and previous year questions for {defaultCourse} — prepared by Rays Academy faculty. First 2 chapters of every subject are completely free.
                     </p>
                   </div>
-                  <Link to="/portal">
+                  <Link to={getStudyMaterialPath(defaultCourse)}>
                     <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-full whitespace-nowrap hover:scale-105 hover:shadow-lg transition-all duration-300">
-                      <BookOpen className="w-4 h-4 mr-2" /> Explore Materials
+                      <BookOpen className="w-4 h-4 mr-2" /> View Study Material
                     </Button>
                   </Link>
                 </div>
@@ -384,6 +384,16 @@ const CoursePageTemplate = ({
           </motion.div>
         </div>
       </section>
+
+      {/* ─── Related Resources ─── */}
+      <RelatedResources
+        heading="Related Resources for " + ""
+        resources={[
+          { title: `${defaultCourse} Study Material`, description: 'Chapter-wise notes, free + premium content.', href: getStudyMaterialPath(defaultCourse) },
+          { title: 'Previous Year Questions', description: 'Solved PYQs across boards & entrance exams.', href: '/study-material/previous-year-questions' },
+          { title: 'Sample Papers', description: 'Latest pattern sample papers for practice.', href: '/study-material/sample-papers' },
+        ]}
+      />
 
       {/* ─── Faculty ─── */}
       <section className="py-24 bg-secondary/30">
