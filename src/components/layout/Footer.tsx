@@ -28,6 +28,18 @@ const Footer = () => {
     { name: 'CUET Coaching', path: '/courses/cuet' },
   ];
 
+  const resourceLinks = [
+    { name: 'All Study Material', path: '/study-material' },
+    { name: 'Class 10 Notes', path: '/study-material/class-10' },
+    { name: 'Class 12 Notes', path: '/study-material/class-12' },
+    { name: 'JEE Material', path: '/study-material/iit-jee' },
+    { name: 'NEET Material', path: '/study-material/neet' },
+    { name: 'Sample Papers', path: '/study-material/sample-papers' },
+    { name: 'Previous Year Questions', path: '/study-material/previous-year-questions' },
+    { name: 'Formula Sheets', path: '/study-material/formula-sheets' },
+    { name: 'NCERT Books', path: '/study-material/ncert/class-10' },
+  ];
+
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-16">
