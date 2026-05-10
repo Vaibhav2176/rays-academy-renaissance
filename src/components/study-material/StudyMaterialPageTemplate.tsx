@@ -94,13 +94,13 @@ const StudyMaterialPageTemplate = ({
             <p className="text-lg text-primary-foreground/80 mb-8">{heroDescription}</p>
             <div className="flex flex-wrap gap-4">
               <a href="#subjects">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full shadow-lg">
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full shadow-lg shadow-accent/30">
                   <BookOpen className="w-5 h-5 mr-2" /> Explore Material
                 </Button>
               </a>
-              <a href="https://wa.me/919303333490" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-full">
-                  <MessageCircle className="w-5 h-5 mr-2" /> WhatsApp Us
+              <a href="https://wa.me/917024057876" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold rounded-full shadow-lg shadow-green-600/30">
+                  <img src="/whatsapp.svg" alt="WhatsApp" className="w-5 h-5 mr-2" /> WhatsApp Us
                 </Button>
               </a>
             </div>
