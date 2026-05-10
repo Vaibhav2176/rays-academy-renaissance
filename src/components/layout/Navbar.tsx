@@ -48,8 +48,8 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [coursesOpen, setCoursesOpen] = useState(false);
-  const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -61,21 +61,27 @@ const Navbar = () => {
 
   useEffect(() => {
     setIsOpen(false);
-    setCoursesOpen(false);
-    setMobileCoursesOpen(false);
+    setOpenDropdown(null);
+    setMobileOpenDropdown(null);
   }, [location.pathname]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setCoursesOpen(false);
+        setOpenDropdown(null);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const isCoursesActive = location.pathname.startsWith('/courses');
+  const isActiveDropdown = (key: 'courses' | 'study') =>
+    key === 'courses' ? location.pathname.startsWith('/courses') : location.pathname.startsWith('/study-material');
+
+  const dropdownItems = (key: 'courses' | 'study') =>
+    key === 'courses' ? courseDropdown : studyMaterialDropdown;
+  const dropdownAllLink = (key: 'courses' | 'study') =>
+    key === 'courses' ? { label: 'All Courses', path: '/courses' } : { label: 'All Study Material', path: '/study-material' };
 
   return (
     <header
