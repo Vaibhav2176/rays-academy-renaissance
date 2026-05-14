@@ -1,105 +1,91 @@
 # Rays Academy — Study Material Ecosystem Refinement Plan
 
-This is a large, multi-area refinement. I'll group it into focused phases so each change is verifiable. All work stays within the existing Rays Academy theme (navy blue / white / academic red).
+## Phase 1 — Critical Fixes
 
----
+**1.1 CTA buttons (Contact Us readability)**
+- `StudyMaterial.tsx` and any remaining pages still use raw `Button` with `variant="outline"` on dark backgrounds. Replace with the shared `<ContactButton />` and `<WhatsAppButton />` from `src/components/shared/CTAButtons.tsx`.
+- Audit: `StudyMaterial.tsx`, `CoursePageTemplate.tsx`, `ResourcePageTemplate.tsx`, `StudyMaterialPageTemplate.tsx`, `Index.tsx`, `Contact.tsx`, `About.tsx`, `Courses.tsx`, `Faculty.tsx`, `Results.tsx`. Solid fills, white text, shadow, no hover-only contrast.
 
-## Phase 1 — Critical Fixes (highest priority)
+**1.2 Navbar fixes**
+- Make “Courses” and “Study Material” triggers themselves clickable links (route to `/courses` and `/study-material`) while still showing dropdown on hover/chevron click. Use a split: parent `<Link>` + chevron toggles dropdown.
+- Tighten desktop spacing: reduce `gap-x` and link padding so all 8 items fit on one line at ≥1024px.
+- Fix invisible navbar on new pages: root cause is `bg-background/text-foreground` resolving against a missing/white theme on routes that don't import `Layout`. Verify every new study-material/PYQ route is wrapped in `<Layout>` in `App.tsx`. Set explicit `bg-white text-primary` fallback on `<Navbar>` so it never goes invisible if theme variables fail.
 
-**1.1 Button visibility (Contact Us / WhatsApp Us)**
-- Audit all CTA buttons across pages (course pages, study material pages, footer, hero CTAs).
-- Standardize a `ContactCTA` and `WhatsAppCTA` pattern:
-  - WhatsApp: solid `bg-[#25D366]` with white text, WhatsApp SVG icon (already in `/public/whatsapp.svg`), shadow, no opacity tricks.
-  - Contact: solid `bg-accent` (red) with `text-accent-foreground`, strong contrast, shadow.
-- Ensure text is visible **without** hover (current issue: some buttons rely on hover state for legibility).
+**1.3 Footer cleanup**
+- Switch the 5-col grid to `lg:grid-cols-12` with proportional spans (Brand 3 / Quick 2 / Courses 3 / Resources 2 / Contact 2) and add `min-w-0 break-words` to prevent overflow.
+- Tighten link list spacing (`space-y-2`), wrap long contact strings, ensure `overflow-hidden` on the outer footer.
 
-**1.2 Breadcrumb overlapping navbar**
-- Fix in `StudyMaterialPageTemplate.tsx` and `ResourcePageTemplate.tsx`: add `pt-20 md:pt-24` to the wrapper so breadcrumb sits below the fixed navbar.
-- Verify on mobile viewport (375px) and desktop.
+## Phase 2 — Reusable building blocks
 
----
+Create:
+- `src/components/shared/DownloadPlaceholderDialog.tsx` — modal saying *“PDF is currently unavailable. We will upload the study material very soon.”* Includes icon, “Back to Resources” link, and `<WhatsAppButton />`. Triggered by a new `<DownloadButton label="..." />` wrapper used everywhere a download appears.
+- `src/components/shared/SectionHeader.tsx` — consistent animated section heading (eyebrow + h2 + lead).
+- `src/components/shared/FAQAccordion.tsx` — wraps shadcn Accordion with motion fade-in and JSON-LD FAQPage schema injection.
+- `src/components/shared/AnimatedCard.tsx` — hover-lift card with stagger support.
+- `src/components/shared/PageJsonLd.tsx` — injects Course / Article / FAQPage / BreadcrumbList JSON-LD.
 
-## Phase 2 — Navbar Study Material Dropdown
+Install `react-helmet-async` (already noted in head-meta guide) and wrap `main.tsx` with `HelmetProvider` so per-route titles/meta/canonicals/JSON-LD work cleanly.
 
-- Add a dropdown under "Study Material" in `Navbar.tsx` (desktop + mobile), mirroring the existing Courses dropdown pattern.
-- Items: Classes 6–8, 9, 10, 11, 12, IIT-JEE, NEET, NDA, CUET, Sample Papers, PYQs, Formula Sheets, NCERT Books.
-- Smooth Framer Motion fade/scale animation; responsive collapse on mobile.
+## Phase 3 — Rich educational content templates
 
----
+Rebuild `ResourcePageTemplate.tsx` (and a new `RichResourcePageTemplate`) inspired by learncbse.in layout:
 
-## Phase 3 — Course → Study Material Linking
+```text
+[ Hero with gradient + breadcrumb ]
+[ Intro paragraph block (2–3 paragraphs, SEO copy) ]
+[ "Why solve these papers?" — 4-card benefits grid ]
+[ Subject / chapter-wise download grid (DownloadButton cards) ]
+[ Preparation strategy — numbered steps with icons ]
+[ Exam weightage / difficulty highlights ]
+[ Tips section — bullet list with check icons ]
+[ Related resources cross-links (RelatedResources) ]
+[ FAQ accordion (FAQAccordion + JSON-LD) ]
+[ Final CTA band (Contact + WhatsApp) ]
+```
 
-- On each course page (`Class10.tsx`, `NEET.tsx`, etc.), add a prominent "Related Study Material" CTA card linking to the matching study material page.
-- Use a reusable `<RelatedStudyMaterial courseSlug="class-10" />` block inside `CoursePageTemplate.tsx`.
+A central `src/data/resourceContent.ts` will hold per-page content (intro, benefits, tips, FAQs, downloads) keyed by slug — keeps pages thin and editable.
 
----
+## Phase 4 — Class-wise PYQ & Sample Paper pages
 
-## Phase 4 — Study Material Page UI/UX Polish
+New pages, each rendered through `RichResourcePageTemplate` with unique data:
 
-- Add Framer Motion stagger + fade-in to subject accordion sections in `StudyMaterialPageTemplate.tsx`.
-- Hover lift on chapter cards, gradient section dividers, Free/Paid badges with clearer color contrast (green for Free, amber for Paid).
-- Animated download/resource cards in `ResourcePageTemplate.tsx`.
-- Add subtle gradient backgrounds and section transitions.
+- `/study-material/pyq/class-9`, `class-10`, `class-11`, `class-12`
+- `/study-material/pyq/neet`, `jee`, `nda`
+- `/study-material/sample-papers/class-9`, `class-10`, `class-11`, `class-12`
+- `/study-material/sample-papers/neet`, `jee`, `nda`
 
----
+Existing index pages (`PreviousYearQuestions.tsx`, `SamplePapers.tsx`) become hubs that link out to these. `FormulaSheets`, `RevisionNotes`, `ImportantQuestions`, `NCERTPages` upgraded to the same rich layout.
 
-## Phase 5 — FAQ Enhancement
+Files: 14 new page files under `src/pages/study-material/pyq/` and `sample-papers/`, plus routes in `App.tsx`.
 
-- Expand `defaultFaqs` in `studyMaterialData.ts` and add subject-specific FAQ arrays (NEET Bio, JEE Physics, Class 10 Maths, NCERT sufficiency, free chapters).
-- Render FAQs using shadcn `Accordion` with motion fade-in on each item.
+## Phase 5 — Internal linking + SEO
 
----
+- Every chapter / subject mention links to the matching course or material page via `getStudyMaterialPath` / a new `getCoursePath` helper.
+- Each rich page renders a “Related” section (Courses + Study Material + Resources) and contextual prose paragraphs with inline `<Link>`s.
+- Per-route `<Helmet>` with unique title (<60c), meta description (<160c), canonical, og:*. Single `<h1>`. Add JSON-LD: `Course` for course pages, `Article` + `FAQPage` + `BreadcrumbList` for resource pages. Keep "Bhopal coaching" phrasing natural.
 
-## Phase 6 — Internal Linking & Related Resources
+## Phase 6 — Animations & visuals
 
-- Add a `RelatedResources` component (shows 3–4 contextual links) on:
-  - Each course page → matching study material + PYQs + sample papers.
-  - Each study material page → matching course + NCERT + formula sheets.
-  - Resource pages → relevant class pages.
-- Add contextual paragraphs with inline links (e.g., "Explore our [Class 10 Mathematics syllabus](/courses/class-10) and [Class 10 study material](/study-material/class-10)").
-- Footer: ensure all new pages are reachable; add a "Resources" column.
+- Stagger-fade for card grids (Framer Motion variants).
+- Hover scale on download cards, gradient borders on featured items.
+- Floating decorative blobs in hero (`absolute blur-3xl`).
+- Add 2–3 royalty-free Unsplash educational images per rich page (loaded lazily, descriptive alt).
 
----
+## Phase 7 — QA
 
-## Phase 7 — External Educational Links
+- Smoke-check each new route renders with Layout (navbar visible).
+- Verify no console errors after `react-helmet-async` install.
+- Visual check on 1119px viewport and mobile.
 
-- Add a small "Official Resources" block on relevant study material pages linking (open in new tab, `rel="noopener noreferrer"`):
-  - NCERT: https://ncert.nic.in
-  - CBSE: https://www.cbse.gov.in
-  - NTA (JEE/NEET/CUET): https://nta.ac.in
-  - UPSC NDA: https://upsc.gov.in
+## Technical notes
 
----
+- Routing: ~14 new lazy-loaded routes added to `App.tsx`.
+- No DB/schema changes.
+- New deps: `react-helmet-async`.
+- All colors via semantic tokens (`bg-primary`, `text-accent-foreground`, etc.) — no raw hex outside the WhatsApp brand color.
 
-## Phase 8 — Educational Imagery
+## Out of scope
 
-- Add 3–4 royalty-free Unsplash hero/section images (students, books, classroom) to study material pages and the main hub.
-- Use `loading="lazy"` and proper `alt` text.
-
----
-
-## Phase 9 — SEO Polish
-
-- Verify each new page has unique title, meta description, single H1, and natural keyword usage.
-- Add JSON-LD `Course` / `EducationalOrganization` schema where appropriate.
-
----
-
-## Technical Notes
-
-- New shared components: `src/components/shared/WhatsAppButton.tsx`, `src/components/shared/ContactButton.tsx`, `src/components/shared/RelatedResources.tsx`, `src/components/shared/OfficialResources.tsx`.
-- Edits: `Navbar.tsx`, `Footer.tsx`, `StudyMaterialPageTemplate.tsx`, `ResourcePageTemplate.tsx`, `CoursePageTemplate.tsx`, `studyMaterialData.ts`, all course + study material pages.
-- No backend / DB changes required.
-- All animations via existing `framer-motion` dep.
-
----
-
-## Suggested Execution Order
-
-Given the scope (~25+ files), I recommend executing in this order and pausing for your review after Phase 2:
-
-1. **Now:** Phase 1 (buttons + breadcrumb fix) + Phase 2 (navbar dropdown) — most visible fixes.
-2. **Next pass:** Phase 3 + 4 (course↔SM linking, UI polish).
-3. **Final pass:** Phase 5–9 (FAQs, internal/external links, images, SEO).
-
-Approve this plan and I'll start with Phase 1 + 2 immediately.
+- Real PDF uploads (placeholder modal stands in).
+- Payment / auth changes (existing system retained).
+- Backend / Supabase changes.

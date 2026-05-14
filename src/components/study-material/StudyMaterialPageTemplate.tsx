@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { BookOpen, ChevronRight, Phone, MessageCircle, Lock, Unlock, Star, CheckCircle, Lightbulb, Clock, Target, Award } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { BookOpen, ChevronRight, Lock, Unlock, Star, CheckCircle, Lightbulb, Clock, Target, Award } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { ContactButton, WhatsAppButton } from '@/components/shared/CTAButtons';
+import { Button } from '@/components/ui/button';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -377,25 +378,13 @@ const StudyMaterialPageTemplate = ({
         <div className="container mx-auto px-4 text-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Start Your Preparation?</h2>
-            <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
+            <p className="text-primary-foreground/85 mb-8 max-w-xl mx-auto">
               Join Rays Academy and get access to expert-prepared study material, personal mentoring, and proven results.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full shadow-lg shadow-accent/30">
-                  Join Rays Academy
-                </Button>
-              </Link>
-              <a href="https://wa.me/917024057876" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold rounded-full shadow-lg shadow-green-600/30">
-                  <img src="/whatsapp.svg" alt="WhatsApp" className="w-5 h-5 mr-2" /> WhatsApp Us
-                </Button>
-              </a>
-              <Link to="/contact">
-                <Button size="lg" className="bg-white text-primary hover:bg-gray-100 font-semibold rounded-full shadow-lg">
-                  <Phone className="w-5 h-5 mr-2" /> Contact Us
-                </Button>
-              </Link>
+            <div className="flex flex-wrap justify-center gap-3">
+              <ContactButton label="Join Rays Academy" />
+              <WhatsAppButton />
+              <ContactButton label="Contact Us" className="bg-white !text-primary hover:bg-gray-100 shadow-white/20" />
             </div>
           </motion.div>
         </div>

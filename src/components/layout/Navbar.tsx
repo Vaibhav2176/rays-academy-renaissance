@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from '@/assets/Rays Academy LOGO.jpg'
+import logo from '@/assets/Rays Academy LOGO.jpg';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
 const courseDropdown = [
@@ -36,7 +36,7 @@ const studyMaterialDropdown = [
 
 const navLinks = [
   { name: 'Home', path: '/' },
-  { name: 'About Us', path: '/about' },
+  { name: 'About', path: '/about' },
   { name: 'Courses', path: '/courses', dropdown: 'courses' as const },
   { name: 'Study Material', path: '/study-material', dropdown: 'study' as const },
   { name: 'Faculty', path: '/faculty' },
@@ -47,17 +47,10 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     setIsOpen(false);
@@ -80,87 +73,81 @@ const Navbar = () => {
 
   const dropdownItems = (key: 'courses' | 'study') =>
     key === 'courses' ? courseDropdown : studyMaterialDropdown;
-  const dropdownAllLink = (key: 'courses' | 'study') =>
-    key === 'courses' ? { label: 'All Courses', path: '/courses' } : { label: 'All Study Material', path: '/study-material' };
 
   return (
-    <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled ? 'bg-background/95 backdrop-blur-md shadow-lg py-2' : 'bg-transparent py-4'
-      )}
-    >
-      <nav className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-border py-2">
+      <nav className="container mx-auto px-4 lg:px-6">
+        <div className="flex items-center justify-between gap-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative">
-              <img src={logo} alt="Rays Academy Logo" className="w-12 h-12 object-contain rounded-md" />
-            </div>
+          <Link to="/" className="flex items-center gap-2 group shrink-0">
+            <img src={logo} alt="Rays Academy Logo" className="w-10 h-10 object-contain rounded-md" />
             <div className="hidden sm:block">
-              <h1 className={cn("text-xl font-bold transition-colors", scrolled ? "text-primary" : "text-primary-foreground")}>
-                Rays Academy
-              </h1>
-              <p className={cn("text-xs font-medium -mt-0.5 transition-colors", scrolled ? "text-muted-foreground" : "text-primary-foreground/80")}>
-                Excellence Since 2006
-              </p>
+              <h1 className="text-base lg:text-lg font-bold text-primary leading-tight">Rays Academy</h1>
+              <p className="text-[10px] font-medium text-muted-foreground -mt-0.5">Excellence Since 2006</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
             {navLinks.map((link) => {
               const dropdownKey = link.dropdown;
               if (dropdownKey) {
-                const isOpen = openDropdown === dropdownKey;
+                const isOpenD = openDropdown === dropdownKey;
                 const isActive = isActiveDropdown(dropdownKey);
                 const items = dropdownItems(dropdownKey);
-                const all = dropdownAllLink(dropdownKey);
                 return (
-                  <div key={link.path} className="relative" ref={isOpen ? dropdownRef : undefined}>
-                    <button
-                      onClick={() => setOpenDropdown(isOpen ? null : dropdownKey)}
-                      onMouseEnter={() => setOpenDropdown(dropdownKey)}
+                  <div
+                    key={link.path}
+                    className="relative flex items-center"
+                    ref={isOpenD ? dropdownRef : undefined}
+                    onMouseEnter={() => setOpenDropdown(dropdownKey)}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                  >
+                    <Link
+                      to={link.path}
                       className={cn(
-                        'relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-1',
-                        isActive
-                          ? 'text-accent'
-                          : scrolled
-                            ? 'text-foreground hover:text-accent hover:bg-accent/10'
-                            : 'text-primary-foreground/90 hover:text-primary-foreground hover:bg-primary-foreground/10'
+                        'px-2.5 py-2 rounded-lg font-medium text-[13px] xl:text-sm transition-all duration-200 flex items-center gap-1',
+                        isActive ? 'text-accent' : 'text-foreground hover:text-accent hover:bg-accent/5',
                       )}
                     >
                       {link.name}
-                      <ChevronDown className={cn('w-3.5 h-3.5 transition-transform', isOpen && 'rotate-180')} />
-                      {isActive && (
-                        <motion.div layoutId="navbar-indicator" className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent rounded-full" />
-                      )}
-                    </button>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setOpenDropdown(isOpenD ? null : dropdownKey);
+                        }}
+                        aria-label={`Toggle ${link.name} menu`}
+                        className="p-0.5 -mr-1"
+                      >
+                        <ChevronDown className={cn('w-3.5 h-3.5 transition-transform', isOpenD && 'rotate-180')} />
+                      </button>
+                    </Link>
                     <AnimatePresence>
-                      {isOpen && (
+                      {isOpenD && (
                         <motion.div
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 8 }}
-                          transition={{ duration: 0.2 }}
-                          onMouseLeave={() => setOpenDropdown(null)}
-                          className="absolute top-full left-0 mt-1 w-60 bg-background/95 backdrop-blur-md shadow-xl rounded-xl border border-border overflow-hidden z-50 max-h-[70vh] overflow-y-auto"
+                          transition={{ duration: 0.18 }}
+                          className="absolute top-full left-0 mt-1 w-60 bg-white shadow-xl rounded-xl border border-border overflow-hidden z-50 max-h-[70vh] overflow-y-auto"
                         >
                           <Link
-                            to={all.path}
+                            to={link.path}
                             className="block px-4 py-2.5 text-sm font-semibold text-primary hover:bg-primary/5 border-b border-border transition-colors"
                           >
-                            {all.label}
+                            View All {link.name}
                           </Link>
                           {items.map((item) => (
                             <Link
                               key={item.path}
                               to={item.path}
                               className={cn(
-                                'block px-4 py-2.5 text-sm transition-colors',
+                                'block px-4 py-2 text-sm transition-colors',
                                 location.pathname === item.path
                                   ? 'bg-accent/10 text-accent font-medium'
-                                  : 'text-foreground hover:bg-muted hover:text-primary'
+                                  : 'text-foreground hover:bg-muted hover:text-primary',
                               )}
                             >
                               {item.name}
@@ -177,32 +164,27 @@ const Navbar = () => {
                   key={link.path}
                   to={link.path}
                   className={cn(
-                    'relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300',
+                    'px-2.5 py-2 rounded-lg font-medium text-[13px] xl:text-sm transition-all duration-200',
                     location.pathname === link.path
                       ? 'text-accent'
-                      : scrolled
-                        ? 'text-foreground hover:text-accent hover:bg-accent/10'
-                        : 'text-primary-foreground/90 hover:text-primary-foreground hover:bg-primary-foreground/10'
+                      : 'text-foreground hover:text-accent hover:bg-accent/5',
                   )}
                 >
                   {link.name}
-                  {location.pathname === link.path && (
-                    <motion.div layoutId="navbar-indicator" className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent rounded-full" />
-                  )}
                 </Link>
               );
             })}
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-2 shrink-0">
             <Link to="/login">
-              <Button variant="ghost" className={cn('font-semibold transition-colors', scrolled ? 'text-primary hover:text-accent' : 'text-primary-foreground hover:text-accent hover:bg-primary-foreground/10')}>
+              <Button variant="ghost" size="sm" className="font-semibold text-primary hover:text-accent">
                 Login
               </Button>
             </Link>
             <Link to="/portal">
-              <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full px-6 shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-all">
+              <Button size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full px-4 shadow-md shadow-accent/25">
                 Student Portal
               </Button>
             </Link>
@@ -211,7 +193,8 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={cn('lg:hidden p-2 rounded-lg transition-colors', scrolled ? 'text-foreground hover:bg-muted' : 'text-primary-foreground hover:bg-primary-foreground/10')}
+            className="lg:hidden p-2 rounded-lg text-foreground hover:bg-muted"
+            aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -224,80 +207,79 @@ const Navbar = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.25 }}
               className="lg:hidden overflow-hidden"
             >
-              <div className="py-4 space-y-1 bg-background/95 backdrop-blur-md rounded-lg mt-2 px-2 shadow-lg">
+              <div className="py-4 space-y-1 bg-white rounded-lg mt-2 px-2 shadow-lg border border-border">
                 {navLinks.map((link, index) => {
                   const dropdownKey = link.dropdown;
                   const isMobileOpen = mobileOpenDropdown === dropdownKey;
                   const isActive = dropdownKey ? isActiveDropdown(dropdownKey) : false;
                   return (
-                  <motion.div key={link.path} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.05 }}>
-                    {dropdownKey ? (
-                      <div>
-                        <button
-                          onClick={() => setMobileOpenDropdown(isMobileOpen ? null : dropdownKey)}
+                    <motion.div key={link.path} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.04 }}>
+                      {dropdownKey ? (
+                        <div>
+                          <div className={cn('flex items-center justify-between rounded-lg', isActive ? 'bg-accent/10' : 'hover:bg-muted')}>
+                            <Link
+                              to={link.path}
+                              className={cn('flex-1 px-4 py-3 font-medium', isActive ? 'text-accent' : 'text-foreground')}
+                            >
+                              {link.name}
+                            </Link>
+                            <button
+                              onClick={() => setMobileOpenDropdown(isMobileOpen ? null : dropdownKey)}
+                              className="px-4 py-3 text-foreground"
+                              aria-label={`Toggle ${link.name} submenu`}
+                            >
+                              <ChevronDown className={cn('w-4 h-4 transition-transform', isMobileOpen && 'rotate-180')} />
+                            </button>
+                          </div>
+                          <AnimatePresence>
+                            {isMobileOpen && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="pl-4 space-y-0.5 overflow-hidden"
+                              >
+                                {dropdownItems(dropdownKey).map((item) => (
+                                  <Link
+                                    key={item.path}
+                                    to={item.path}
+                                    className={cn(
+                                      'block px-4 py-2 text-sm rounded-lg transition-colors',
+                                      location.pathname === item.path ? 'bg-accent/10 text-accent font-medium' : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                                    )}
+                                  >
+                                    {item.name}
+                                  </Link>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
+                        <Link
+                          to={link.path}
                           className={cn(
-                            'w-full flex items-center justify-between px-4 py-3 rounded-lg font-medium transition-all',
-                            isActive ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-muted'
+                            'block px-4 py-3 rounded-lg font-medium transition-all',
+                            location.pathname === link.path ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-muted',
                           )}
                         >
                           {link.name}
-                          <ChevronDown className={cn('w-4 h-4 transition-transform', isMobileOpen && 'rotate-180')} />
-                        </button>
-                        <AnimatePresence>
-                          {isMobileOpen && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="pl-4 space-y-0.5 overflow-hidden"
-                            >
-                              {(() => {
-                                const all = dropdownAllLink(dropdownKey);
-                                return (
-                                  <Link to={all.path} className="block px-4 py-2 text-sm font-semibold text-primary hover:bg-muted rounded-lg">
-                                    {all.label}
-                                  </Link>
-                                );
-                              })()}
-                              {dropdownItems(dropdownKey).map((item) => (
-                                <Link
-                                  key={item.path}
-                                  to={item.path}
-                                  className={cn(
-                                    'block px-4 py-2 text-sm rounded-lg transition-colors',
-                                    location.pathname === item.path ? 'bg-accent/10 text-accent font-medium' : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                                  )}
-                                >
-                                  {item.name}
-                                </Link>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    ) : (
-                      <Link
-                        to={link.path}
-                        className={cn(
-                          'block px-4 py-3 rounded-lg font-medium transition-all',
-                          location.pathname === link.path ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-muted'
-                        )}
-                      >
-                        {link.name}
-                      </Link>
-                    )}
-                  </motion.div>
+                        </Link>
+                      )}
+                    </motion.div>
                   );
                 })}
-                <div className="pt-4 flex flex-col gap-2 px-4">
+                <div className="pt-3 flex flex-col gap-2 px-2">
                   <Link to="/login">
                     <Button variant="outline" className="w-full font-semibold">Login</Button>
                   </Link>
                   <Link to="/portal">
-                    <Button className="w-full bg-accent hover:bg-accent/90 font-semibold">Student Portal</Button>
+                    <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold">
+                      Student Portal
+                    </Button>
                   </Link>
                 </div>
               </div>

@@ -44,6 +44,10 @@ import FormulaSheets from "./pages/study-material/FormulaSheets";
 import ImportantQuestions from "./pages/study-material/ImportantQuestions";
 import RevisionNotes from "./pages/study-material/RevisionNotes";
 import { NCERTClass6, NCERTClass7, NCERTClass8, NCERTClass9, NCERTClass10, NCERTClass11, NCERTClass12 } from "./pages/study-material/NCERTPages";
+import {
+  PYQClass9, PYQClass10, PYQClass11, PYQClass12, PYQNeet, PYQJee, PYQNda,
+  SPClass9, SPClass10, SPClass11, SPClass12, SPNeet, SPJee, SPNda,
+} from "./pages/study-material/ClassWiseResources";
 
 const queryClient = new QueryClient();
 
@@ -108,6 +112,24 @@ const App = () => (
               <Route path="/study-material/ncert/class-10" element={<NCERTClass10 />} />
               <Route path="/study-material/ncert/class-11" element={<NCERTClass11 />} />
               <Route path="/study-material/ncert/class-12" element={<NCERTClass12 />} />
+
+              {/* Class-wise PYQ pages */}
+              <Route path="/study-material/pyq/class-9" element={<PYQClass9 />} />
+              <Route path="/study-material/pyq/class-10" element={<PYQClass10 />} />
+              <Route path="/study-material/pyq/class-11" element={<PYQClass11 />} />
+              <Route path="/study-material/pyq/class-12" element={<PYQClass12 />} />
+              <Route path="/study-material/pyq/neet" element={<PYQNeet />} />
+              <Route path="/study-material/pyq/jee" element={<PYQJee />} />
+              <Route path="/study-material/pyq/nda" element={<PYQNda />} />
+
+              {/* Class-wise Sample Paper pages */}
+              <Route path="/study-material/sample-papers/class-9" element={<SPClass9 />} />
+              <Route path="/study-material/sample-papers/class-10" element={<SPClass10 />} />
+              <Route path="/study-material/sample-papers/class-11" element={<SPClass11 />} />
+              <Route path="/study-material/sample-papers/class-12" element={<SPClass12 />} />
+              <Route path="/study-material/sample-papers/neet" element={<SPNeet />} />
+              <Route path="/study-material/sample-papers/jee" element={<SPJee />} />
+              <Route path="/study-material/sample-papers/nda" element={<SPNda />} />
 
               <Route path="/faculty" element={<Faculty />} />
               <Route path="/results" element={<Results />} />

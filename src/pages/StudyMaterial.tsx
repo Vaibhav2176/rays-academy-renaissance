@@ -5,6 +5,8 @@ import { BookOpen, FileText, Download, Award, Star, Users, Target, Lightbulb, Ph
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { ContactButton, WhatsAppButton } from '@/components/shared/CTAButtons';
+import DownloadButton from '@/components/shared/DownloadPlaceholderDialog';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -141,8 +143,8 @@ const StudyMaterial = () => {
             {ncertClasses.map((item, idx) => (
               <motion.div key={item.path} {...fadeInUp} transition={{ delay: idx * 0.05 }}>
                 <Link to={item.path}>
-                  <Button variant="outline" className="rounded-full font-medium hover:bg-primary hover:text-primary-foreground transition-all">
-                    <Download className="w-4 h-4 mr-2" /> {item.title}
+                  <Button variant="outline" className="rounded-full font-medium border-primary text-primary bg-white hover:bg-primary hover:text-primary-foreground transition-all">
+                    <BookOpen className="w-4 h-4 mr-2" /> {item.title}
                   </Button>
                 </Link>
               </motion.div>
@@ -187,21 +189,9 @@ const StudyMaterial = () => {
               Join Rays Academy for expert guidance, comprehensive study material, and proven results since 2006.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full shadow-lg">
-                  Join Rays Academy
-                </Button>
-              </Link>
-              <a href="https://wa.me/919303333490" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white font-semibold rounded-full shadow-lg">
-                  <img src="/whatsapp.svg" alt="WhatsApp" className="w-5 h-5 mr-2" /> WhatsApp Us
-                </Button>
-              </a>
-              <Link to="/contact">
-                <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-full">
-                  <Phone className="w-5 h-5 mr-2" /> Contact Us
-                </Button>
-              </Link>
+              <ContactButton label="Join Rays Academy" />
+              <WhatsAppButton />
+              <ContactButton label="Contact Us" className="bg-white !text-primary hover:bg-gray-100 shadow-white/20" />
             </div>
           </motion.div>
         </div>
