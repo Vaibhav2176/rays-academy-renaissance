@@ -143,8 +143,8 @@ const StudyMaterial = () => {
             {ncertClasses.map((item, idx) => (
               <motion.div key={item.path} {...fadeInUp} transition={{ delay: idx * 0.05 }}>
                 <Link to={item.path}>
-                  <Button variant="outline" className="rounded-full font-medium hover:bg-primary hover:text-primary-foreground transition-all">
-                    <Download className="w-4 h-4 mr-2" /> {item.title}
+                  <Button variant="outline" className="rounded-full font-medium border-primary text-primary bg-white hover:bg-primary hover:text-primary-foreground transition-all">
+                    <BookOpen className="w-4 h-4 mr-2" /> {item.title}
                   </Button>
                 </Link>
               </motion.div>
