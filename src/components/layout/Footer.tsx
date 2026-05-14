@@ -41,38 +41,38 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+    <footer className="bg-primary text-primary-foreground overflow-hidden">
+      <div className="container mx-auto px-4 py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10">
           {/* Brand */}
-          <div className="space-y-6">
+          <div className="lg:col-span-3 space-y-5 min-w-0">
             <Link to="/" className="flex items-center gap-3">
-              <img src={logo} alt="Rays Academy Logo" className="w-12 h-12 object-contain rounded-md" />
-              <div>
-                <h3 className="text-xl font-bold">Rays Academy</h3>
-                <p className="text-xs text-primary-foreground/70">Excellence Since 2006</p>
+              <img src={logo} alt="Rays Academy Logo" className="w-12 h-12 object-contain rounded-md shrink-0" />
+              <div className="min-w-0">
+                <h3 className="text-lg font-bold leading-tight">Rays Academy</h3>
+                <p className="text-[11px] text-primary-foreground/70">Excellence Since 2006</p>
               </div>
             </Link>
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
               Trusted coaching institute in Bhopal providing quality education for Class 6–12, IIT-JEE, NEET, NDA & CUET since 2006.
             </p>
-            <div className="flex gap-4">
-              <a href="https://youtube.com/@shankaramulani" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all">
-                <Youtube className="w-5 h-5" />
+            <div className="flex gap-3">
+              <a href="https://youtube.com/@shankaramulani" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="w-9 h-9 rounded-full bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all">
+                <Youtube className="w-4 h-4" />
               </a>
-              <a href="https://www.instagram.com/raysacademybhopal?igsh=MWtyNWQyaWVrZHoxcg==" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all">
-                <Instagram className="w-5 h-5" />
+              <a href="https://www.instagram.com/raysacademybhopal?igsh=MWtyNWQyaWVrZHoxcg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-9 h-9 rounded-full bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all">
+                <Instagram className="w-4 h-4" />
               </a>
-              <a href="https://www.facebook.com/share/1CCLAm1BfM/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all">
-                <Facebook className="w-5 h-5" />
+              <a href="https://www.facebook.com/share/1CCLAm1BfM/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-9 h-9 rounded-full bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all">
+                <Facebook className="w-4 h-4" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
-            <ul className="space-y-3">
+          <div className="lg:col-span-2 min-w-0">
+            <h4 className="text-base font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.path}>
                   <Link to={link.path} className="text-primary-foreground/70 hover:text-accent transition-colors text-sm">
@@ -84,9 +84,9 @@ const Footer = () => {
           </div>
 
           {/* Courses */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Our Courses</h4>
-            <ul className="space-y-3">
+          <div className="lg:col-span-3 min-w-0">
+            <h4 className="text-base font-semibold mb-4">Our Courses</h4>
+            <ul className="space-y-2">
               {courseLinks.map((course) => (
                 <li key={course.path}>
                   <Link to={course.path} className="text-primary-foreground/70 hover:text-accent transition-colors text-sm">
@@ -98,9 +98,9 @@ const Footer = () => {
           </div>
 
           {/* Resources */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Resources</h4>
-            <ul className="space-y-3">
+          <div className="lg:col-span-2 min-w-0">
+            <h4 className="text-base font-semibold mb-4">Resources</h4>
+            <ul className="space-y-2">
               {resourceLinks.map((r) => (
                 <li key={r.path}>
                   <Link to={r.path} className="text-primary-foreground/70 hover:text-accent transition-colors text-sm">
@@ -112,31 +112,31 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Contact Info</h4>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                <span className="text-primary-foreground/80 text-sm">
-                  Plot 2, Gufa Mandir Rd, Jain Nagar, Nayapura, Lalghati, Bhopal, MP 462030
+          <div className="lg:col-span-2 min-w-0">
+            <h4 className="text-base font-semibold mb-4">Contact</h4>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                <span className="text-primary-foreground/80 text-xs leading-relaxed break-words">
+                  Plot 2, Gufa Mandir Rd, Lalghati, Bhopal, MP 462030
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-accent shrink-0" />
-                <div className="text-sm">
-                  <a href="tel:+919303333490" className="text-primary-foreground/80 hover:text-accent transition-colors block">+91 9303333490</a>
-                  <a href="tel:+917987081894" className="text-primary-foreground/80 hover:text-accent transition-colors block">+91 7987081894</a>
+              <li className="flex items-start gap-2">
+                <Phone className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                <div className="text-xs min-w-0">
+                  <a href="tel:+919303333490" className="text-primary-foreground/80 hover:text-accent transition-colors block">+91 93033 33490</a>
+                  <a href="tel:+917987081894" className="text-primary-foreground/80 hover:text-accent transition-colors block">+91 79870 81894</a>
                 </div>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-accent shrink-0" />
-                <a href="mailto:raysacademybhopal@gmail.com" className="text-primary-foreground/80 hover:text-accent transition-colors text-sm">
+              <li className="flex items-start gap-2">
+                <Mail className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                <a href="mailto:raysacademybhopal@gmail.com" className="text-primary-foreground/80 hover:text-accent transition-colors text-xs break-all">
                   raysacademybhopal@gmail.com
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Clock className="w-5 h-5 text-accent shrink-0" />
-                <span className="text-primary-foreground/80 text-sm">Mon - Sat: 9:00 AM - 7:00 PM</span>
+              <li className="flex items-start gap-2">
+                <Clock className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                <span className="text-primary-foreground/80 text-xs">Mon – Sat: 9 AM – 7 PM</span>
               </li>
             </ul>
           </div>
