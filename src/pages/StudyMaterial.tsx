@@ -5,6 +5,8 @@ import { BookOpen, FileText, Download, Award, Star, Users, Target, Lightbulb, Ph
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { ContactButton, WhatsAppButton } from '@/components/shared/CTAButtons';
+import DownloadButton from '@/components/shared/DownloadPlaceholderDialog';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
