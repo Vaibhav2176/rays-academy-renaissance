@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import SEO from '@/components/shared/SEO';
 import { BookOpen, Users, Award, Library, Microscope, Lightbulb, FileText, Clock, Bus, ArrowRight } from 'lucide-react';
 import { useCountUp } from '@/hooks/useCountUp';
 import { Card, CardContent } from '@/components/ui/card';
