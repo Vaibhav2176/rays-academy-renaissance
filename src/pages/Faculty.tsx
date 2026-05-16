@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import SEO from '@/components/shared/SEO';
 import { Award, BookOpen, ArrowRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -40,6 +41,11 @@ const Faculty = () => {
 
   return (
     <div className="overflow-hidden">
+      <SEO
+        title="Expert Faculty – Rays Academy Bhopal Coaching"
+        description="Meet the experienced teachers behind Bhopal's top results in board exams, IIT-JEE, NEET, NDA and CUET at Rays Academy."
+        canonical="/faculty"
+      />
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-rays-blue-700 to-primary" />

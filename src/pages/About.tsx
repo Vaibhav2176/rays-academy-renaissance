@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import SEO from '@/components/shared/SEO';
 import { BookOpen, Users, Award, Library, Microscope, Lightbulb, FileText, Clock, Bus, ArrowRight } from 'lucide-react';
 import { useCountUp } from '@/hooks/useCountUp';
 import { Card, CardContent } from '@/components/ui/card';
@@ -61,6 +62,11 @@ const About = () => {
 
   return (
     <div className="overflow-hidden">
+      <SEO
+        title="About Rays Academy – Bhopal's Trusted Coaching Since 2006"
+        description="Founded in 2006 by Shankar Lal Amulani, Rays Academy is Bhopal's premier coaching institute for school and competitive exams."
+        canonical="/about"
+      />
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-rays-blue-700 to-primary" />

@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
+import SEO from '@/components/shared/SEO';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -117,24 +118,25 @@ const CoursePageTemplate = ({
 }: CoursePageProps) => {
 
   const courseFaculty = getFacultyForSubjects(facultySubjects);
+  const { pathname } = useLocation();
 
-  useEffect(() => {
-    document.title = seoTitle;
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', metaDescription);
-    } else {
-      const m = document.createElement('meta');
-      m.name = 'description';
-      m.content = metaDescription;
-      document.head.appendChild(m);
-    }
-  }, [seoTitle, metaDescription]);
+  const courseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: title,
+    description: metaDescription,
+    provider: {
+      '@type': 'EducationalOrganization',
+      name: 'Rays Academy',
+      sameAs: 'https://raysacademy.lovable.app/',
+    },
+  };
 
   const whatsappMsg = encodeURIComponent(`Hi, I'm interested in ${defaultCourse} at Rays Academy.`);
 
   return (
     <div className="overflow-hidden">
+      <SEO title={seoTitle} description={metaDescription} canonical={pathname} jsonLd={courseSchema} />
 
       {/* ─── Hero ─── */}
       <section className="relative min-h-[58vh] flex items-center justify-center overflow-hidden">

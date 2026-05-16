@@ -1,0 +1,32 @@
+# Rays Academy
+
+> Rays Academy is a trusted coaching institute in Bhopal, India (est. 2006). It offers school coaching for classes 6–12 (CBSE, ICSE, MP Board) and entrance preparation for IIT-JEE, NEET, NDA, CUET and Olympiads.
+
+## Pages
+
+- [Home](/): Overview of Rays Academy, admissions, highlights and results.
+- [About](/about): History, founder Shankar Lal Amulani, facilities and teaching approach.
+- [Courses](/courses): All coaching programs offered, school and competitive.
+- [Faculty](/faculty): Subject experts and senior teachers.
+- [Results](/results): Board toppers, JEE/NEET selections and year-wise outcomes.
+- [Gallery](/gallery): Campus, classrooms, events and student achievements.
+- [Contact](/contact): Address, phone, WhatsApp and admission enquiry form.
+- [Scholarship Test (RSAT)](/rsat): Rays Scholarship & Aptitude Test details.
+- [Study Material](/study-material): Notes, NCERT solutions, sample papers, PYQs and revision resources.
+
+## Courses
+
+- [Class 6–8 Foundation](/courses/class-6-8): Foundation coaching in Maths, Science and English.
+- [Class 9](/courses/class-9): Board preparation with concept clarity.
+- [Class 10](/courses/class-10): CBSE, ICSE and MP Board boards coaching.
+- [Class 11](/courses/class-11): PCM / PCB with integrated entrance prep.
+- [Class 12](/courses/class-12): Boards plus IIT-JEE/NEET preparation.
+- [IIT-JEE](/courses/iit-jee): JEE Main and Advanced coaching in Bhopal.
+- [NEET](/courses/neet): Medical entrance preparation with NCERT focus.
+- [NDA](/courses/nda): Defence exam written and SSB interview prep.
+- [CUET](/courses/cuet): Central university entrance coaching for all streams.
+
+## Optional
+
+- [Login](/login): Student portal sign-in.
+- [Portal](/portal): Enrolled student dashboard.
