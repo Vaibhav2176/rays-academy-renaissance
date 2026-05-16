@@ -34,6 +34,27 @@ const competitiveExams = [
 const Courses = () => {
   return (
     <div className="overflow-hidden">
+      <SEO
+        title="Coaching Courses in Bhopal – Class 6-12, JEE, NEET, NDA, CUET"
+        description="Explore Rays Academy courses: school coaching for classes 6–12 and entrance prep for IIT-JEE, NEET, NDA and CUET in Bhopal."
+        canonical="/courses"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          name: 'Rays Academy Courses',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Class 6–8 Foundation', url: 'https://raysacademy.lovable.app/courses/class-6-8' },
+            { '@type': 'ListItem', position: 2, name: 'Class 9', url: 'https://raysacademy.lovable.app/courses/class-9' },
+            { '@type': 'ListItem', position: 3, name: 'Class 10', url: 'https://raysacademy.lovable.app/courses/class-10' },
+            { '@type': 'ListItem', position: 4, name: 'Class 11', url: 'https://raysacademy.lovable.app/courses/class-11' },
+            { '@type': 'ListItem', position: 5, name: 'Class 12', url: 'https://raysacademy.lovable.app/courses/class-12' },
+            { '@type': 'ListItem', position: 6, name: 'IIT-JEE', url: 'https://raysacademy.lovable.app/courses/iit-jee' },
+            { '@type': 'ListItem', position: 7, name: 'NEET', url: 'https://raysacademy.lovable.app/courses/neet' },
+            { '@type': 'ListItem', position: 8, name: 'NDA', url: 'https://raysacademy.lovable.app/courses/nda' },
+            { '@type': 'ListItem', position: 9, name: 'CUET', url: 'https://raysacademy.lovable.app/courses/cuet' },
+          ],
+        }}
+      />
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-rays-blue-700 to-primary" />

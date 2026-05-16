@@ -115,6 +115,11 @@ const Contact = () => {
 
   return (
     <div className="overflow-hidden">
+      <SEO
+        title="Contact Rays Academy Bhopal – Admissions Open"
+        description="Visit, call or message Rays Academy at Gufa Mandir Road, Lalghati Bhopal. Admissions open for classes 6–12 and entrance batches."
+        canonical="/contact"
+      />
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-rays-blue-700 to-primary" />

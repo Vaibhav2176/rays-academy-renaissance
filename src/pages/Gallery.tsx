@@ -74,6 +74,18 @@ const Gallery = () => {
 
   return (
     <div className="overflow-hidden">
+      <SEO
+        title="Gallery – Campus, Events & Achievements | Rays Academy"
+        description="Browse photos of the Rays Academy Bhopal campus, classrooms, library, student achievements and academy events."
+        canonical="/gallery"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'Rays Academy Gallery',
+          description: 'Photo collection of the Rays Academy Bhopal campus, events and student achievements.',
+          url: 'https://raysacademy.lovable.app/gallery',
+        }}
+      />
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-rays-blue-700 to-primary" />

@@ -65,6 +65,11 @@ const Results = () => {
 
   return (
     <div className="overflow-hidden">
+      <SEO
+        title="Results & Toppers – Rays Academy Bhopal"
+        description="See Rays Academy Bhopal results: board toppers, JEE/NEET selections and year-on-year success across CBSE, ICSE and MP Board."
+        canonical="/results"
+      />
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-rays-blue-700 to-primary" />
