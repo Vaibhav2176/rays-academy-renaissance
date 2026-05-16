@@ -136,6 +136,7 @@ const CoursePageTemplate = ({
 
   return (
     <div className="overflow-hidden">
+      <SEO title={seoTitle} description={metaDescription} canonical={pathname} jsonLd={courseSchema} />
 
       {/* ─── Hero ─── */}
       <section className="relative min-h-[58vh] flex items-center justify-center overflow-hidden">
