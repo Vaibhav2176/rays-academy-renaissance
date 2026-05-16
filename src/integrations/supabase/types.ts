@@ -696,6 +696,15 @@ export type Database = {
     }
     Functions: {
       get_student_class_id: { Args: { _user_id: string }; Returns: string }
+      get_test_options_safe: {
+        Args: { p_test_id: string }
+        Returns: {
+          id: string
+          option_order: number
+          option_text: string
+          question_id: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
