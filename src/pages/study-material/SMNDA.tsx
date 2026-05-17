@@ -13,6 +13,7 @@ const SMNDA = () => (
     examTips={['Study Maths daily - it carries 300 marks', 'Read newspapers daily for current affairs', 'Practice previous year NDA papers', 'Focus on Indian History and Geography', 'Stay updated with defence-related news', 'Work on speed and accuracy in calculations']}
     faqs={defaultFaqs}
     localSeoKeywords={['NDA study material Bhopal', 'NDA preparation notes', 'Best NDA coaching material Bhopal', 'NDA Maths notes', ...defaultLocalSeo]}
+    canonical="/study-material/nda"
     breadcrumbLabel="NDA"
   />
 );

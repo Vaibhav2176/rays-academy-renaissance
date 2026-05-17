@@ -7,13 +7,14 @@ interface ResourcePageProps {
   heroDescription: string;
   sections: { heading: string; description: string; items: string[] }[];
   breadcrumbLabel: string;
+  canonical?: string;
 }
 
 /**
  * Backwards-compatible wrapper around RichResourcePageTemplate so existing
  * resource pages get the upgraded layout automatically.
  */
-const ResourcePageTemplate = ({ title, metaTitle, metaDescription, heroDescription, sections, breadcrumbLabel }: ResourcePageProps) => {
+const ResourcePageTemplate = ({ title, metaTitle, metaDescription, heroDescription, sections, breadcrumbLabel, canonical }: ResourcePageProps) => {
   const introParagraphs = [
     `${title} from Rays Academy Bhopal — curated chapter-wise by faculty with 3 to 33+ years of experience. Whether you are preparing for CBSE / MP Board exams or competitive exams like IIT-JEE, NEET, NDA and CUET, the right resources cut your preparation time in half.`,
     'Below you will find subject-wise downloadable resources, exam strategy and quick tips. PDFs are being prepared and uploaded continuously — tap any download to request the file directly on WhatsApp.',
@@ -40,6 +41,7 @@ const ResourcePageTemplate = ({ title, metaTitle, metaDescription, heroDescripti
       title={title}
       metaTitle={metaTitle}
       metaDescription={metaDescription}
+      canonical={canonical}
       breadcrumbLabel={breadcrumbLabel}
       heroDescription={heroDescription}
       introParagraphs={introParagraphs}

@@ -13,6 +13,7 @@ const SMCUET = () => (
     examTips={['Understand CUET exam pattern and marking scheme', 'Practice reading comprehension passages daily', 'Stay updated with current affairs', 'Focus on domain subject NCERT textbooks', 'Take section-wise mock tests regularly', 'Work on time management - 45 min per section']}
     faqs={defaultFaqs}
     localSeoKeywords={['CUET study material Bhopal', 'CUET preparation notes', 'Best CUET coaching material Bhopal', 'CUET English notes', ...defaultLocalSeo]}
+    canonical="/study-material/cuet"
     breadcrumbLabel="CUET"
   />
 );

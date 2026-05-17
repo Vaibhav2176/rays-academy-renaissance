@@ -8,6 +8,7 @@ const CUET = () => (
     heroDescription="Get into India's top central universities with Rays Academy's CUET coaching. Complete preparation for all streams with expert faculty and proven strategies."
     badge="University"
     defaultCourse="CUET"
+    canonicalPath="/courses/cuet"
     gradientClass="from-purple-600 via-pink-600 to-purple-700"
     whyChoose={[
       'All streams covered – Science, Commerce, Arts',

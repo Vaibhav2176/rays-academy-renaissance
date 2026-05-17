@@ -37,6 +37,8 @@ interface CoursePageProps {
   achievements?: string[];
   defaultCourse: string;
   gradientClass?: string;
+  /** Canonical path for this course page (always the /courses/<slug> form). */
+  canonicalPath?: string;
 }
 
 /* ─── Animation Variants ─── */
@@ -115,10 +117,12 @@ const CoursePageTemplate = ({
   whyChoose, subjects, duration, batchTimings, mode,
   syllabus, facultySubjects, achievements, defaultCourse,
   gradientClass = 'from-primary via-rays-blue-700 to-primary',
+  canonicalPath,
 }: CoursePageProps) => {
 
   const courseFaculty = getFacultyForSubjects(facultySubjects);
   const { pathname } = useLocation();
+  const canonical = canonicalPath ?? pathname;
 
   const courseSchema = {
     '@context': 'https://schema.org',
@@ -136,7 +140,7 @@ const CoursePageTemplate = ({
 
   return (
     <div className="overflow-hidden">
-      <SEO title={seoTitle} description={metaDescription} canonical={pathname} jsonLd={courseSchema} />
+      <SEO title={seoTitle} description={metaDescription} canonical={canonical} jsonLd={courseSchema} />
 
       {/* ─── Hero ─── */}
       <section className="relative min-h-[58vh] flex items-center justify-center overflow-hidden">

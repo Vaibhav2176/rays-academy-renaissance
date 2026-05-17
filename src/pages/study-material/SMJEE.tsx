@@ -13,6 +13,7 @@ const SMJEE = () => (
     examTips={['Focus on conceptual understanding over rote learning', 'Solve previous 20 years JEE papers topic-wise', 'Time management is crucial - practice with timer', 'Master NCERT first, then move to advanced problems', 'Revise formulas and shortcuts daily', 'Take full-length mock tests every week']}
     faqs={[...defaultFaqs, { question: 'Is this material sufficient for JEE Advanced?', answer: 'Our material covers both JEE Main and Advanced level concepts. For Advanced, we recommend supplementing with our problem-solving sessions and test series.' }]}
     localSeoKeywords={['IIT JEE study material Bhopal', 'JEE preparation notes', 'Best JEE coaching material Bhopal', 'JEE Main study material', 'JEE Advanced preparation Bhopal', ...defaultLocalSeo]}
+    canonical="/study-material/iit-jee"
     breadcrumbLabel="IIT-JEE"
   />
 );

@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { ContactButton, WhatsAppButton } from '@/components/shared/CTAButtons';
 import { Button } from '@/components/ui/button';
+import SEO from '@/components/shared/SEO';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -45,6 +46,8 @@ interface StudyMaterialPageTemplateProps {
   relatedResources?: { title: string; description: string; href: string }[];
   /** Optional official external links (NCERT, NTA, CBSE, UPSC) */
   officialResources?: { name: string; url: string }[];
+  /** Canonical path (e.g. "/study-material/class-10") */
+  canonical?: string;
 }
 
 const StudyMaterialPageTemplate = ({
@@ -63,21 +66,15 @@ const StudyMaterialPageTemplate = ({
   breadcrumbLabel,
   relatedResources,
   officialResources,
+  canonical,
 }: StudyMaterialPageTemplateProps) => {
   useEffect(() => {
     document.title = metaTitle;
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute('content', metaDescription);
-    else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = metaDescription;
-      document.head.appendChild(meta);
-    }
-  }, [metaTitle, metaDescription]);
+  }, [metaTitle]);
 
   return (
     <div className="min-h-screen pt-20 md:pt-24">
+      <SEO title={metaTitle} description={metaDescription} canonical={canonical} />
       {/* Breadcrumb */}
       <div className="bg-primary/5 border-b border-border">
         <div className="container mx-auto px-4 py-3">

@@ -45,6 +45,7 @@ const Class9 = () => (
       'Students scoring 90%+ in board exams',
       'Strong foundation for competitive exams',
     ]}
+    canonicalPath="/courses/class-9"
   />
 );
 

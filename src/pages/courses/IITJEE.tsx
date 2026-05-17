@@ -8,6 +8,7 @@ const IITJEE = () => (
     heroDescription="Crack IIT-JEE with Bhopal's most trusted coaching institute. Rays Academy's structured program covers JEE Main and Advanced with expert problem-solving techniques."
     badge="Engineering"
     defaultCourse="IIT-JEE"
+    canonicalPath="/courses/iit-jee"
     gradientClass="from-orange-600 via-red-600 to-orange-700"
     whyChoose={[
       'Complete JEE Main + Advanced preparation',

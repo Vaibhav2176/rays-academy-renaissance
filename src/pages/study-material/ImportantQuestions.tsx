@@ -5,6 +5,7 @@ const ImportantQuestions = () => (
     title="Important Questions - High Weightage Topics"
     metaTitle="Important Questions | Board & Entrance Exam | Rays Academy Bhopal"
     metaDescription="Access important questions and high-weightage topics for board exams, IIT-JEE, NEET & NDA. Expert-curated by Rays Academy Bhopal."
+    canonical="/study-material/important-questions"
     heroDescription="Focus your preparation on the most important questions and high-weightage topics curated by our expert faculty based on exam pattern analysis."
     breadcrumbLabel="Important Questions"
     sections={[

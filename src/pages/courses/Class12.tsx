@@ -46,6 +46,7 @@ const Class12 = () => (
       'Selections in top engineering and medical colleges',
       '90% students score distinction',
     ]}
+    canonicalPath="/courses/class-12"
   />
 );
 
