@@ -13,6 +13,7 @@ const SMClass6to8 = () => (
     examTips={['Start with NCERT textbooks and complete all exercises', 'Make short notes for quick revision before exams', 'Practice mental math daily for faster calculations', 'Read English newspapers to improve vocabulary', 'Revise Science diagrams and labelled figures', 'Attempt previous year school exam papers']}
     faqs={defaultFaqs}
     localSeoKeywords={['Class 6 study material Bhopal', 'Class 7 notes Bhopal', 'Class 8 preparation Bhopal', 'Foundation course study material', 'Best coaching notes for Class 6-8', ...defaultLocalSeo]}
+    canonical="/study-material/class-6-8"
     breadcrumbLabel="Classes 6-8"
   />
 );

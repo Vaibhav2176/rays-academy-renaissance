@@ -13,6 +13,7 @@ const SMClass10 = () => (
     examTips={['Start revision 2 months before board exams', 'Solve last 10 years board papers for every subject', 'Focus on derivations and diagram-based questions', 'Practice map work for Geography regularly', 'Time yourself while solving sample papers', 'Write neatly - presentation matters in boards']}
     faqs={defaultFaqs}
     localSeoKeywords={['Class 10 study material Bhopal', 'Class 10 board exam notes', 'Best Class 10 coaching material Bhopal', 'CBSE Class 10 preparation', ...defaultLocalSeo]}
+    canonical="/study-material/class-10"
     breadcrumbLabel="Class 10"
   />
 );

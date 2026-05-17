@@ -13,6 +13,7 @@ const SMClass12 = () => (
     examTips={['Start board exam prep from Day 1 of Class 12', 'Solve CBSE sample papers and marking schemes', 'Focus on high-weightage chapters first', 'Practice derivations daily for Physics', 'Revise organic reactions using flashcards', 'Attempt full-length mock tests every weekend']}
     faqs={defaultFaqs}
     localSeoKeywords={['Class 12 study material Bhopal', 'Class 12 board exam preparation', 'Best Class 12 notes Bhopal', 'CBSE Class 12 Physics notes', ...defaultLocalSeo]}
+    canonical="/study-material/class-12"
     breadcrumbLabel="Class 12"
   />
 );

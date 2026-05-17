@@ -13,6 +13,7 @@ const SMClass9 = () => (
     examTips={['Focus on NCERT exercises - most board questions come from here', 'Practice diagram-based questions in Science', 'Learn derivations step by step in Physics', 'Create timeline charts for History chapters', 'Solve at least 5 problems daily from each Maths chapter', 'Write short answers in bullet points for better marks']}
     faqs={defaultFaqs}
     localSeoKeywords={['Class 9 study material Bhopal', 'Class 9 Maths notes', 'Class 9 Science notes Bhopal', ...defaultLocalSeo]}
+    canonical="/study-material/class-9"
     breadcrumbLabel="Class 9"
   />
 );

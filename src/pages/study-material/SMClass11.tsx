@@ -13,6 +13,7 @@ const SMClass11 = () => (
     examTips={["Don't skip Class 11 - it's the foundation for Class 12 & entrance exams", 'Practice numerical problems daily in Physics & Chemistry', 'Make formula sheets for quick revision', 'Understand organic chemistry reaction mechanisms thoroughly', 'Study Biology diagrams and label them accurately', 'Solve previous year competitive exam questions alongside board prep']}
     faqs={defaultFaqs}
     localSeoKeywords={['Class 11 study material Bhopal', 'Class 11 Physics notes', 'Class 11 Chemistry notes Bhopal', 'PCM study material', ...defaultLocalSeo]}
+    canonical="/study-material/class-11"
     breadcrumbLabel="Class 11"
   />
 );

@@ -13,6 +13,7 @@ const SMNEET = () => (
     examTips={['NCERT is the Bible for NEET - read it line by line', 'Biology carries maximum weightage - give it maximum time', 'Practice MCQs daily from each chapter', 'Make mnemonics for Biology classifications', 'Solve previous 15 years NEET papers', 'Focus on diagram-based questions in Biology']}
     faqs={[...defaultFaqs, { question: 'Is NCERT enough for NEET preparation?', answer: 'NCERT is the primary source for NEET, especially for Biology. Our material supplements NCERT with additional practice problems and concept clarity notes.' }]}
     localSeoKeywords={['NEET study material Bhopal', 'NEET Biology notes', 'Best NEET coaching material Bhopal', 'Medical entrance preparation Bhopal', ...defaultLocalSeo]}
+    canonical="/study-material/neet"
     breadcrumbLabel="NEET"
   />
 );
