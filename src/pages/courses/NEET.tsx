@@ -8,6 +8,7 @@ const NEET = () => (
     heroDescription="Achieve your dream of becoming a doctor with Rays Academy's proven NEET coaching program. NCERT-based approach with extensive Biology focus and regular mock tests."
     badge="Medical"
     defaultCourse="NEET"
+    canonicalPath="/courses/neet"
     gradientClass="from-green-600 via-emerald-600 to-green-700"
     whyChoose={[
       'NCERT-focused teaching methodology',

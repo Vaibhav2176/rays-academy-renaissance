@@ -8,6 +8,7 @@ const NDA = () => (
     heroDescription="Serve the nation! Rays Academy's NDA coaching program prepares you for the written exam, SSB interview, and builds the personality needed for a defence career."
     badge="Defence"
     defaultCourse="NDA"
+    canonicalPath="/courses/nda"
     gradientClass="from-blue-700 via-indigo-700 to-blue-800"
     whyChoose={[
       'Complete NDA written exam preparation',
