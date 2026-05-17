@@ -128,7 +128,7 @@ const CoursePageTemplate = ({
     provider: {
       '@type': 'EducationalOrganization',
       name: 'Rays Academy',
-      sameAs: 'https://raysacademy.lovable.app/',
+      sameAs: 'https://www.raysacademybhopal.in/',
     },
   };
 
