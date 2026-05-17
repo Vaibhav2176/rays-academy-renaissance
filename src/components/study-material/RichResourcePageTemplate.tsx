@@ -86,8 +86,8 @@ const RichResourcePageTemplate = ({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://raysacademy.lovable.app/' },
-      { '@type': 'ListItem', position: 2, name: 'Study Material', item: 'https://raysacademy.lovable.app/study-material' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.raysacademybhopal.in/' },
+      { '@type': 'ListItem', position: 2, name: 'Study Material', item: 'https://www.raysacademybhopal.in/study-material' },
       { '@type': 'ListItem', position: 3, name: breadcrumbLabel },
     ],
   };

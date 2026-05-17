@@ -8,7 +8,7 @@ interface SEOProps {
   jsonLd?: Record<string, any> | Record<string, any>[];
 }
 
-const SITE = 'https://raysacademy.lovable.app';
+const SITE = 'https://www.raysacademybhopal.in';
 
 const SEO = ({ title, description, canonical, jsonLd }: SEOProps) => {
   const href = canonical ? (canonical.startsWith('http') ? canonical : `${SITE}${canonical}`) : undefined;

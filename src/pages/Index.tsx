@@ -57,7 +57,7 @@ const Index = () => {
           '@context': 'https://schema.org',
           '@type': 'WebSite',
           name: 'Rays Academy',
-          url: 'https://raysacademy.lovable.app/',
+          url: 'https://www.raysacademybhopal.in/',
         }}
       />
       {/* Hero Section */}

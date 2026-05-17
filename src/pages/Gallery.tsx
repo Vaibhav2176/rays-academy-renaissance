@@ -83,7 +83,7 @@ const Gallery = () => {
           '@type': 'CollectionPage',
           name: 'Rays Academy Gallery',
           description: 'Photo collection of the Rays Academy Bhopal campus, events and student achievements.',
-          url: 'https://raysacademy.lovable.app/gallery',
+          url: 'https://www.raysacademybhopal.in/gallery',
         }}
       />
       {/* Hero Section */}
