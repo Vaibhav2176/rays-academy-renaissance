@@ -45,6 +45,7 @@ const Class11 = () => (
       'Strong foundation for JEE & NEET',
       'Multiple students in top engineering colleges',
     ]}
+    canonicalPath="/courses/class-11"
   />
 );
 

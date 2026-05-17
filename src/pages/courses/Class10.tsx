@@ -46,6 +46,7 @@ const Class10 = () => (
       '90% students score above 80% marks',
       '100% pass rate since 2006',
     ]}
+    canonicalPath="/courses/class-10"
   />
 );
 

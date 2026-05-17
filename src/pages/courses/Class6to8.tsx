@@ -45,6 +45,7 @@ const Class6to8 = () => (
       'Multiple school toppers from our batches',
       'Olympiad qualifiers every year',
     ]}
+    canonicalPath="/courses/class-6-8"
   />
 );
 
