@@ -5,6 +5,7 @@ const FormulaSheets = () => (
     title="Formula Sheets - Quick Revision"
     metaTitle="Formula Sheets | Maths, Physics, Chemistry Formulas | Rays Academy Bhopal"
     metaDescription="Download quick revision formula sheets for Maths, Physics & Chemistry. All important formulas organized chapter-wise by Rays Academy Bhopal."
+    canonical="/study-material/formula-sheets"
     heroDescription="Quick revision formula sheets covering all important formulas for Mathematics, Physics, and Chemistry organized chapter-wise for efficient last-minute revision."
     breadcrumbLabel="Formula Sheets"
     sections={[
