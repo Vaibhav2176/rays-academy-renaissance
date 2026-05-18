@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
-import { Send, User, Phone, BookOpen } from 'lucide-react';
+import { Send, User, Phone, BookOpen, Loader2 } from 'lucide-react';
+import { submitToFormSubmit } from '@/lib/formsubmit';
 
 interface CourseEnquiryFormProps {
   defaultCourse?: string;
@@ -18,6 +19,7 @@ const CourseEnquiryForm = ({ defaultCourse }: CourseEnquiryFormProps) => {
   const [course, setCourse] = useState(defaultCourse || '');
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,19 +33,19 @@ const CourseEnquiryForm = ({ defaultCourse }: CourseEnquiryFormProps) => {
     }
     setLoading(true);
     try {
-      const { error } = await supabase.from('contact_inquiries').insert([{
-        name: name.trim(),
-        phone: phone.trim(),
-        email: '',
-        message: `Enquiry for course: ${course}`,
-      }]);
-      if (error) throw error;
-      toast({ title: 'Enquiry submitted!', description: 'We will contact you soon.' });
+      await submitToFormSubmit({
+        formType: 'Course Enquiry',
+        Name: name.trim(),
+        Phone: phone.trim(),
+        Course: course,
+      });
+      toast({ title: 'Enquiry submitted!', description: 'Redirecting…' });
       setName('');
       setPhone('');
       if (!defaultCourse) setCourse('');
+      navigate('/thank-you', { state: { formType: 'your course enquiry' } });
     } catch {
-      toast({ title: 'Something went wrong', variant: 'destructive' });
+      toast({ title: 'Something went wrong', description: 'Please try again.', variant: 'destructive' });
     } finally {
       setLoading(false);
     }
@@ -65,6 +67,7 @@ const CourseEnquiryForm = ({ defaultCourse }: CourseEnquiryFormProps) => {
               placeholder="Enter your full name"
               maxLength={100}
               className="h-12 text-base"
+              disabled={loading}
             />
           </div>
           <div className="space-y-2">
@@ -78,13 +81,14 @@ const CourseEnquiryForm = ({ defaultCourse }: CourseEnquiryFormProps) => {
               placeholder="Enter 10-digit mobile number"
               maxLength={10}
               className="h-12 text-base"
+              disabled={loading}
             />
           </div>
           <div className="space-y-2">
             <Label htmlFor="eq-course" className="text-sm font-semibold flex items-center gap-2">
               <BookOpen className="w-4 h-4 text-primary" /> Course / Class
             </Label>
-            <Select value={course} onValueChange={setCourse}>
+            <Select value={course} onValueChange={setCourse} disabled={loading}>
               <SelectTrigger className="h-12 text-base">
                 <SelectValue placeholder="Select a course" />
               </SelectTrigger>
@@ -102,7 +106,11 @@ const CourseEnquiryForm = ({ defaultCourse }: CourseEnquiryFormProps) => {
             </Select>
           </div>
           <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-12 text-base rounded-xl" disabled={loading}>
-            {loading ? 'Submitting...' : <><Send className="w-4 h-4 mr-2" /> Submit Enquiry</>}
+            {loading ? (
+              <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Submitting…</>
+            ) : (
+              <><Send className="w-4 h-4 mr-2" /> Submit Enquiry</>
+            )}
           </Button>
         </form>
       </CardContent>
