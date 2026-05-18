@@ -16,6 +16,7 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Portal from "./pages/Portal";
 import NotFound from "./pages/NotFound";
+import ThankYou from "./pages/ThankYou";
 
 import Class6to8 from "./pages/courses/Class6to8";
 import Class9 from "./pages/courses/Class9";
@@ -137,6 +138,7 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
               <Route path="/portal" element={<Portal />} />
+              <Route path="/thank-you" element={<ThankYou />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>

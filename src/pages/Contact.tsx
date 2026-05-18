@@ -1,14 +1,15 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SEO from '@/components/shared/SEO';
-import { MapPin, Phone, Mail, Clock, Send, MessageSquare, User, AtSign } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageSquare, User, AtSign, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { useContactInquiry } from '@/hooks/useContactInquiry';
+import { submitToFormSubmit } from '@/lib/formsubmit';
 import { z } from 'zod';
 
 const fadeInUp = {
@@ -34,7 +35,8 @@ const contactSchema = z.object({
 
 const Contact = () => {
   const { toast } = useToast();
-  const contactMutation = useContactInquiry();
+  const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -46,7 +48,6 @@ const Contact = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
@@ -55,8 +56,7 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
-    
-    // Validate form data
+
     const result = contactSchema.safeParse(formData);
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
@@ -69,23 +69,31 @@ const Contact = () => {
       return;
     }
 
-    contactMutation.mutate(formData, {
-      onSuccess: () => {
-        toast({
-          title: "Message Sent!",
-          description: "Thank you for contacting us. We'll get back to you soon.",
-        });
-        setFormData({ name: '', email: '', phone: '', message: '' });
-      },
-      onError: (error) => {
-        toast({
-          title: "Error",
-          description: "Failed to send message. Please try again.",
-          variant: "destructive",
-        });
-        console.error('Contact form error:', error);
-      },
-    });
+    setSubmitting(true);
+    try {
+      await submitToFormSubmit({
+        formType: 'Contact Form',
+        Name: formData.name,
+        Email: formData.email,
+        Phone: formData.phone,
+        Message: formData.message,
+      });
+      toast({
+        title: "Message Sent!",
+        description: "Redirecting…",
+      });
+      setFormData({ name: '', email: '', phone: '', message: '' });
+      navigate('/thank-you', { state: { formType: 'your message' } });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+      console.error('Contact form error:', error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -303,12 +311,12 @@ const Contact = () => {
                       type="submit"
                       size="lg"
                       className="w-full btn-primary"
-                      disabled={contactMutation.isPending}
+                      disabled={submitting}
                     >
-                      {contactMutation.isPending ? (
+                      {submitting ? (
                         <>
-                          <div className="w-5 h-5 border-2 border-accent-foreground/30 border-t-accent-foreground rounded-full animate-spin mr-2" />
-                          Sending...
+                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                          Sending…
                         </>
                       ) : (
                         <>
