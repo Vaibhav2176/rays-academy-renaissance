@@ -39,6 +39,7 @@ const navLinks = [
   { name: 'About', path: '/about' },
   { name: 'Courses', path: '/courses', dropdown: 'courses' as const },
   { name: 'Study Material', path: '/study-material', dropdown: 'study' as const },
+  { name: 'Blog', path: '/blog' },
   { name: 'Faculty', path: '/faculty' },
   { name: 'Results', path: '/results' },
   { name: 'Gallery', path: '/gallery' },
