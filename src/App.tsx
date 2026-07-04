@@ -17,6 +17,9 @@ import Login from "./pages/Login";
 import Portal from "./pages/Portal";
 import NotFound from "./pages/NotFound";
 import ThankYou from "./pages/ThankYou";
+import BlogIndex from "./pages/blog/BlogIndex";
+import BlogPost from "./pages/blog/BlogPost";
+import BlogCategory from "./pages/blog/BlogCategory";
 
 import Class6to8 from "./pages/courses/Class6to8";
 import Class9 from "./pages/courses/Class9";
@@ -139,6 +142,9 @@ const App = () => (
               <Route path="/login" element={<Login />} />
               <Route path="/portal" element={<Portal />} />
               <Route path="/thank-you" element={<ThankYou />} />
+              <Route path="/blog" element={<BlogIndex />} />
+              <Route path="/blog/category/:slug" element={<BlogCategory />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>
