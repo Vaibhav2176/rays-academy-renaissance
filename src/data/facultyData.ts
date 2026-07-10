@@ -3,6 +3,7 @@ import faculty1 from '@/assets/rajeshsahu.jpeg';
 import faculty2 from '@/assets/ankityadav.jpeg';
 import faculty3 from '@/assets/mgali.jpeg';
 import faculty4 from '@/assets/sachinpawar.jpeg';
+import faculty5 from '@/assets/manishmeena.jpeg';
 
 export type SubjectKey =
   | 'mathematics'
