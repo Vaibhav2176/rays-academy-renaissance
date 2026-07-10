@@ -3,6 +3,7 @@ import faculty1 from '@/assets/rajeshsahu.jpeg';
 import faculty2 from '@/assets/ankityadav.jpeg';
 import faculty3 from '@/assets/mgali.jpeg';
 import faculty4 from '@/assets/sachinpawar.jpeg';
+import faculty5 from '@/assets/manishmeena.jpeg';
 
 export type SubjectKey =
   | 'mathematics'
@@ -110,16 +111,15 @@ export const ALL_FACULTY: FacultyMember[] = [
   },
   // ── Placeholder entries — teachers to be added ──────────────────────────────
   {
-    id: 'social-science-faculty',
-    name: 'Social Science Faculty',
+    id: 'manish-meena',
+    name: 'Manish Meena',
     role: 'Faculty',
     subject: 'Social Science',
-    experience: 'To be announced',
-    image: '',
+    experience: '7+ Years',
+    image: faculty5,
     description:
-      'A dedicated Social Science faculty member will be joining Rays Academy soon. Stay tuned for updates.',
+      'Manish Sir brings history, civics, geography and economics to life with clear explanations, real-world context and exam-focused strategies that help students score high in Social Science.',
     subjectKeys: ['social_science'],
-    comingSoon: true,
   },
 ];
 
