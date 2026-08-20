@@ -20,8 +20,8 @@ const NCERTPage = ({ classNum }: NCERTPageProps) => {
   return (
     <RichResourcePageTemplate
       title={`NCERT Books for Class ${classNum} — Free Download`}
-      metaTitle={`NCERT Books Class ${classNum} | Free PDF Download | Rays Academy Bhopal`}
-      metaDescription={`Download free NCERT textbooks for Class ${classNum}. All subjects available chapter-wise. Curated by Rays Academy, Bhopal.`}
+      metaTitle={`NCERT Book Class ${classNum} PDF Free Download | All Subjects`}
+      metaDescription={`Download free NCERT books for Class ${classNum} in PDF — Maths, Science, English, SST and more, chapter-wise. Shared by Rays Academy Bhopal faculty.`}
       canonical={`/study-material/ncert/class-${classNum}`}
       breadcrumbLabel={`NCERT Class ${classNum}`}
       heroDescription={`Free NCERT textbooks for Class ${classNum} organised subject-wise. Essential foundation for ${data.isBoard ? 'CBSE board exam preparation' : 'building strong concepts'}${isSenior ? ' and competitive entrance exams like JEE, NEET & CUET' : ''}.`}

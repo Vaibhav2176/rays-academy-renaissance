@@ -50,8 +50,8 @@ const Index = () => {
   return (
     <div className="overflow-hidden">
       <SEO
-        title="Rays Academy – Best Coaching Institute in Bhopal"
-        description="Bhopal's trusted coaching since 2006 for classes 6–12, IIT-JEE, NEET, NDA and CUET. Admissions open at Rays Academy."
+        title="Rays Academy Bhopal | Coaching for Class 6-12, JEE & NEET"
+        description="Coaching classes in Lalghati, Bhopal since 2006 — Class 6-12, IIT-JEE, NEET, NDA & CUET. Small batches, AC classrooms, 5 free trial classes."
         canonical="/"
         jsonLd={{
           '@context': 'https://schema.org',
