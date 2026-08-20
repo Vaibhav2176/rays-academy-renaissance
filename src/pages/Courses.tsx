@@ -35,8 +35,8 @@ const Courses = () => {
   return (
     <div className="overflow-hidden">
       <SEO
-        title="Coaching Courses in Bhopal – Class 6-12, JEE, NEET, NDA, CUET"
-        description="Explore Rays Academy courses: school coaching for classes 6–12 and entrance prep for IIT-JEE, NEET, NDA and CUET in Bhopal."
+        title="Coaching Classes in Bhopal | Class 6-12, JEE, NEET, NDA, CUET"
+        description="Batch timings, syllabus and fee enquiry for every Rays Academy course in Bhopal — Class 6-12 school coaching plus IIT-JEE, NEET, NDA and CUET prep."
         canonical="/courses"
         jsonLd={{
           '@context': 'https://schema.org',

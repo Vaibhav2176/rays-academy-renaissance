@@ -100,8 +100,8 @@ export const buildPYQPage = (group: Group) => {
   return (
     <RichResourcePageTemplate
       title={`${c.label} Previous Year Questions (PYQs) with Solutions`}
-      metaTitle={`${c.label} PYQs | Previous Year Question Papers with Solutions | Rays Academy Bhopal`}
-      metaDescription={`Download ${c.label} previous year question papers with solutions. Subject-wise & year-wise PYQs by Rays Academy, Bhopal's trusted coaching institute.`}
+      metaTitle={`${c.label} PYQ PDF Free Download | Chapter-wise with Solutions`}
+      metaDescription={`Free ${c.label} previous year question papers with full solutions — chapter-wise, subject-wise and year-wise PDFs. Curated by Rays Academy Bhopal faculty.`}
       canonical={`/study-material/pyq/${group}`}
       breadcrumbLabel={`${c.label} PYQs`}
       heroDescription={`Solved previous year question papers for ${c.label} — chapter-wise, subject-wise and year-wise. Curated by Rays Academy Bhopal faculty for focused, exam-pattern based practice.`}
@@ -179,8 +179,8 @@ export const buildSamplePaperPage = (group: Group) => {
   return (
     <RichResourcePageTemplate
       title={`${c.label} Sample Papers & Mock Tests`}
-      metaTitle={`${c.label} Sample Papers | Latest Pattern Mock Tests | Rays Academy Bhopal`}
-      metaDescription={`Download ${c.label} sample papers and mock tests with solutions. Latest pattern, expert-curated by Rays Academy Bhopal.`}
+      metaTitle={`${c.label} Sample Papers 2026-27 PDF | Free Download`}
+      metaDescription={`Free ${c.label} sample papers and full mock tests with solutions, built on the latest blueprint and marking scheme. Prepared by Rays Academy Bhopal.`}
       canonical={`/study-material/sample-papers/${group}`}
       breadcrumbLabel={`${c.label} Sample Papers`}
       heroDescription={`Latest pattern sample papers and full mock tests for ${c.label} — designed by Rays Academy Bhopal faculty to mirror the actual exam in difficulty and structure.`}
