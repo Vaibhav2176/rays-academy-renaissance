@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { BookOpen, FileText, Download, Award, Star, Users, Target, Lightbulb, Phone, MessageCircle, GraduationCap, ChevronRight, Sparkles, Calculator, FlaskConical, BookMarked, Globe } from 'lucide-react';
@@ -7,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ContactButton, WhatsAppButton } from '@/components/shared/CTAButtons';
 import DownloadButton from '@/components/shared/DownloadPlaceholderDialog';
+import SEO from '@/components/shared/SEO';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -16,13 +16,6 @@ const fadeInUp = {
 };
 
 const StudyMaterial = () => {
-  useEffect(() => {
-    document.title = 'Free & Premium Study Material for Classes 6–12, IIT-JEE, NEET, NDA & CUET | Rays Academy Bhopal';
-    const desc = document.querySelector('meta[name="description"]');
-    const content = 'Download free and premium study material, notes, sample papers, formula sheets & PYQs for Classes 6–12, IIT-JEE, NEET, NDA & CUET by Rays Academy Bhopal.';
-    if (desc) desc.setAttribute('content', content);
-    else { const m = document.createElement('meta'); m.name = 'description'; m.content = content; document.head.appendChild(m); }
-  }, []);
 
   const classCards = [
     { title: 'Classes 6–8', desc: 'Foundation study material for Maths, Science, English & SST', path: '/study-material/class-6-8', icon: BookOpen, color: 'bg-blue-500' },
@@ -56,6 +49,19 @@ const StudyMaterial = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Free Study Material PDF | Class 6-12, JEE, NEET, NDA, CUET"
+        description="Download free notes, previous year questions, sample papers, formula sheets and NCERT books for Class 6-12, IIT-JEE, NEET, NDA and CUET — by Rays Academy Bhopal."
+        canonical="/study-material"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'Study Material — Rays Academy Bhopal',
+          url: 'https://www.raysacademybhopal.in/study-material',
+          description:
+            'Free and premium study material, notes, PYQs, sample papers, formula sheets and NCERT books for Class 6-12 and competitive exams.',
+        }}
+      />
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-primary-foreground py-24">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-50" />
