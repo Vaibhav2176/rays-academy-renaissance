@@ -292,7 +292,7 @@ const CoachingInBhopal = () => {
           <div className="rounded-2xl overflow-hidden border border-border shadow-sm">
             <iframe
               title="Rays Academy Bhopal location map"
-              src="https://www.google.com/maps?q=Gufa%20Mandir%20Road%2C%20Lalghati%2C%20Bhopal&output=embed"
+              src="https://www.google.com/maps?q=Rays+Academy,+Gufa+Mandir+Road,+Lalghati,+Bhopal&z=16&output=embed"
               width="100%"
               height="380"
               loading="lazy"
