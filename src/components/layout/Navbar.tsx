@@ -84,7 +84,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center gap-2 group shrink-0">
             <img src={logo} alt="Rays Academy Logo" className="w-10 h-10 object-contain rounded-md" />
             <div className="hidden sm:block">
-              <h1 className="text-base lg:text-lg font-bold text-primary leading-tight">Rays Academy</h1>
+              <span className="block text-base lg:text-lg font-bold text-primary leading-tight">Rays Academy</span>
               <p className="text-[10px] font-medium text-muted-foreground -mt-0.5">Excellence Since 2006</p>
             </div>
           </Link>
