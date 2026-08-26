@@ -12,6 +12,7 @@ import Courses from "./pages/Courses";
 import Faculty from "./pages/Faculty";
 import Results from "./pages/Results";
 import Gallery from "./pages/Gallery";
+import CoachingInBhopal from '@/pages/CoachingInBhopal';
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Portal from "./pages/Portal";
@@ -139,6 +140,7 @@ const App = () => (
               <Route path="/results" element={<Results />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/coaching-classes-in-bhopal" element={<CoachingInBhopal />} />
               <Route path="/login" element={<Login />} />
               <Route path="/portal" element={<Portal />} />
               <Route path="/thank-you" element={<ThankYou />} />
