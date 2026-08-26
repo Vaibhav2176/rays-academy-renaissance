@@ -202,7 +202,7 @@ const Contact = () => {
               <motion.div variants={fadeInUp} className="mt-8">
                 <Card className="border-0 shadow-lg overflow-hidden">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3665.052555111271!2d77.3727175!3d23.277540000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c67e19092c38d%3A0x61beacd428d72894!2sRays%20Academy!5e0!3m2!1sen!2sin!4v1772984653248!5m2!1sen!2sin"
+                    src="https://www.google.com/maps?q=Rays+Academy,+Gufa+Mandir+Road,+Lalghati,+Bhopal&z=16&output=embed"
                     width="100%"
                     height="450"
                     style={{ border: 0 }}
