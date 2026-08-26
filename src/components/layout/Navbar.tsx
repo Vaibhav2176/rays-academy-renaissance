@@ -43,6 +43,7 @@ const navLinks = [
   { name: 'Faculty', path: '/faculty' },
   { name: 'Results', path: '/results' },
   { name: 'Gallery', path: '/gallery' },
+  { name: 'Fees & Location', path: '/coaching-classes-in-bhopal' },
   { name: 'Contact', path: '/contact' },
 ];
 
