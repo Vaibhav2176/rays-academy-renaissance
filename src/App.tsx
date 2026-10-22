@@ -21,6 +21,8 @@ import ThankYou from "./pages/ThankYou";
 import BlogIndex from "./pages/blog/BlogIndex";
 import BlogPost from "./pages/blog/BlogPost";
 import BlogCategory from "./pages/blog/BlogCategory";
+import AdminStudyMaterials from "./pages/admin/AdminStudyMaterials";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 import Class6to8 from "./pages/courses/Class6to8";
 import Class9 from "./pages/courses/Class9";
@@ -142,7 +144,10 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/coaching-classes-in-bhopal" element={<CoachingInBhopal />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/auth" element={<Login />} />
               <Route path="/portal" element={<Portal />} />
+              <Route path="/admin/materials" element={<AdminStudyMaterials />} />
+              <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/thank-you" element={<ThankYou />} />
               <Route path="/blog" element={<BlogIndex />} />
               <Route path="/blog/category/:slug" element={<BlogCategory />} />

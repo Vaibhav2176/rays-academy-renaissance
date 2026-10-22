@@ -1,1 +1,16 @@
-project_id = "opolyyfzgivqvvbzpwxe"
+project_id = "afhxaimjvaytuxfhenym"
+
+[functions.material-download]
+verify_jwt = false
+
+[functions.admin-materials]
+verify_jwt = false
+
+[functions.create-razorpay-order]
+verify_jwt = false
+
+[functions.verify-razorpay-payment]
+verify_jwt = false
+
+[functions.razorpay-webhook]
+verify_jwt = false

@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { ContactButton, WhatsAppButton } from '@/components/shared/CTAButtons';
 import DownloadButton from '@/components/shared/DownloadPlaceholderDialog';
 import SEO from '@/components/shared/SEO';
+import CatalogBrowser from '@/components/study-material/CatalogBrowser';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -48,7 +49,7 @@ const StudyMaterial = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-16">
       <SEO
         title="Free Study Material PDF | Class 6-12, JEE, NEET, NDA, CUET"
         description="Download free notes, previous year questions, sample papers, formula sheets and NCERT books for Class 6-12, IIT-JEE, NEET, NDA and CUET — by Rays Academy Bhopal."
@@ -63,7 +64,7 @@ const StudyMaterial = () => {
         }}
       />
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-primary-foreground py-24">
+      <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-primary-foreground py-12 md:py-16">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-50" />
         <div className="container mx-auto px-4 relative z-10">
           <motion.div {...fadeInUp} className="max-w-3xl mx-auto text-center">
@@ -135,6 +136,13 @@ const StudyMaterial = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Live Study Material Catalog Browser */}
+      <section id="catalog-explorer" className="py-16 bg-background border-t border-border/40">
+        <div className="container mx-auto px-4">
+          <CatalogBrowser />
         </div>
       </section>
 

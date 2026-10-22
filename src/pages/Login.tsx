@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { GraduationCap, ArrowRight, Eye, EyeOff, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,6 +12,7 @@ import RegisterForm from '@/components/auth/RegisterForm';
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { signIn } = useAuth();
   const { toast } = useToast();
   
@@ -39,7 +40,15 @@ const Login = () => {
         title: "Welcome back!",
         description: "You have successfully logged in.",
       });
-      navigate('/portal');
+      const rawReturnTo = (location.state as { returnTo?: string })?.returnTo;
+      const returnTo =
+        typeof rawReturnTo === 'string' &&
+        rawReturnTo.startsWith('/') &&
+        !rawReturnTo.startsWith('//') &&
+        !rawReturnTo.includes('\\')
+          ? rawReturnTo
+          : '/portal';
+      navigate(returnTo);
     }
     
     setLoading(false);

@@ -695,6 +695,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      ensure_profile: {
+        Args: Record<PropertyKey, never>
+        Returns: Database["public"]["Tables"]["profiles"]["Row"]
+      }
       get_student_class_id: { Args: { _user_id: string }; Returns: string }
       get_test_options_safe: {
         Args: { p_test_id: string }

@@ -22,3 +22,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Supabase CLI local state and secrets cache
+supabase/.temp/
+supabase/.branches/
+
+# Environment files
+.env
+.env.*
+!.env.example
+supabase/functions/.env*
+
+# Generated MCP edge function
+supabase/functions/mcp/

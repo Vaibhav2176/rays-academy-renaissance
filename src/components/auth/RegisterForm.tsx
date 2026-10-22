@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useAuth } from '@/contexts/AuthContext';
 import { useClasses } from '@/hooks/useClasses';
 import { useToast } from '@/hooks/use-toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface RegisterFormData {
   fullName: string;
@@ -30,6 +30,7 @@ interface RegisterFormData {
 
 const RegisterForm = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { signUp } = useAuth();
   const { data: classes } = useClasses();
   const { toast } = useToast();
@@ -148,7 +149,15 @@ const RegisterForm = () => {
       toast({ title: "Registration Failed", description: error.message, variant: "destructive" });
     } else {
       toast({ title: "Welcome to Rays Academy!", description: "Your account has been created. Check your email for verification." });
-      navigate('/portal');
+      const rawReturnTo = (location.state as { returnTo?: string })?.returnTo;
+      const returnTo =
+        typeof rawReturnTo === 'string' &&
+        rawReturnTo.startsWith('/') &&
+        !rawReturnTo.startsWith('//') &&
+        !rawReturnTo.includes('\\')
+          ? rawReturnTo
+          : '/portal';
+      navigate(returnTo);
     }
     
     setLoading(false);

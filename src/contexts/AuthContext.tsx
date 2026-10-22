@@ -72,7 +72,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     
     if (!error && data) {
       setProfile(data);
+      return data;
     }
+
+    // Safe recovery: if profile row is missing for an authenticated user,
+    // invoke the ensure_profile RPC to recover profile data safely and idempotently.
+    if (!error && !data) {
+      try {
+        const { data: recovered, error: rpcError } = await (supabase.rpc as any)('ensure_profile');
+        if (!rpcError && recovered) {
+          setProfile(recovered as Profile);
+          return recovered as Profile;
+        }
+      } catch (err) {
+        console.warn('Profile recovery attempt failed:', err);
+      }
+    }
+
+    return null;
   };
 
   useEffect(() => {
@@ -107,14 +124,28 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const signUp = async (email: string, password: string, data: SignUpData) => {
-    const { error } = await supabase.auth.signUp({
+    const metadata = {
+      full_name: data.fullName.trim(),
+      phone: data.phone?.trim() || null,
+      class_id: data.classId?.trim() || null,
+      date_of_birth: data.dateOfBirth?.trim() || null,
+      gender: data.gender?.trim() || null,
+      parent_name: data.parentName?.trim() || null,
+      parent_phone: data.parentPhone?.trim() || null,
+      school_name: data.schoolName?.trim() || null,
+      board: data.board?.trim() || 'CBSE',
+      address: data.address?.trim() || null,
+      city: data.city?.trim() || null,
+      state: data.state?.trim() || 'Madhya Pradesh',
+      pincode: data.pincode?.trim() || null,
+    };
+
+    const { data: authData, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: window.location.origin,
-        data: {
-          full_name: data.fullName,
-        },
+        data: metadata,
       },
     });
 
@@ -122,29 +153,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return { error: error as Error };
     }
 
-    // Update profile with all details after signup
-    const { data: { user } } = await supabase.auth.getUser();
-    if (user) {
-      await supabase
-        .from('profiles')
-        .update({
-          full_name: data.fullName,
-          phone: data.phone,
-          class_id: data.classId || null,
-          date_of_birth: data.dateOfBirth || null,
-          gender: data.gender || null,
-          parent_name: data.parentName || null,
-          parent_phone: data.parentPhone || null,
-          school_name: data.schoolName || null,
-          board: data.board || null,
-          address: data.address || null,
-          city: data.city || null,
-          state: data.state || null,
-          pincode: data.pincode || null,
-        })
-        .eq('id', user.id);
-      
-      await fetchProfile(user.id);
+    // If an authenticated session is immediately active (e.g. email confirmation disabled),
+    // fetch the created profile into state. Profile creation is handled atomically by
+    // the database trigger, eliminating reliance on client-side writes.
+    if (authData?.session?.user) {
+      await fetchProfile(authData.session.user.id);
     }
 
     return { error: null };
